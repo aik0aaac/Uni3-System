@@ -6,11 +6,6 @@ body{
 	background-size:		cover;
 }
 
-header, label, input, #info, #Confirm{
-    font-family: "Meiryo",sans-serif;
-	font-size:20px;
-}
-
 header{
 	padding: 10px 20px 0px;
 	top:0;
@@ -54,6 +49,9 @@ i{
     transition: .2s;
 	width: 250px;
 	line-height: 1.5em;
+}
+.my-btn label>span{
+    font-size: 14px;	
 }
 .my-btn input[type="radio"]:checked + label {
     background-color: #ff69b4;

@@ -5,6 +5,8 @@
     <title>Uni3 方舟戦果入力</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <!-- 検索よけ(おまじない程度だけど) -->
+    <meta NAME="ROBOTS" CONTENT="NOINDEX,NOFOLLOW,NOARCHIVE">
     <!-- ライブラリファイル ------------------------------------------------------>
     <script src="lib/jquery-3.1.1.min.js"></script>
     <script src="lib/moment.js"></script>
@@ -122,9 +124,18 @@
                 <div id="info" class="form-group">
                     <div class="col-sm-offset-2 col-sm-10 col-xs-12">
                         入力された情報は下記のGoogleスプレッドシートへ送信されます。<br>
-                        <button type="button" id="guild_SP" class="btn btn-primary btn-sm my-btn2" target=”_blank” href="https://docs.google.com/spreadsheets/d/1pBlpeDH8YSE7HlZdd814mYr8ckq_A-5k9KH8DUfXDmo/pubhtml">
-                        <span class="glyphicon glyphicon-new-window"></span>
-                        ギルバト各方舟戦果のスプレッドシートへ
+                        <a href="https://docs.google.com/spreadsheets/d/1pBlpeDH8YSE7HlZdd814mYr8ckq_A-5k9KH8DUfXDmo/edit#gid=558878279" target="_blank">
+                            <button type="button" id="ark_SP" class="btn btn-primary btn-sm my-btn2">
+                              <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                              ギルバト各方舟戦果のスプレッドシートへ
+                            </button>
+                        </a>
+                        <a href="index.html">
+                            <button type="button" class="btn btn-primary btn-sm my-btn2">
+                            <span class="glyphicon glyphicon-home"></span>
+                            Uni3システム メインページへ
+                            </button>
+                        </a>
                     </div>
                 </div>        
 

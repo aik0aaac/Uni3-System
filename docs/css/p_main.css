@@ -1,5 +1,4 @@
 *{
-	font-family: "Meiryo",sans-serif;
 	font-size:24px;
 }
 
@@ -71,6 +70,10 @@ table{
 	background-color:rgba(0,0,0,0.75);
 }
 
-.glyphicon-new-window{
+.glyphicon{
 	font-size: 12px
+}
+
+.btn{
+	margin: 5px;
 }

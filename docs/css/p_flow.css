@@ -1,3 +1,7 @@
+.jumbotron{
+    text-align: center;
+}
+
 @media screen and (max-width: 480px) { /* 縦幅480px以下の端末では以下のCSSが適用される */
 /*     ここにCSSを入れる */
 }

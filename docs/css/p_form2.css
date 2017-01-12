@@ -7,11 +7,6 @@ body{
 	background-size:		cover;
 }
 
-header, label, input, #info, #Confirm{
-    font-family: "Meiryo",sans-serif;
-	font-size:20px;
-}
-
 header{
 	margin: 0px;
 	padding: 10px 10px 0px;
@@ -62,11 +57,11 @@ i{
 	line-height: 1.5em;
 }
 .my-btn input[type="radio"]:checked + label {
-    background-color: #ff69b4;
+    background-color: #63e6ce;
     color: #fff;
 }
 .my-btn input[type="checkbox"]:checked + label {
-    background-color: #ff69b4;
+    background-color: #63e6ce;
     color: #fff;
 }
 
