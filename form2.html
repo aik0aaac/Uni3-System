@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head> 
+    <!-- ページのタイトルを記述 -->
+    <title>Uni3 方舟戦果入力</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <!-- ライブラリファイル ------------------------------------------------------>
+    <script src="lib/jquery-3.1.1.min.js"></script>
+    <script src="lib/moment.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
+    <link href="lib/bootstrap.min.css" rel="stylesheet">
+
+    <link href='lib/bootstrap-material-datetimepicker.css' rel='stylesheet'>  
+    <script src='lib/bootstrap-material-datetimepicker.js'></script>
+
+    <link href='lib/toastr.css' rel='stylesheet'>  
+    <script src='lib/toastr.js'></script>  
+    <!-- 自作ファイル群 -->
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <script type="text/javascript" src="script/common.js"></script>
+    <link rel="stylesheet" href="css/p_form2.css">
+    <link rel="stylesheet" type="text/css" href="css/smart-p_form2.css">
+    <script type="text/javascript" src="script/p_form2.js"></script>
+<!--     <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="196x196" href="">
+    <link rel="apple-touch-icon" sizes="152x152" href="">
+  -->
+</head>
+<body>
+
+<!--  Now Loading画面 
+    <div id="loader-bg">
+        <div id="loader">
+
+            <p>Now Loading...</p>
+        </div>
+    <div>
+ -->
+    <!-- 全体を囲う大きなbody ---------------------------------------->
+    <div id="my-body">
+
+        <!-- navバー、進捗バーもここに表示 -->
+        <header class="masking">
+            <b>Uni3</b> 対戦戦果入力フォーム
+            <div class="progress">
+              <div class="progress-bar" role="progressbar"></div>
+            </div>
+        </header>
+
+        <!-- フォームここから ---------------------------------------------------------------------------------------------------->
+        <div class="form masking">
+            <form class="form-horizontal" id="Ark_data" action="https://script.google.com/macros/s/AKfycbxDjVDUtvI2yqZRmFn28h4IZAa2wNnQUjRrl_CFLwFdAeO6Czs/exec" method="post" target="Enemy_data">
+
+                <!-- 何番目か入力 -->
+                <div class="form-group" id="form-contents1">
+                    <label for="number" class="col-sm-2 col-xs-12 control-label">方舟No.</label>
+                    <a class="col-sm-2 col-xs-12 btn btn-primary" data-toggle="collapse" href="#number">
+                        ここを押してください
+                    </a>
+                    <div class="col-sm-10 col-xs-12 my-btn collapse" id="number">
+                    </div>
+                </div>
+
+                <!-- 攻撃者の入力 -->
+                <div class="form-group" id="form-contents2">
+                    <label for="name" class="col-sm-2 col-xs-12 control-label">攻撃者名</label>
+                    <a class="col-sm-2 col-xs-12 btn btn-primary" data-toggle="collapse" href="#name">
+                        ここを押してください
+                    </a>
+                    <div class="col-sm-10 col-xs-12 my-btn collapse" id="name">
+                    </div>
+                </div>
+
+                <!-- メダル数の選択 -->
+                <div class="form-group" id="form-contents3">
+                    <label for="medal" class="col-sm-2 col-xs-12 control-label">メダル数</label>
+                    <div class="col-sm-10 col-xs-12 my-btn" id="medal">
+                        <input type="radio" name="medal" id="medal0" value="0">
+                        <label for="medal0">0</label>
+                        <input type="radio" name="medal" id="medal1" value="1">
+                        <label for="medal1">1</label>
+                        <input type="radio" name="medal" id="medal2" value="2">
+                        <label for="medal2">2</label>
+                        <input type="radio" name="medal" id="medal3" value="3">
+                        <label for="medal3">3</label>
+                    </div>
+                </div>
+
+                <!-- 日の入力 -->
+                <div class="form-group" id="form-contents4">
+                    <label for="date" class="col-sm-2 col-xs-12 control-label">攻撃した日</label>
+                    <div class="col-sm-10 col-xs-12">
+                        <input type="text" name="date" id="date" class="form-control" placeholder="ここを押してください">
+                    </div>
+                </div>
+
+                <!-- 何戦目か？の入力 -->
+                <div class="form-group" id="form-contents5">
+                    <label for="count" class="col-sm-2 col-xs-12 control-label">何戦目か？</label>
+                    <div class="col-sm-10 col-xs-12 my-btn" id="count">
+                        <input type="radio" name="count" id="count1" value="1">
+                        <label for="count1">1</label>
+                        <input type="radio" name="count" id="count2" value="2">
+                        <label for="count2">2</label>
+                    </div>
+                </div>
+
+                <!-- 確認ボタン -->
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10 col-xs-12 col-xs-12">
+                        <div>
+                            <input type="button" value="OK!" onclick="Confirm_enemydata()" class="btn btn-primary my-btn2">
+                        </div>
+                        <div>
+                            <input type="reset" value="リセット" onclick="Reset()" class="btn my-btn2 reset-btn">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- サブテキスト、GoogleSPへのリンク -->
+                <div id="info" class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10 col-xs-12">
+                        入力された情報は下記のGoogleスプレッドシートへ送信されます。<br>
+                        <button type="button" id="guild_SP" class="btn btn-primary btn-sm my-btn2" target=”_blank” href="https://docs.google.com/spreadsheets/d/1pBlpeDH8YSE7HlZdd814mYr8ckq_A-5k9KH8DUfXDmo/pubhtml">
+                        <span class="glyphicon glyphicon-new-window"></span>
+                        ギルバト各方舟戦果のスプレッドシートへ
+                    </div>
+                </div>        
+
+            <!-- 確認ウィンドウ -->
+            <div id="Confirm">
+                <button type="button" class="close" aria-label="Close"><a id="Eao-close" onClick="Confirm_window_close()">&times;</a></button>
+                <div class="table-responsive">
+                    <table class="table">
+                       <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+            </form> 
+        </div>
+        <!-- フォームここまで ---------------------------------------------------------------------------------------------------->
+    </div>
+
+
+</body>
+</html>

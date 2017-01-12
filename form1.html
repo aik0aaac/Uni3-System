@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head> 
+    <!-- ページのタイトルを記述 -->
+    <title>Uni3 敵ギルド入力</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <!-- ライブラリファイル ------------------------------------------------------>
+    <script src="lib/jquery-3.1.1.min.js"></script>
+    <script src="lib/moment.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
+    <link href="lib/bootstrap.min.css" rel="stylesheet">
+
+    <link href='lib/bootstrap-material-datetimepicker.css' rel='stylesheet'>  
+    <script src='lib/bootstrap-material-datetimepicker.js'></script>
+
+    <link href='lib/toastr.css' rel='stylesheet'>  
+    <script src='lib/toastr.js'></script>  
+    <!-- 自作ファイル群 -->
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <script type="text/javascript" src="script/common.js"></script>
+    <link rel="stylesheet" href="css/p_form1.css">
+    <link rel="stylesheet" type="text/css" href="css/smart-p_form1.css">
+    <script type="text/javascript" src="script/p_form1.js"></script>
+<!--     <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="196x196" href="">
+    <link rel="apple-touch-icon" sizes="152x152" href="">
+  -->
+</head>
+<body>
+
+<!--     Now Loading画面
+    <div id="loader-bg">
+        <div id="loader">
+
+            <p>Now Loading...</p>
+        </div>
+    <div>
+ -->
+
+    <!-- 全体を囲う大きなbody ---------------------------------------->
+    <div id="my-body">
+        <!-- navバー、進捗バーもここに表示 -->
+        <header class="masking">
+            <b>Uni3</b> 敵ギルド情報入力フォーム
+            <div class="progress">
+              <div class="progress-bar" role="progressbar"></div>
+            </div>
+        </header>
+
+        <!-- フォームここから ---------------------------------------------------------------------------------------------------->
+        <div class="form masking">
+            <form class="form-horizontal" id="Enemy_data" action="https://script.google.com/macros/s/AKfycbxDjVDUtvI2yqZRmFn28h4IZAa2wNnQUjRrl_CFLwFdAeO6Czs/exec" method="post" target="Enemy_data">
+
+                <!-- 対戦相手名の入力 -->
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 col-xs-12 control-label">対戦相手名</label>
+                    <div class="col-sm-10 col-xs-12">
+                        <input type="text" name="name" id="name" class="form-control" placeholder="例：Uni3">
+                    </div>
+                </div>
+
+                <!-- マッチング日の入力 -->
+                <div class="form-group">
+                    <label for="date" class="col-sm-2 col-xs-12 control-label">マッチング日</label>
+                    <div class="col-sm-10 col-xs-12">
+                        <input type="text" name="date" id="date" class="form-control" placeholder="ここを押してください">
+                    </div>
+                </div>
+
+                <!-- 対戦数の選択 -->
+                <div class="form-group">
+                    <label for="number" class="col-sm-2 col-xs-12 control-label">対戦数</label>
+                    <div class="col-sm-10 col-xs-12 my-btn" id="number">
+                        <input type="radio" name="number" id="num10" value="10">
+                        <label for="num10">10</label>
+                        <input type="radio" name="number" id="num15" value="15">
+                        <label for="num15">15</label>
+                        <input type="radio" name="number" id="num20" value="20">
+                        <label for="num20">20</label>
+                        <input type="radio" name="number" id="num25" value="25">
+                        <label for="num25">25</label>
+                        <input type="radio" name="number" id="num30" value="30">
+                        <label for="num30">30</label>
+                        <input type="radio" name="number" id="num35" value="35">
+                        <label for="num35">35</label>
+                        <input type="radio" name="number" id="num40" value="40">
+                        <label for="num40">40</label>
+                        <input type="radio" name="number" id="num45" value="45">
+                        <label for="num45">45</label>
+                        <input type="radio" name="number" id="num50" value="50">
+                        <label for="num50">50</label>
+                    </div>
+                </div>
+
+                <!-- 参加ギルメンの入力 -->
+                <div class="form-group">
+                    <label for="member" class="col-sm-2 col-xs-12 control-label">参加メンバー</label>
+                    <div class="col-sm-10 col-xs-12 my-btn" id="member">
+                    </div>
+                </div>
+
+                <!-- 確認ボタン -->
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10 col-xs-12 col-xs-12">
+                        <div>
+                            <input type="button" value="OK!" onclick="Confirm_enemydata()" class="btn btn-primary my-btn2">
+                        </div>
+                        <div>
+                            <input type="reset" value="リセット" onclick="Reset()" class="btn my-btn2 reset-btn">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- サブテキスト、GoogleSPへのリンク -->
+                <div id="info" class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10 col-xs-12">
+                        入力された情報は下記のGoogleスプレッドシートへ送信されます。<br>
+                        <button type="button" id="guild_SP" class="btn btn-primary btn-sm my-btn2" target=”_blank” href="https://docs.google.com/spreadsheets/d/1pBlpeDH8YSE7HlZdd814mYr8ckq_A-5k9KH8DUfXDmo/pubhtml">
+                        <span class="glyphicon glyphicon-new-window"></span>
+                        敵ギルド情報のスプレッドシートへ
+                    </div>
+                </div>        
+
+            <!-- 確認ウィンドウ -->
+            <div id="Confirm">
+                <button type="button" class="close" aria-label="Close"><a id="Eao-close" onClick="Confirm_window_close()">&times;</a></button>
+                <div class="table-responsive">
+                    <table class="table">
+                       <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+            </form> 
+        </div>
+        <!-- フォームここまで ---------------------------------------------------------------------------------------------------->
+    </div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+/*===============================================
+●smart.css  画面の横幅が640pxまで
+===============================================*/
+@media screen and (max-width:640px){
+    img{
+        max-width: 100%;
+        height: auto;
+        width /***/:auto;　
+    }
+    /* ～以下、画面の横幅が640pxまでの場合のスタイル記入～ */
+    body{
+        background-image: url("../img/bg_form1-s.jpg");
+    }
+
+    header{
+        text-align: center;
+    }
+
+    .form{
+        margin-top: 100px;
+    }
+    
+    #Confirm{
+    	font-size: 14px;
+        width:80%;
+    	padding:25px;
+    }
+}

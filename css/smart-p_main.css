@@ -1,0 +1,20 @@
+/*===============================================
+●smart.css  画面の横幅が640pxまで
+===============================================*/
+@media screen and (max-width:640px){
+    img{
+        max-width: 100%;
+        height: auto;
+        width /***/:auto;　
+    }
+    /* ～以下、画面の横幅が640pxまでの場合のスタイル記入～ */
+    #Link>button{
+        margin: 2px auto;
+        width: 100%;
+    }
+
+    #Enemy_ark_out{
+        width:80%;
+        font-size: 12px;
+    }
+}
