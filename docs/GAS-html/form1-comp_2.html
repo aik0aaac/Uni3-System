@@ -1,7 +1,5 @@
-<!DOCTYPE html>
-<!-- ギルバト各方舟戦果情報を送信後に表示するページ -->
+<!-- 敵ギルド情報を送信後に表示するページ -->
 <!-- GAS側のHTML -->
-
 
 <html>
   <head>
@@ -13,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
   </head>
   <body>
-
+  
   <!-- CSSここから ---------------------------------------------------------------------------------------->
   <style>
   *{
@@ -41,37 +39,37 @@
 			text-shadow:none;
 		}
 	}
-    
-    body>div, body>header{
+    header{
 	  width: 100%;
-	  margin: 30px 0px;
-      padding: 20px 0px;
-      background-color: #00b2a3;
+      height: 30%;
+      background-color: black;
       color: white;
       text-align: center;
-    }
-
-    header{
-      height: 30%;
     }
     header>h1{
       padding: 50px;
       font-size: 30px;    	
     }
     
+    #info{
+	  width: 100%;
+	  margin: 30px 0px 0px 0px;
+      background-color: black;
+      text-align: center;
+      padding: 20px 0px;
+    }
     .btn{
       width: 50%;
       margin: 5px 0px;
       padding: 10px;
-      background-color: #5ffcdf;
-      color: black;
-      font-weight: bold;
+      background-color: #00589b;
+      color: white;
       border: none;
       border-radius: 10px;
       transition-duration: 0.5s;
     }
     .btn:hover{
-      background-color: #ffffff;
+      background-color: #00246b;      
     }
     /*===============================================
     ●smart.css  画面の横幅が640pxまで
@@ -91,37 +89,34 @@
   </style>
   <!-- CSSここまで ---------------------------------------------------------------------------------------->
 
-  <!-- ヘッダー --------------------->
-  <header>
-    <h1>
-      Thanks!
-    </h1>
-  </header>
+  <!-- 全体を囲う大きなbody ---------------------------------------->
+  <div id="my-body">
+
+    <!-- ヘッダー、縦1つ目のカラム --------------------->
+    <header>
+      <h1>
+        Thanks!
+      </h1>
+    </header>
 
 	<!-- 各リンクの表示 -->
 	<div id="info" class="group1">
+		<a href="https://docs.google.com/spreadsheets/d/1pBlpeDH8YSE7HlZdd814mYr8ckq_A-5k9KH8DUfXDmo/edit#gid=836014528" target=”_blank”>
+			<button type="button" id="guild_SP" class="btn">
+				敵ギルド情報のスプレッドシートへ
+			</button>
+		</a><br>
 		<a href="https://aik0aaac.github.io/Uni3-System/" target=”_blank”>
-			<button type="button" class="btn">
+			<button type="button" id="guild_SP" class="btn">
 			   Uni3システム メインページへ
-			</button>
-		</a>
-		<a href="https://docs.google.com/spreadsheets/d/1pBlpeDH8YSE7HlZdd814mYr8ckq_A-5k9KH8DUfXDmo/edit#gid=558878279" target=”_blank”>
-			<button type="button" class="btn">
-				ギルバト各方舟戦果情報のスプレッドシートへ
-			</button>
-		</a>
-		<a href="https://aik0aaac.github.io/Uni3-System/" target=”_blank”>
-			<button type="button" class="btn">
-              フロー解析へ
 			</button>
 		</a>
 	</div>
 
-  <div id="picture">
-    <div id="drawer">illusted by:</div>
+	<!-- イラスト表示 -->
+	<div id="picture" class="group1">
+	</div>
+
   </div>
-
-  </body>
+</body>
 </html>
-
-

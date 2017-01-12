@@ -5,6 +5,8 @@
     <title>Uni3 敵ギルド入力</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <!-- 検索よけ(おまじない程度だけど) -->
+    <meta NAME="ROBOTS" CONTENT="NOINDEX,NOFOLLOW,NOARCHIVE">
     <!-- ライブラリファイル ------------------------------------------------------>
     <script src="lib/jquery-3.1.1.min.js"></script>
     <script src="lib/moment.js"></script>
@@ -22,10 +24,10 @@
     <link rel="stylesheet" href="css/p_form1.css">
     <link rel="stylesheet" type="text/css" href="css/smart-p_form1.css">
     <script type="text/javascript" src="script/p_form1.js"></script>
-<!--     <meta name="mobile-web-app-capable" content="yes">
+    <!--     <meta name="mobile-web-app-capable" content="yes">
     <link rel="icon" sizes="196x196" href="">
     <link rel="apple-touch-icon" sizes="152x152" href="">
-  -->
+    -->
 </head>
 <body>
 
@@ -115,10 +117,19 @@
                 <!-- サブテキスト、GoogleSPへのリンク -->
                 <div id="info" class="form-group">
                     <div class="col-sm-offset-2 col-sm-10 col-xs-12">
-                        入力された情報は下記のGoogleスプレッドシートへ送信されます。<br>
-                        <button type="button" id="guild_SP" class="btn btn-primary btn-sm my-btn2" target=”_blank” href="https://docs.google.com/spreadsheets/d/1pBlpeDH8YSE7HlZdd814mYr8ckq_A-5k9KH8DUfXDmo/pubhtml">
-                        <span class="glyphicon glyphicon-new-window"></span>
-                        敵ギルド情報のスプレッドシートへ
+                        <span class="min-font">入力された情報は下記のGoogleスプレッドシートへ送信されます。</span><br>
+                        <a href="https://docs.google.com/spreadsheets/d/1pBlpeDH8YSE7HlZdd814mYr8ckq_A-5k9KH8DUfXDmo/edit#gid=836014528" target="_blank">
+                            <button type="button" id="guild_SP" class="btn btn-primary btn-sm my-btn2">
+                              <span class="glyphicon glyphicon-list-alt"></span>
+                              敵ギルド情報のスプレッドシートへ
+                            </button>
+                        </a>
+                        <a href="index.html">
+                            <button type="button" class="btn btn-primary btn-sm my-btn2">
+                            <span class="glyphicon glyphicon-home"></span>
+                            Uni3システム メインページへ
+                            </button>
+                        </a>
                     </div>
                 </div>        
 

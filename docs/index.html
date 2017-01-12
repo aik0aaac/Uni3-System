@@ -7,6 +7,8 @@
     <!-- モバイル端末への対応、ページをビューポートの幅に合わせてレンダリング（Android, iOS6以降）
         ズームを許可しない設定「user-scalable=no」は加えない -->
     <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1">
+    <!-- 検索よけ(おまじない程度だけど) -->
+    <meta NAME="ROBOTS" CONTENT="NOINDEX,NOFOLLOW,NOARCHIVE">
     <!-- ライブラリファイル -->
     <script src="lib/jquery-3.1.1.min.js"></script>
     <script src="lib/bootstrap.min.js"></script>
@@ -95,25 +97,6 @@
         <div class="progress">
             <div class="progress-bar" role="progressbar"></div>
         </div>
-
-        <div id="Link">
-            <button type="button" id="guild_SP" class="btn btn-primary" target=”_blank” href="https://docs.google.com/spreadsheets/d/1pBlpeDH8YSE7HlZdd814mYr8ckq_A-5k9KH8DUfXDmo/pubhtml">
-              <span class="glyphicon glyphicon-new-window"></span>
-              敵ギルド情報のスプレッドシートへ
-            </button>
-            <button type="button" id="guild_form" class="btn btn-success" target=”_blank” href="form_e-guild.html">
-              敵ギルド情報のフォームへ
-              <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
-            </button>
-            <button type="button" id="ark_SP" class="btn btn-primary" target=”_blank” href="https://docs.google.com/spreadsheets/d/1SiHTHm2cu5d7f6RdWgJYwuNFSP56np-PsdkH20IV0ok/edit#gid=737611764 target=”_blank”">
-              対戦方舟詳細のスプレッドシートへ
-              <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
-            </button>
-            <button type="button" id="ark_form" class="btn btn-success" target=”_blank” href="https://docs.google.com/forms/d/e/1FAIpQLSe10cazpExFc-wiH_yOmNWIUQ9FugiLWRiQMmf4NLPFSeuhcg/viewform">
-              対戦方舟詳細のフォームへ
-              <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
-            </button>
-        </div>
       </div>
       <!-- 「ギルバト状況」タブ：ここまで -------------------------->
 
@@ -150,6 +133,46 @@
 
     </div>
   </div>
+
+    <div id="Link">
+        <a href="https://docs.google.com/spreadsheets/d/1pBlpeDH8YSE7HlZdd814mYr8ckq_A-5k9KH8DUfXDmo/edit#gid=836014528" target="_blank">
+            <button type="button" id="guild_SP" class="btn btn-primary col-sm-4 col-xs-12">
+              <span class="glyphicon glyphicon-list-alt"></span>
+              敵ギルド情報のスプレッドシートへ
+            </button>
+        </a>
+        <a href="form1.html">
+            <button type="button" id="guild_form" class="btn btn-primary col-sm-4 col-xs-12">
+              <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+              敵ギルド情報のフォームへ
+            </button>
+        </a>
+        <a href="https://docs.google.com/spreadsheets/d/1pBlpeDH8YSE7HlZdd814mYr8ckq_A-5k9KH8DUfXDmo/edit#gid=558878279" target="_blank">
+            <button type="button" id="ark_SP" class="btn btn-primary col-sm-4 col-xs-12">
+              <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+              ギルバト各方舟戦果のスプレッドシートへ
+            </button>
+        </a>
+        <a href="form2.html">
+            <button type="button" id="ark_form" class="btn btn-primary col-sm-4 col-xs-12">
+              <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+              ギルバト各方舟戦果のフォームへ
+            </button>
+        </a>
+        <a href="https://docs.google.com/spreadsheets/d/1pBlpeDH8YSE7HlZdd814mYr8ckq_A-5k9KH8DUfXDmo/edit#gid=1371705181" target="_blank">
+            <button type="button" id="ark_SP" class="btn btn-primary col-sm-4 col-xs-12">
+              <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+              ギルメン詳細のスプレッドシートへ
+            </button>
+        </a>
+        <a href="flow.html" target"_blank">
+            <button type="button" id="ark_form" class="btn btn-primary col-sm-4 col-xs-12">
+              <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>
+              フロー表示へ
+            </button>
+        </a>
+    </div>
+
 
 </body>
 </html>
