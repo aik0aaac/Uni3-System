@@ -151,15 +151,16 @@ function ConfirmEnemyData(){
 			$("#Confirm").append(Member[i]+' ');
 		}
         $("#Confirm").append('<p>上記でよろしいですか？</p>');
-        $("#Confirm").append('<input type="submit" value="OK!" class="btn btn-primary my-btn2">');
+        $("#Confirm").append('<input value="OK!" '
+        						+'class="btn btn-primary my-btn2" onClick="SendData()">');
     }
 }
 
 //---------------------------
 // FORMデータを送信する
 //---------------------------
-function send_Data(){
-	document.getElementById("EnemyData").submit();
+function SendData(){
+	document.getElementById("ArkData").submit();
 	ConfirmWindow_close();
 }
 

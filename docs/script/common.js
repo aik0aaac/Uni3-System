@@ -51,7 +51,10 @@ function getDevice(){
  * @param val 表示したいモーダルウィンドウのコンテンツのID/Class(文字列で)
  * @param func モーダルウィンドウを閉じる関数名(文字列で)
 */
+var CurrentScrollY;
 function displayModalWindow(val, func){
+	CurrentScrollY = $(window).scrollTop();
+	$("body").css({"position": "fixed", "top": (-1*CurrentScrollY)});
 	$(val).css({"display": "block"});
 	//キーボード操作などにより、オーバーレイが多重起動するのを防止する
 	$(this).blur() ;	//ボタンからフォーカスを外す
@@ -66,8 +69,7 @@ function displayModalWindow(val, func){
 	console.log(jud);
 	if(jud == 'sp'){
 		// スマホだったら、ウインドウを少し高めに設定
-		var pxtop = (($(window).height() - $(val).outerHeight(true))/8);
-		$(val).css({"top": pxtop + "px",});
+		$(val).css({"top": 10 + "%",});
 		var pxleft = (($(window).width() - $(val).outerWidth(true))/2);
 		$(val).css({"left": pxleft + "px",});
 	}else{
@@ -90,7 +92,10 @@ function ModalWindow_close(val) {
 	$("#modal-overlay").fadeOut("slow");
 	$("#modal-overlay").unbind() // unbind()…対象の要素にそれまで設定されていたイベントをクリアする
 	$("#modal-overlay").remove(); //フェードアウト後、[#modal-overlay]をHTML(DOM)上から削除
+	$("body").attr( { style: '' } );
+	$("html,body").prop({scrollTop:CurrentScrollY});
 }
+
 
 //---------------------------------------------------------
 //---------------------------------------------------------

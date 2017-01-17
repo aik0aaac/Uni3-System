@@ -7,6 +7,7 @@ body{
 }
 img{
 	margin: auto 1px;
+	border: 0;
 }
 header{
 	padding: 10px 20px 0px;
@@ -120,6 +121,7 @@ i{
 	margin: 5px 0px;
 	width: 100%;
     border: none;
+    color: white;
     -webkit-transition: 0.5s;
 	-moz-transition: 0.5s;
 	-o-transition: 0.5s;
@@ -127,6 +129,7 @@ i{
 }
 .my-btn2:hover{
     border: none;
+    color: white;
 }
 .reset-btn{
 	color: #ffffff;
@@ -176,4 +179,7 @@ i{
     header{
         text-align: center;
     }
+    .info{
+		font-size: 10px;
+	}
 }

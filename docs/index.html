@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja-JP">
 <head> 
     <!-- ページのタイトルを記述 -->
     <title>Uni3</title>
@@ -13,6 +13,7 @@
     <script src="lib/jquery-3.1.1.min.js"></script>
     <script src="lib/bootstrap.min.js"></script>
     <link href="lib/bootstrap.min.css" rel="stylesheet">
+    <script src="lib/mrstickytableheaders.js"></script>
     <!-- 自作ファイル群 -->
     <link rel="stylesheet" type="text/css" href="css/common.css">
     <script type="text/javascript" src="script/common.js"></script>
@@ -28,7 +29,7 @@
     <div id="loader-bg">
         <div id="loader">
             <p>Now Loading...</p>
-            <img src="img/nowLoading.gif" border="0">
+            <img src="img/nowLoading.gif" alt="Loading">
         </div>
     </div>
 
@@ -100,13 +101,13 @@
 
       <!-- 「ギルバト参加メンバー」タブ：ここから ------------------------->
       <div class="tab-pane" id="Tab2">
-        <table class="table table-striped">
+        <table id="EntryMember_table" class="table table-striped">
           <thead>
             <tr>
-              <td>メンバー名</td>
-              <td>援軍希望キャラ</td>
-              <td>戦果：1戦目</td>
-              <td>戦果：2戦目</td>
+              <th>メンバー名</th>
+              <th>援軍希望キャラ</th>
+              <th>戦果：1戦目</th>
+              <th>戦果：2戦目</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -116,12 +117,12 @@
 
       <!-- 「ギルメン詳細」タブ：ここから ------------------------->
       <div class="tab-pane" id="Tab3">
-        <table class="table table-striped">
+        <table id="GuildMember_table" class="table table-striped">
           <thead>
             <tr>
-              <td>メンバー名</td>
-              <td>援軍希望キャラ</td>
-              <td>今月のギルバト参加数</td>
+              <th>メンバー名</th>
+              <th>援軍希望キャラ</th>
+              <th>今月のギルバト参加数</th>
             </tr>
           </thead>
           <tbody></tbody>

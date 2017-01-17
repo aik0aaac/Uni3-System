@@ -2,7 +2,7 @@
 body{
 	overflow-x: hidden;
 }
-table{
+.table{
 	margin: 20px auto;
 }
 
@@ -12,6 +12,12 @@ table{
 }
 .btn{
 	margin: 5px;
+}
+.mrsth{
+    background: rgba(255, 255, 255, 0.8);
+}
+.mrsth>tr>th{
+	padding: 5px;
 }
 
 /* ヘッダー部分のCSS ---------------------*/
@@ -41,16 +47,21 @@ table{
 
 /* モーダルウィンドウコンテンツのCSS ---------------------*/
 #EnemyArkOut{
-	font-size: 16px;
 	display: none;
-	z-index:2; /* 手前に表示 */
-	position:absolute;
+	position: fixed;
     width:50%;
+    height: 70%;
 	padding:10px 20px;
-	border:2px solid #aaa;
 	background:#fff;
+	border:2px solid #aaa;
+	font-size: 16px;
+	z-index:2; /* 手前に表示 */
 	overflow-y:scroll;
 }
+#EnemyArkOut::-webkit-scrollbar{width:3px;}/*バーの太さ*/
+#EnemyArkOut::-webkit-scrollbar-track{background:#ffffff;}/*バーの背景色*/
+#EnemyArkOut::-webkit-scrollbar-thumb{background:#d9d9d9;}/*バーの色*/
+
 
 /* ログ表示のCSS ---------------------*/
 #logpanel{

@@ -1,8 +1,9 @@
 //-------------------------------------------------------------------------------
 // 事前準備
 //-------------------------------------------------------------------------------
-$(function () { // ツールチップを使うために設定する
+$(function () {
 	$('[data-toggle="tooltip"]').tooltip();
+	$('body').mrstickytableheaders();
 });
 
 //----------------------------------------------------------
@@ -106,26 +107,26 @@ function Uni3System_SetUp(){
 	for(var i=1; i<arkMedal.length; i++){
 		switch (arkMedal[i]) {
 		  case "0":
-			$("#"+i).html('<img src="img/medal0.png" border="0" alt="0枚">');
+			$("#"+i).html('<img src="img/medal0.png" alt="0枚">');
 			break;
 		  case "1":
-			$("#"+i).html('<img src="img/medal1.png" border="0" alt="1枚">');
+			$("#"+i).html('<img src="img/medal1.png" alt="1枚">');
 			break;
 		  case "2":
-			$("#"+i).html('<img src="img/medal2.png" border="0" alt="1枚">'
-							+'<img src="img/medal1.png" border="0" alt="2枚">');
+			$("#"+i).html('<img src="img/medal2.png" alt="1枚">'
+							+'<img src="img/medal1.png" alt="2枚">');
 			break;
 		  case "3":
-			$("#"+i).html('<img src="img/medal3.png" border="0" alt="1枚">'
-							+'<img src="img/medal2.png" border="0" alt="2枚">'
-							+'<img src="img/medal1.png" border="0" alt="3枚">');
+			$("#"+i).html('<img src="img/medal3.png" alt="1枚">'
+							+'<img src="img/medal2.png" alt="2枚">'
+							+'<img src="img/medal1.png" alt="3枚">');
 			break;
 		}
 	}
 
 	// 敵番号-メダル数の横に何回攻めたかを表示
 	for(var i=1; i<Data_Ark.length; i++){
-		$("#Attack"+Data_Ark[i][0]).append('<img src="img/attackIco.png" border="0" alt="★">');
+		$("#Attack"+Data_Ark[i][0]).append('<img src="img/attackIco.png" alt="★">');
 	}
 
 	// 合計メダル数の表示
@@ -295,7 +296,7 @@ function logDisplay(){
 		var enemyArk_Data = ChooseArkResult(ArkENum);
 		$("#log").css({
 			"height": 80+"%",
-			"overflow":"auto",
+			"overflow":"scroll",
 		});
 		// ログ
 		$("#log").children("#logpanel").append('<div class="panel-heading">'
