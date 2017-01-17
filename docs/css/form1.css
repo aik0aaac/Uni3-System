@@ -1,0 +1,66 @@
+/* 基礎タグにつけるCSS ---------------------*/
+body{
+	background-image: url("../img/bg_form1.jpg");
+	background-repeat: 		no-repeat;
+	background-position: 	top center;
+	-moz-background-size:	cover;
+	background-size:		cover;
+}
+
+/* ライブラリ等で追加された要素につけるCSS -------*/
+.progress{
+	margin-top: 10px;
+}
+.dtp-header{
+	display:none;
+}
+/* Formのラジオ/チェックボタン--------------------- */
+.my-btn input[type="radio"]:checked + label {
+    background-color: #ff69b4;
+}
+.my-btn input[type="checkbox"]:checked + label {
+    background-color: #ff69b4;
+}
+
+/* Formの各種リンクボタン------------------------------ */
+.my-btn2{
+	background-color: #33b7a6;
+}
+.my-btn2:hover{
+	background-color: #267d72;
+}
+.reset-btn{
+	background-color: #93c7c0;
+}
+.reset-btn:hover{
+	background-color: #adc7c4;
+}
+
+/* 確認画面------------------------------------ */
+#Confirm{
+	font-size: 16px;
+	display: none;
+	z-index:2; /* 手前に表示 */
+	position:fixed;
+    width:50%;
+	padding:30px 50px;
+	background:#fff;
+}
+
+/*===============================================
+●smart.css  画面の横幅が640pxまで
+===============================================*/
+@media screen and (max-width:640px){
+    /* ～以下、画面の横幅が640pxまでの場合のスタイル記入～ */
+    body{
+        background-image: url("../img/bg_form1-s.jpg");
+    }
+    header{
+        text-align: center;
+    }
+    #Confirm{
+    	font-size: 14px;
+        width:80%;
+    	padding:25px;
+    }
+}

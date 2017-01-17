@@ -27,32 +27,66 @@ function SetSPDate(dd, row){
    @return {number} 
 */
 function floatFormat( number, n ){
-	var _pow = Math.pow( 10 , n ) ;
-	return Math.round( number * _pow ) / _pow ;
+	var _pow = Math.pow( 10 , n );
+	return parseInt( number * _pow ) / _pow;
 }
 
+/**
+ *  ユーザーのデバイスを返す
+ *  @return     スマホ(sp)、タブレット(tab)、その他(other)
+ */
+function getDevice(){
+    var ua = navigator.userAgent;
+    if(ua.indexOf('iPhone') > 0 || ua.indexOf('iPod') > 0 || ua.indexOf('Android') > 0 && ua.indexOf('Mobile') > 0){
+        return 'sp';
+    }else if(ua.indexOf('iPad') > 0 || ua.indexOf('Android') > 0){
+        return 'tab';
+    }else{
+        return 'other';
+    }
+}
 
 /**
- * センタリングをする関数
- * @param id 表示したいモーダルウィンドウのコンテンツのID/Class(文字列で)
+ * モーダルウィンドウ表示関数
+ * @param val 表示したいモーダルウィンドウのコンテンツのID/Class(文字列で)
+ * @param func モーダルウィンドウを閉じる関数名(文字列で)
 */
-function centeringModalSyncer(val){
-	console.log("centeringModalSyncer")
-	// 真ん中配置：(ウィンドウの幅∨高さ - コンテンツの幅∨高さ) /2
-	var pxleft = (($(window).width() - $(val).outerWidth(true))/2);
-    var pxtop = (($(window).height() - $(val).outerHeight(true))/4);
-	$(val).css({"left": pxleft + "px",});
-	$(val).css({"top": pxtop + "px",});
+function displayModalWindow(val, func){
+	$(val).css({"display": "block"});
+	//キーボード操作などにより、オーバーレイが多重起動するのを防止する
+	$(this).blur() ;	//ボタンからフォーカスを外す
+	if($("#modal-overlay")[0]) return false ; //新しくモーダルウィンドウを起動しない
+	//オーバーレイ用のHTMLコードを、[body]内の最後に生成する
+	$("body").append('<div id="modal-overlay" onclick="'+func+'()"></div>');
+	//[$modal-overlay]をフェードインさせる
+	$("#modal-overlay").fadeIn("slow");
+	$(val).fadeIn("slow");
+	// センタリングをする
+	var jud = getDevice();
+	console.log(jud);
+	if(jud == 'sp'){
+		// スマホだったら、ウインドウを少し高めに設定
+		var pxtop = (($(window).height() - $(val).outerHeight(true))/8);
+		$(val).css({"top": pxtop + "px",});
+		var pxleft = (($(window).width() - $(val).outerWidth(true))/2);
+		$(val).css({"left": pxleft + "px",});
+	}else{
+		// その他だったら、ウインドウを中央に設定
+		// ※真ん中配置：(ウィンドウの幅∨高さ - コンテンツの幅∨高さ) /2
+		var pxtop = (($(window).height() - $(val).outerHeight(true))/4);
+		$(val).css({"top": pxtop + "px",});
+		var pxleft = (($(window).width() - $(val).outerWidth(true))/2);
+		$(val).css({"left": pxleft + "px",});
+	}
+
 }
 
 /**
  * モーダルウィンドウを閉じる関数
- * @param id 表示したいモーダルウィンドウのコンテンツのID/Class(文字列で)
+ * @param val 表示したいモーダルウィンドウのコンテンツのID/Class(文字列で)
 */
 function ModalWindow_close(val) {
-	Flag_Log=0;
 	$(val).fadeOut("slow");
-
 	$("#modal-overlay").fadeOut("slow");
 	$("#modal-overlay").unbind() // unbind()…対象の要素にそれまで設定されていたイベントをクリアする
 	$("#modal-overlay").remove(); //フェードアウト後、[#modal-overlay]をHTML(DOM)上から削除

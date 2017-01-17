@@ -1,0 +1,74 @@
+/* 基礎タグにつけるCSS ---------------------*/
+body{
+	overflow-x: hidden;
+}
+table{
+	margin: 20px auto;
+}
+
+/* ライブラリ等で追加された要素につけるCSS -------*/
+.glyphicon{
+	font-size: 12px
+}
+.btn{
+	margin: 5px;
+}
+
+/* ヘッダー部分のCSS ---------------------*/
+#Top>div{
+	padding:20px;
+}
+#Top{
+	background-image: url("../img/bg_main.jpg");
+	background-repeat: 		no-repeat;
+	background-position: 	top center;
+	-moz-background-size:	cover;
+	background-size:		cover;
+}
+.jumbotron{
+	background-color: rgba(255,255,255,0);
+}
+
+/* リロード用ボタンのCSS ---------------------*/
+.reload{
+	top:20px;
+	right: 20px;
+	z-index: 999;
+}
+.reload.glyphicon-info-sign{
+	right: 50px;
+}
+
+/* モーダルウィンドウコンテンツのCSS ---------------------*/
+#EnemyArkOut{
+	font-size: 16px;
+	display: none;
+	z-index:2; /* 手前に表示 */
+	position:absolute;
+    width:50%;
+	padding:10px 20px;
+	border:2px solid #aaa;
+	background:#fff;
+	overflow-y:scroll;
+}
+
+/* ログ表示のCSS ---------------------*/
+#logpanel{
+	padding: 8px;
+	font-size: 12px;
+}
+
+/*===============================================
+●smart.css  画面の横幅が640pxまで
+===============================================*/
+@media only screen and (max-width:640px){
+    /* ～以下、画面の横幅が640pxまでの場合のスタイル記入～ */
+    #Link>button{
+        margin: 2px auto;
+        width: 100%;
+    }
+    #EnemyArkOut{
+        width:80%;
+        font-size: 12px;
+    }
+}

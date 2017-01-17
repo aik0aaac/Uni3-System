@@ -16,29 +16,25 @@
     <link href='lib/bootstrap-material-datetimepicker.css' rel='stylesheet'>  
     <script src='lib/bootstrap-material-datetimepicker.js'></script>
 
-    <link href='lib/toastr.css' rel='stylesheet'>  
-    <script src='lib/toastr.js'></script>  
     <!-- 自作ファイル群 -->
     <link rel="stylesheet" type="text/css" href="css/common.css">
     <script type="text/javascript" src="script/common.js"></script>
-    <link rel="stylesheet" href="css/p_form2.css">
-    <link rel="stylesheet" type="text/css" href="css/smart-p_form2.css">
-    <script type="text/javascript" src="script/p_form2.js"></script>
+    <link rel="stylesheet" href="css/form2.css">
+    <script type="text/javascript" src="script/form2.js"></script>
 <!--     <meta name="mobile-web-app-capable" content="yes">
     <link rel="icon" sizes="196x196" href="">
     <link rel="apple-touch-icon" sizes="152x152" href="">
   -->
 </head>
 <body>
-
-<!--  Now Loading画面 
+    <!-- Now Loading画面 -->
     <div id="loader-bg">
         <div id="loader">
-
             <p>Now Loading...</p>
+            <img src="img/nowLoading.gif" border="0">
         </div>
-    <div>
- -->
+    </div>
+
     <!-- 全体を囲う大きなbody ---------------------------------------->
     <div id="my-body">
 
@@ -52,59 +48,59 @@
 
         <!-- フォームここから ---------------------------------------------------------------------------------------------------->
         <div class="form masking">
-            <form class="form-horizontal" id="Ark_data" action="https://script.google.com/macros/s/AKfycbxDjVDUtvI2yqZRmFn28h4IZAa2wNnQUjRrl_CFLwFdAeO6Czs/exec" method="post" target="Enemy_data">
+            <form class="form-horizontal" id="ArkData" action="https://script.google.com/macros/s/AKfycbxkCGIxP0VO28_fjbh17maHevL9UDsHGNsm8s9P4jmh4MFw9PSS/exec" method="post" target="Enemy_data">
 
                 <!-- 何番目か入力 -->
                 <div class="form-group" id="form-contents1">
-                    <label for="number" class="col-sm-2 col-xs-12 control-label">方舟No.</label>
-                    <a class="col-sm-2 col-xs-12 btn btn-primary" data-toggle="collapse" href="#number">
+                    <label for="Number" class="col-sm-2 col-xs-12 control-label">方舟No.</label>
+                    <a class="col-sm-2 col-xs-12 btn btn-primary" data-toggle="collapse" href="#Number">
                         ここを押してください
                     </a>
-                    <div class="col-sm-10 col-xs-12 my-btn collapse" id="number">
+                    <div class="col-sm-10 col-xs-12 my-btn collapse" id="Number">
                     </div>
                 </div>
 
                 <!-- 攻撃者の入力 -->
                 <div class="form-group" id="form-contents2">
-                    <label for="name" class="col-sm-2 col-xs-12 control-label">攻撃者名</label>
-                    <a class="col-sm-2 col-xs-12 btn btn-primary" data-toggle="collapse" href="#name">
+                    <label for="Name" class="col-sm-2 col-xs-12 control-label">攻撃者名</label>
+                    <a class="col-sm-2 col-xs-12 btn btn-primary" data-toggle="collapse" href="#Name">
                         ここを押してください
                     </a>
-                    <div class="col-sm-10 col-xs-12 my-btn collapse" id="name">
+                    <div class="col-sm-10 col-xs-12 my-btn collapse" id="Name">
                     </div>
                 </div>
 
                 <!-- メダル数の選択 -->
                 <div class="form-group" id="form-contents3">
-                    <label for="medal" class="col-sm-2 col-xs-12 control-label">メダル数</label>
-                    <div class="col-sm-10 col-xs-12 my-btn" id="medal">
-                        <input type="radio" name="medal" id="medal0" value="0">
-                        <label for="medal0">0</label>
-                        <input type="radio" name="medal" id="medal1" value="1">
-                        <label for="medal1">1</label>
-                        <input type="radio" name="medal" id="medal2" value="2">
-                        <label for="medal2">2</label>
-                        <input type="radio" name="medal" id="medal3" value="3">
-                        <label for="medal3">3</label>
+                    <label for="Medal" class="col-sm-2 col-xs-12 control-label">メダル数</label>
+                    <div class="col-sm-10 col-xs-12 my-btn" id="Medal">
+                        <input type="radio" name="Medal" id="Medal0" value="0">
+                        <label for="Medal0">0</label>
+                        <input type="radio" name="Medal" id="Medal1" value="1">
+                        <label for="Medal1">1</label>
+                        <input type="radio" name="Medal" id="Medal2" value="2">
+                        <label for="Medal2">2</label>
+                        <input type="radio" name="Medal" id="Medal3" value="3">
+                        <label for="Medal3">3</label>
                     </div>
                 </div>
 
                 <!-- 日の入力 -->
                 <div class="form-group" id="form-contents4">
-                    <label for="date" class="col-sm-2 col-xs-12 control-label">攻撃した日</label>
+                    <label for="Date" class="col-sm-2 col-xs-12 control-label">攻撃した日</label>
                     <div class="col-sm-10 col-xs-12">
-                        <input type="text" name="date" id="date" class="form-control" placeholder="ここを押してください">
+                        <input type="text" name="Date" id="Date" class="form-control" placeholder="ここを押してください">
                     </div>
                 </div>
 
                 <!-- 何戦目か？の入力 -->
                 <div class="form-group" id="form-contents5">
-                    <label for="count" class="col-sm-2 col-xs-12 control-label">何戦目か？</label>
-                    <div class="col-sm-10 col-xs-12 my-btn" id="count">
-                        <input type="radio" name="count" id="count1" value="1">
-                        <label for="count1">1</label>
-                        <input type="radio" name="count" id="count2" value="2">
-                        <label for="count2">2</label>
+                    <label for="Count" class="col-sm-2 col-xs-12 control-label">何戦目か？</label>
+                    <div class="col-sm-10 col-xs-12 my-btn" id="Count">
+                        <input type="radio" name="Count" id="Count1" value="1">
+                        <label for="Count1">1</label>
+                        <input type="radio" name="Count" id="Count2" value="2">
+                        <label for="Count2">2</label>
                     </div>
                 </div>
 
@@ -112,7 +108,7 @@
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10 col-xs-12 col-xs-12">
                         <div>
-                            <input type="button" value="OK!" onclick="Confirm_enemydata()" class="btn btn-primary my-btn2">
+                            <input type="button" value="OK!" onclick="ConfirmArkData()" class="btn btn-primary my-btn2">
                         </div>
                         <div>
                             <input type="reset" value="リセット" onclick="Reset()" class="btn my-btn2 reset-btn">
@@ -124,7 +120,7 @@
                 <div id="info" class="form-group">
                     <div class="col-sm-offset-2 col-sm-10 col-xs-12">
                         入力された情報は下記のGoogleスプレッドシートへ送信されます。<br>
-                        <a href="https://docs.google.com/spreadsheets/d/1pBlpeDH8YSE7HlZdd814mYr8ckq_A-5k9KH8DUfXDmo/edit#gid=558878279" target="_blank">
+                        <a href="https://docs.google.com/spreadsheets/d/1Gb1srFP5BbDeFN0mocKpwzHp7ww10FKoB3FZI6rQtUg/pubhtml?gid=1783905962&single=true" target="_blank">
                             <button type="button" id="ark_SP" class="btn btn-primary btn-sm my-btn2">
                               <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                               ギルバト各方舟戦果のスプレッドシートへ
@@ -141,7 +137,7 @@
 
             <!-- 確認ウィンドウ -->
             <div id="Confirm">
-                <button type="button" class="close" aria-label="Close"><a id="Eao-close" onClick="Confirm_window_close()">&times;</a></button>
+                <button type="button" class="close" aria-label="Close"><a id="Eao-close" onClick="ConfirmWindow_close()">&times;</a></button>
                 <div class="table-responsive">
                     <table class="table">
                        <tbody></tbody>

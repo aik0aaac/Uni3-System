@@ -5,40 +5,43 @@ $(function () { // ツールチップを使うために設定する
 	$('[data-toggle="tooltip"]').tooltip();
 });
 
-//-------------------------------------------------------------------------------
-// SPの読み込み
-//-------------------------------------------------------------------------------
+//----------------------------------------------------------
+// SP=Google スプレッドシートの取得
+//----------------------------------------------------------
 var Data_Guild; // SP【ギルバト敵情報】
 var Data_Guild_late; // SPの最終行の数値
 var Data_Ark; // SP(【ギルバト各方舟戦果】
 var Data_Member;// SP【ギルメン詳細】
 
-//----------------------------------------------------------
-// SP=Google スプレッドシートの取得
-//----------------------------------------------------------
-try{
+$(function(){
 	$.getJSON("https://spreadsheets.google.com/feeds/cells"
-			+"/1pBlpeDH8YSE7HlZdd814mYr8ckq_A-5k9KH8DUfXDmo/odtqom2/public/values?alt=json", function(dd){
-		Data_Guild = SetSPDate(dd, 3);
-        Data_Guild_late = dd.feed.entry.length/3-1;
-		console.log(Data_Guild)
-		$.getJSON("https://spreadsheets.google.com/feeds/cells"
-				+"/1pBlpeDH8YSE7HlZdd814mYr8ckq_A-5k9KH8DUfXDmo/o98qpi5/public/values?alt=json", function(dd){
-			Data_Ark = SetSPDate(dd, 5);
-			console.log(Data_Ark)
+			+"/1Gb1srFP5BbDeFN0mocKpwzHp7ww10FKoB3FZI6rQtUg/olntvy7/public/values?alt=json", function(dd, status){
+		console.log(status)
+		if(status == "success"){
+			Data_Guild = SetSPDate(dd, 3);
+			Data_Guild_late = dd.feed.entry.length/3-1;
+			console.log(Data_Guild)
 			$.getJSON("https://spreadsheets.google.com/feeds/cells"
-					+"/1pBlpeDH8YSE7HlZdd814mYr8ckq_A-5k9KH8DUfXDmo/omooebr/public/values?alt=json", function(dd){
-				Data_Member = SetSPDate(dd, 13);
-				console.log(Data_Member)
-				Uni3System_SetUp();	
-				});
-		});
-	})
-}catch (e){ // SPが受け取れなかった時の処理
-	console.log(e.name); // 'Error' とログに表示される
-}finally {
-	console.log("complete");
-}
+					+"/1Gb1srFP5BbDeFN0mocKpwzHp7ww10FKoB3FZI6rQtUg/oti3asw/public/values?alt=json", function(dd){
+				Data_Ark = SetSPDate(dd, 5);
+				console.log(Data_Ark)
+				$.getJSON("https://spreadsheets.google.com/feeds/cells"
+						+"/1Gb1srFP5BbDeFN0mocKpwzHp7ww10FKoB3FZI6rQtUg/od6/public/values?alt=json", function(dd){
+					Data_Member = SetSPDate(dd, 13);
+					console.log(Data_Member);
+					$("#loader-bg").fadeOut("slow");
+					Uni3System_SetUp();
+					});
+			});
+		}else if(status == "error"){
+			$("body").html('<div class="jumbotron">'
+					+'<h1>Error!</h1>'
+					+'情報が取得できませんでした。<br>'
+					+'<span class="reload glyphicon glyphicon-repeat" onClick="reload()"></span></div>');
+
+		}
+	});
+});
 
 
 //-------------------------------------------------------------------------------
@@ -219,7 +222,7 @@ function Uni3System_SetUp(){
 };
 
 //----------------------------------------------------------
-// 準備日、戦闘日表示関数
+// 準備日、戦闘日カウントダウン表示関数
 // ※戦闘日は、準備日の時は「開始まであと○○」、準備日終わったら「終了まであと○○」という形にする
 //----------------------------------------------------------
 function OnStep(){
@@ -254,7 +257,7 @@ function OnStep(){
 }
 
 //----------------------------------------------------------
-// 方舟の操作関数
+// 方舟のテーブルの操作関数
 //----------------------------------------------------------
 function ArkWindow() {
     var getListAItems = document.getElementsByClassName( "ark_enemy" );
@@ -262,22 +265,11 @@ function ArkWindow() {
         getListAItems[i].onclick = 
             function(){
                 ArkENum = this.innerHTML;
-
-                // モーダルウィンドウ用の操作群------------------------------------------------------
-                $("#EnemyArkOut").css({"display": "block"});
-                //キーボード操作などにより、オーバーレイが多重起動するのを防止する
-                $(this).blur() ;	//ボタンからフォーカスを外す
-                if($("#modal-overlay")[0]) return false ;		//新しくモーダルウィンドウを起動しない
-                //オーバーレイ用のHTMLコードを、[body]内の最後に生成する
-                $("body").append('<div id="modal-overlay"></div>');
-                //[$modal-overlay]をフェードインさせる
-                $("#modal-overlay").fadeIn("slow");
-                $("#EnemyArkOut").fadeIn("slow");
-                centeringModalSyncer("#EnemyArkOut");
                 // 本体の表示-----------------------------------------------------------------------
+                displayModalWindow("#EnemyArkOut", "EnemyArkOut_close");
                 $('#number').html("No."+ ArkENum);
 				var enemyArk_Data = ChooseArkResult(ArkENum);
-				if(enemyArk_Data != []){
+				if(enemyArk_Data.length != 0){
 					enemyArk_Data.sort(function(a,b){
 						if( a[2] > b[2] ) return -1;
 						if( a[2] < b[2] ) return 1;
@@ -295,34 +287,14 @@ function ArkWindow() {
     }
 }
 
-function EnemyArkOut_close(){
-	ModalWindow_close("#EnemyArkOut")
-}
-
 //---------------------------
-// コンテンツテキストの初期化
+// ログの表示関数
 //---------------------------
-function ResetContent(){
-	$("name")
-}
-
-function ResetModalWindow(){
-	$("#name").html("まだ攻めていません");// 攻撃者名
-	$("#result").html("");// 戦果
-	$("#time").html("");// 時間
-	$("#count").html("");// 何戦目か
-	// ログ
-	$("#log").html('<a class="btn btn-primary" onClick="logDisplay()"'
-					+'data-toggle="collapse" href="#logpanel">過去ログ表示/非表示</a>'
-					+'<div id="logpanel" class="panel panel-default"></div>');
-}
-
-function logDisplay(){ // ログの表示関数
+function logDisplay(){
 	if(Flag_Log == 0){
 		var enemyArk_Data = ChooseArkResult(ArkENum);
-	}
 		$("#log").css({
-			"height": 300+"px",
+			"height": 80+"%",
 			"overflow":"auto",
 		});
 		// ログ
@@ -344,6 +316,30 @@ function logDisplay(){ // ログの表示関数
 			}
 		}
 		Flag_Log = 1;
+	}
+}
+
+//---------------------------
+// モーダルウィンドウを閉じる関数
+//---------------------------
+function EnemyArkOut_close(){
+	Flag_Log=0;
+	ModalWindow_close("#EnemyArkOut");
+	ResetModalWindow();
+}
+
+//---------------------------
+// モーダルウィンドウの初期化
+//---------------------------
+function ResetModalWindow(){
+	$("#name").html("まだ攻めていません");// 攻撃者名
+	$("#result").html("");// 戦果
+	$("#time").html("");// 時間
+	$("#count").html("");// 何戦目か
+	// ログ
+	$("#log").html('<a class="btn btn-primary" onClick="logDisplay()"'
+					+'data-toggle="collapse" href="#logpanel">過去ログ表示/非表示</a>'
+					+'<div id="logpanel" class="panel panel-default"></div>');
 }
 
 //---------------------------

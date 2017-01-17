@@ -16,29 +16,24 @@
     <link href='lib/bootstrap-material-datetimepicker.css' rel='stylesheet'>  
     <script src='lib/bootstrap-material-datetimepicker.js'></script>
 
-    <link href='lib/toastr.css' rel='stylesheet'>  
-    <script src='lib/toastr.js'></script>  
     <!-- 自作ファイル群 -->
     <link rel="stylesheet" type="text/css" href="css/common.css">
     <script type="text/javascript" src="script/common.js"></script>
-    <link rel="stylesheet" href="css/p_form1.css">
-    <link rel="stylesheet" type="text/css" href="css/smart-p_form1.css">
-    <script type="text/javascript" src="script/p_form1.js"></script>
+    <link rel="stylesheet" href="css/form1.css">
+    <script type="text/javascript" src="script/form1.js"></script>
     <!--     <meta name="mobile-web-app-capable" content="yes">
     <link rel="icon" sizes="196x196" href="">
     <link rel="apple-touch-icon" sizes="152x152" href="">
     -->
 </head>
 <body>
-
-<!--     Now Loading画面
+    <!-- Now Loading画面 -->
     <div id="loader-bg">
         <div id="loader">
-
             <p>Now Loading...</p>
+            <img src="img/nowLoading.gif" border="0">
         </div>
-    <div>
- -->
+    </div>
 
     <!-- 全体を囲う大きなbody ---------------------------------------->
     <div id="my-body">
@@ -52,53 +47,53 @@
 
         <!-- フォームここから ---------------------------------------------------------------------------------------------------->
         <div class="form masking">
-            <form class="form-horizontal" id="Enemy_data" action="https://script.google.com/macros/s/AKfycbxDjVDUtvI2yqZRmFn28h4IZAa2wNnQUjRrl_CFLwFdAeO6Czs/exec" method="post" target="Enemy_data">
+            <form class="form-horizontal" id="EnemyData" action="https://script.google.com/macros/s/AKfycbxkCGIxP0VO28_fjbh17maHevL9UDsHGNsm8s9P4jmh4MFw9PSS/exec" method="post" target="EnemyData">
 
                 <!-- 対戦相手名の入力 -->
                 <div class="form-group">
-                    <label for="name" class="col-sm-2 col-xs-12 control-label">対戦相手名</label>
+                    <label for="Name" class="col-sm-2 col-xs-12 control-label">対戦相手名</label>
                     <div class="col-sm-10 col-xs-12">
-                        <input type="text" name="name" id="name" class="form-control" placeholder="例：Uni3">
+                        <input type="text" name="Name" id="Name" class="form-control" placeholder="例：Uni3">
                     </div>
                 </div>
 
                 <!-- マッチング日の入力 -->
                 <div class="form-group">
-                    <label for="date" class="col-sm-2 col-xs-12 control-label">マッチング日</label>
+                    <label for="Date" class="col-sm-2 col-xs-12 control-label">マッチング日</label>
                     <div class="col-sm-10 col-xs-12">
-                        <input type="text" name="date" id="date" class="form-control" placeholder="ここを押してください">
+                        <input type="text" name="Date" id="Date" class="form-control" placeholder="ここを押してください">
                     </div>
                 </div>
 
                 <!-- 対戦数の選択 -->
                 <div class="form-group">
-                    <label for="number" class="col-sm-2 col-xs-12 control-label">対戦数</label>
-                    <div class="col-sm-10 col-xs-12 my-btn" id="number">
-                        <input type="radio" name="number" id="num10" value="10">
+                    <label for="Number" class="col-sm-2 col-xs-12 control-label">対戦数</label>
+                    <div class="col-sm-10 col-xs-12 my-btn" id="Number">
+                        <input type="radio" name="Number" id="num10" value="10">
                         <label for="num10">10</label>
-                        <input type="radio" name="number" id="num15" value="15">
+                        <input type="radio" name="Number" id="num15" value="15">
                         <label for="num15">15</label>
-                        <input type="radio" name="number" id="num20" value="20">
+                        <input type="radio" name="Number" id="num20" value="20">
                         <label for="num20">20</label>
-                        <input type="radio" name="number" id="num25" value="25">
+                        <input type="radio" name="Number" id="num25" value="25">
                         <label for="num25">25</label>
-                        <input type="radio" name="number" id="num30" value="30">
+                        <input type="radio" name="Number" id="num30" value="30">
                         <label for="num30">30</label>
-                        <input type="radio" name="number" id="num35" value="35">
+                        <input type="radio" name="Number" id="num35" value="35">
                         <label for="num35">35</label>
-                        <input type="radio" name="number" id="num40" value="40">
+                        <input type="radio" name="Number" id="num40" value="40">
                         <label for="num40">40</label>
-                        <input type="radio" name="number" id="num45" value="45">
+                        <input type="radio" name="Number" id="num45" value="45">
                         <label for="num45">45</label>
-                        <input type="radio" name="number" id="num50" value="50">
+                        <input type="radio" name="Number" id="num50" value="50">
                         <label for="num50">50</label>
                     </div>
                 </div>
 
                 <!-- 参加ギルメンの入力 -->
                 <div class="form-group">
-                    <label for="member" class="col-sm-2 col-xs-12 control-label">参加メンバー</label>
-                    <div class="col-sm-10 col-xs-12 my-btn" id="member">
+                    <label for="Member" class="col-sm-2 col-xs-12 control-label">参加メンバー</label>
+                    <div class="col-sm-10 col-xs-12 my-btn" id="Member">
                     </div>
                 </div>
 
@@ -106,7 +101,7 @@
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10 col-xs-12 col-xs-12">
                         <div>
-                            <input type="button" value="OK!" onclick="Confirm_enemydata()" class="btn btn-primary my-btn2">
+                            <input type="button" value="OK!" onclick="ConfirmEnemyData()" class="btn btn-primary my-btn2">
                         </div>
                         <div>
                             <input type="reset" value="リセット" onclick="Reset()" class="btn my-btn2 reset-btn">
@@ -118,7 +113,7 @@
                 <div id="info" class="form-group">
                     <div class="col-sm-offset-2 col-sm-10 col-xs-12">
                         <span class="min-font">入力された情報は下記のGoogleスプレッドシートへ送信されます。</span><br>
-                        <a href="https://docs.google.com/spreadsheets/d/1pBlpeDH8YSE7HlZdd814mYr8ckq_A-5k9KH8DUfXDmo/edit#gid=836014528" target="_blank">
+                        <a href="https://docs.google.com/spreadsheets/d/1Gb1srFP5BbDeFN0mocKpwzHp7ww10FKoB3FZI6rQtUg/pubhtml?gid=1309814821&single=true" target="_blank">
                             <button type="button" id="guild_SP" class="btn btn-primary btn-sm my-btn2">
                               <span class="glyphicon glyphicon-list-alt"></span>
                               敵ギルド情報のスプレッドシートへ
@@ -135,7 +130,7 @@
 
             <!-- 確認ウィンドウ -->
             <div id="Confirm">
-                <button type="button" class="close" aria-label="Close"><a id="Eao-close" onClick="Confirm_window_close()">&times;</a></button>
+                <button type="button" class="close" aria-label="Close"><a id="Eao-close" onClick="ConfirmWindow_close()">&times;</a></button>
                 <div class="table-responsive">
                     <table class="table">
                        <tbody></tbody>

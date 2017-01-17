@@ -1,12 +1,72 @@
+/* 基礎タグにつけるCSS ---------------------*/
 *{
 	font-family: "Meiryo",sans-serif;
-	font-size:20px;
+}
+body{
+	font-size: 20px;
+}
+img{
+	margin: auto 1px;
+}
+header{
+	padding: 10px 20px 0px;
+	top:0;
+	width: 100%;
+	position:fixed;
+	z-index:1;
+}
+i{
+    display: none;
 }
 
-body{
-  animation-name: show;
-  animation-duration: 1s;
-  width: 100%;
+/* ライブラリ等で追加された要素につけるCSS -------*/
+.btn{
+	transition-duration: 0.5s;
+}
+.min-font{
+	font-size: 16px;
+}
+.dtp{
+	font-size: 12px;
+}
+.dtp-data-view{
+	font-size: 12px;
+}
+.form{
+	border-radius: 10px;
+	margin:110px auto;
+	padding: 30px;
+	width:80%;
+}
+
+/* マスキング ---------------------*/
+.masking{
+	background-color:rgba(255,255,255,0.8);
+}
+
+/* Now Loading画面 ---------------------*/
+#loader-bg{
+	position: fixed;
+	width: 110%;
+	height: 110%;
+	top: 0px;
+	left: 0px;
+	background-color: #6bb8d4;
+	z-index: 10;
+}
+#loader{
+	animation-name: show;
+	animation-duration: 1s;
+	position: fixed;
+	width: 200px;
+	height: 200px;
+	top: 50%;
+	left: 50%;
+	margin-top: -100px;
+	margin-left: -100px;
+	color: white;
+	text-align: center;
+	z-index: 11;
 }
 @keyframes show {
 	0% {
@@ -18,43 +78,102 @@ body{
 		opacity:1;
 	}
 }
-
-.masking{
-	background-color:		rgba(255,255,255,0.8);
+#loader>img{
+	width: 20%;
+	height: 20%;
 }
 
-.btn{
-	transition-duration: 0.5s;
+/* Formのラジオ/チェックボタン--------------------- */
+.my-btn input{
+    display: none;
+}
+.my-btn label{
+	border-radius: 5px;
+	box-shadow: 0px 0px 8px rgba(0,0,0,0.5);
+    display: block;
+    float: left;
+    cursor: pointer;
+    width: 80px;
+    margin: 3px;
+    padding: 12px 5px;
+    background: #fff;
+    color: #555e64;
+    font-size: 14px;
+    text-align: center;
+    line-height: 1;
+    transition: .2s;
+	width: 250px;
+	line-height: 1.5em;
+}
+.my-btn label>span{
+    font-size: 14px;	
+}
+.my-btn input[type="radio"]:checked + label {
+    color: #fff;
+}
+.my-btn input[type="checkbox"]:checked + label {
+    color: #fff;
 }
 
-.min-font{
-	font-size: 16px;
-}
-
-.dtp{
-	transition-duration: 0.5s;
-}
-
-#loader-bg{
-	display: none;
-	position: fixed;
+/* Formの各種リンクボタン------------------------------ */
+.my-btn2{
+	margin: 5px 0px;
 	width: 100%;
-	height: 100%;
-	top: 0px;
-	left: 0px;
-	background- color: #8ce1ff
-	z-index: 10;
+    border: none;
+    -webkit-transition: 0.5s;
+	-moz-transition: 0.5s;
+	-o-transition: 0.5s;
+	transition:0.5s;
 }
-#loader{
-	display: none;
-	position: fixed;
-	width: 200px;
-	height: 200px;
-	top: 50%;
-	left: 50%;
-	margin-top: -100px;
-	margin-left: -100px;
-	color: white;
-	text-align: center;
-	z-index: 11;
+.my-btn2:hover{
+    border: none;
+}
+.reset-btn{
+	color: #ffffff;
+    border: none;
+    -webkit-transition: 0.5s;
+	-moz-transition: 0.5s;
+	-o-transition: 0.5s;
+	transition:0.5s;
+}
+.reset-btn:hover{
+    border: none;
+}
+
+/* モーダルウィンドウコンテンツのCSS ---------------------*/
+#modal-overlay{ /* 参考文献:https://syncer.jp/jquery-modal-window */
+	z-index:1;
+	display:none;
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:120%; /* スマホ対策 */
+	background-color:rgba(0,0,0,0.75);
+}
+
+/* その他--------------------------------------- */
+.label{
+	margin: 0px 5px;
+}
+#info{
+	font-size: 12px;
+}
+
+/*===============================================
+●smart.css  画面の横幅が640pxまで
+===============================================*/
+@media only screen and (max-width:640px){
+    img{
+        max-width: 100%;
+        height: auto;
+        width /***/:auto;　
+    }
+    /* ～以下、画面の横幅が640pxまでの場合のスタイル記入～ */
+    body{
+    	font-size: 16px;
+    }
+    header{
+        text-align: center;
+    }
 }
