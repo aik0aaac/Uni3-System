@@ -175,18 +175,31 @@ function Uni3System_SetUp(){
 	}
 
 	var ii=1;
+	console.log(entryMResult)
 	for(var i=0; i<entryM.length; i++){
 		if(flag_entryMResult[i] == 0){ // まだ一戦もしてない∨準備日の時
-			$('#Tab2>table>tbody').append('<tr><td>'+entryM[i][0]+'</td><td>'+entryM[i][5]+' '+entryM[i][6]+'</td>'
+			$('#Tab2>table>tbody').append('<tr><td>'+entryM[i][0]+'</td>'
+											+'<td><img src="img/'+entryM[i][5]+'.png" alt="'+entryM[i][5]+'">'
+											+'<img src="img/'+entryM[i][6]+'.png" alt="'+entryM[i][6]+'"></td>'
 											+'<td></td><td></td>');
 		}else if(flag_entryMResult[i] == 1){ // １戦した場合
-			$('#Tab2>table>tbody').append('<tr><td>'+entryM[i][0]+'</td><td>'+entryM[i][5]+' '+entryM[i][6]+'</td>'
-											+'<td>No.'+entryMResult[ii][0]+' '+entryMResult[ii][2]+'枚</td><td></td>');
+			$('#Tab2>table>tbody').append('<tr><td>'+entryM[i][0]+'</td>'
+											+'<td><img src="img/'+entryM[i][5]+'.png" alt="'+entryM[i][5]+'">'
+											+'<img src="img/'+entryM[i][6]+'.png" alt="'+entryM[i][6]+'"></td>'
+											+'<td>No.'+entryMResult[ii][0]
+											+'<img class="medals" src="img/medals'+entryMResult[ii][2]+'.png" '
+											+'alt="'+entryMResult[ii][2]+'"></td><td></td>');
 			ii += 1;
 		}else if(flag_entryMResult[i] == 2){ // ２戦した場合
-			$('#Tab2>table>tbody').append('<tr><td>'+entryM[i][0]+'</td><td>'+entryM[i][5]+' '+entryM[i][6]+'</td>'
-											+'<td>No.'+entryMResult[ii][0]+' '+entryMResult[ii][2]+'枚</td>'
-											+'<td>No.'+entryMResult[ii+1][0]+' '+entryMResult[ii+1][2]+'枚</td>');
+			$('#Tab2>table>tbody').append('<tr><td>'+entryM[i][0]+'</td>'
+											+'<td><img src="img/'+entryM[i][5]+'.png" alt="'+entryM[i][5]+'">'
+											+'<img src="img/'+entryM[i][6]+'.png" alt="'+entryM[i][6]+'"></td>'
+											+'<td>No.'+entryMResult[ii][0]
+											+'<img class="medals" src="img/medals'+entryMResult[ii][2]+'.png" '
+											+'alt="'+entryMResult[ii][2]+'"></td>'
+											+'<td>No.'+entryMResult[ii+1][0]
+											+'<img class="medals" src="img/medals'+entryMResult[ii+1][2]+'.png" '
+											+'alt="'+entryMResult[ii+1][2]+'"></td>');
 			ii += 2;
 		}
 	}
@@ -195,7 +208,8 @@ function Uni3System_SetUp(){
 	// Tab3の書きこみ------------------------------------------------------------------
 	for(var i=1; i<Data_Member.length; i++){
 		$('#Tab3>table>tbody').append('<tr><td>'+Data_Member[i][0]+'</td>'
-										+'<td>'+Data_Member[i][5]+' '+Data_Member[i][6]+'</td>'
+										+'<td><img src="img/'+Data_Member[i][5]+'.png" alt="'+Data_Member[i][5]+'">'
+										+'<img src="img/'+Data_Member[i][6]+'.png" alt="'+Data_Member[i][6]+'"></td>'
 										+'<td>'+Data_Member[i][3]+'</td></tr>');
 	}
 

@@ -81,21 +81,27 @@ function Form1_SetUp(){
 		}
 	});
 	$('#Number').click(function(){
+		console.log(parseInt($('#EnemyData [name=Number]').val()))
 		if($('#EnemyData [name=Number]').val() != ""){
 			if(Progress_Flag[2] == 0){
 				Progress_Value += 25;
 				Progress_Flag[2] = 1;
 			}
 		}
-		if($('#Member input:checked').length == parseInt($('#Number input:checked').val())){
-			if(Progress_Flag[3] == 1){
-				Progress_Value -= 25;
-				Progress_Flag[3] = 0;
+		if($('#Member input:checked').length == parseInt($('#EnemyData [name=Number]').val())){
+			if(Progress_Flag[2] == 0){
+				Progress_Value += 25;
+				Progress_Flag[3] = 1;
+			}
+			if(Progress_Flag[3] == 0){
+				Progress_Value += 25;
+				Progress_Flag[3] = 1;
 			}
 		}
 		$(".progress-bar").css({"width": +Progress_Value+ "%"});
 	});
 	$('#Member').click(function(){
+		console.log($('#Member input:checked').length)
 		if($('#Member input:checked').length == parseInt($('#Number input:checked').val())){
 			if(Progress_Flag[3] == 0){
 				Progress_Value += 25;
@@ -160,7 +166,7 @@ function ConfirmEnemyData(){
 // FORMデータを送信する
 //---------------------------
 function SendData(){
-	document.getElementById("ArkData").submit();
+	document.getElementById("EnemyData").submit();
 	ConfirmWindow_close();
 }
 
@@ -176,4 +182,22 @@ function ConfirmWindow_close() {
 	$("#Confirm").html('<button type="button" class="close" aria-label="Close">'
 						+'<a id="Eao-close" onClick="ConfirmWindow_close()">&times;</a></button>');
 	$("#Confirm").append('<div class="table-responsive"><table class="table"><tbody></tbody></table></div>');
+}
+
+//-------------------------------------------------------------------------------
+// ユーザー操作関数
+//-------------------------------------------------------------------------------
+
+
+//---------------------------
+// その項目の全てのチェックボックスのチェックをON
+//---------------------------
+function AllChecked(){
+	$('input[name="Member"]').prop('checked', true);
+}
+//---------------------------
+// その項目の全てのチェックボックスのチェックをOFF
+//---------------------------
+function ResetAllChecked(){
+	$('input[name="Member"]').prop('checked', false);
 }

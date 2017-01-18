@@ -40,6 +40,9 @@
         <!-- navバー、進捗バーもここに表示 -->
         <header class="masking">
             <b>Uni3</b> 敵ギルド情報入力フォーム
+            <a href="index.html">
+                <span class="glyphicon glyphicon-home info"></span>
+            </a>
             <div class="progress">
               <div class="progress-bar" role="progressbar"></div>
             </div>
@@ -94,6 +97,9 @@
                 <div class="form-group">
                     <label for="Member" class="col-sm-2 col-xs-12 control-label">参加メンバー</label>
                     <div class="col-sm-10 col-xs-12 my-btn" id="Member">
+                        <button type="button" class="btn my-btn3 control col-xs-12" onClick="AllChecked()">すべてチェック</button>
+                        <button type="button" class="btn my-btn3 control col-xs-12" onClick="ResetAllChecked()">チェックを解除</button>
+                        <br><br>
                     </div>
                 </div>
 
@@ -101,7 +107,7 @@
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10 col-xs-12 col-xs-12">
                         <div>
-                            <input type="button" value="OK!" onclick="ConfirmEnemyData()" class="btn btn-primary my-btn2">
+                            <input type="button" value="OK!" onclick="ConfirmEnemyData()" class="btn my-btn2">
                         </div>
                         <div>
                             <input type="reset" value="リセット" onclick="Reset()" class="btn my-btn2 reset-btn">
@@ -114,13 +120,13 @@
                     <div class="col-sm-offset-2 col-sm-10 col-xs-12">
                         <span class="min-font">入力された情報は下記のGoogleスプレッドシートへ送信されます。</span><br>
                         <a href="https://docs.google.com/spreadsheets/d/1Gb1srFP5BbDeFN0mocKpwzHp7ww10FKoB3FZI6rQtUg/pubhtml?gid=1309814821&single=true" target="_blank">
-                            <button type="button" id="guild_SP" class="btn btn-primary btn-sm my-btn2 info">
+                            <button type="button" id="guild_SP" class="btn btn-sm my-btn2 info">
                               <span class="glyphicon glyphicon-list-alt"></span>
                               敵ギルド情報のスプレッドシートへ
                             </button>
                         </a>
                         <a href="index.html">
-                            <button type="button" class="btn btn-primary btn-sm my-btn2 info">
+                            <button type="button" class="btn btn-sm my-btn2 info">
                             <span class="glyphicon glyphicon-home"></span>
                             Uni3システム メインページへ
                             </button>
