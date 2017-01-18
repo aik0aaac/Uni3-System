@@ -10,7 +10,6 @@ body{
 nav{
 	font-size: 15px;
 }
-
 /* ライブラリ等で追加された要素につけるCSS -------*/
 .progress{
 	margin-top: 10px;
@@ -22,6 +21,12 @@ nav{
 }
 .my-btn input[type="checkbox"]:checked + label {
     background-color: #63e6ce;
+}
+.my-btn3{
+    background-color: #33b7a6;
+}
+.my-btn3:hover{
+    background-color: #267d72;
 }
 
 /* Formの各種リンクボタン------------------------------ */
@@ -40,13 +45,13 @@ nav{
 
 /* 確認画面------------------------------------ */
 #Confirm{
-	font-size: 16px;
-	display: none;
-	z-index:2; /* 手前に表示 */
 	position:fixed;
+	display: none;
     width:50%;
 	padding:30px 50px;
 	background:#fff;
+	font-size: 16px;
+	z-index:2; /* 手前に表示 */
 }
 
 /*===============================================
