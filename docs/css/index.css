@@ -80,6 +80,28 @@ body{
 .medals{
 	margin: 0px 0px 0px 10px;
 }
+#Forms>a>button{
+	background-color: #006C9A;
+	color: white;
+}
+#Forms>a>button:hover{
+	background-color: #004f71;
+}
+#SpreadSheets>a>button{
+	background-color: #00BEBE;
+	color: white;
+}
+#SpreadSheets>a>button:hover{
+	background-color: #00a6a6;
+}
+#Flow>a>button{
+	background-color: #9FF9C1;
+	color: gray;
+}
+#Flow>a>button:hover{
+	background-color: #5bcd86;
+	color: white;
+}
 
 /*===============================================
 ●smart.css  画面の横幅が640pxまで

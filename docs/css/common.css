@@ -37,6 +37,9 @@ i{
 	padding: 30px;
 	width:80%;
 }
+.dtp-header{
+	display:none;
+}
 
 /* マスキング ---------------------*/
 .masking{
