@@ -1,7 +1,35 @@
+/* 基礎タグにつけるCSS ---------------------*/
+body{
+  animation-name: show;
+  animation-duration: 1s;
+  width: 100%;
+}
+    @keyframes show {
+        0% {
+            transform:translate(0,2em);
+            opacity:0;
+            text-shadow:0 0 0 #b3b3b3;
+        }
+        50% {
+            text-shadow:0 0 0.5em #dddddd;
+        }
+        100% {
+            transform:translate(0,0);
+            opacity:1;
+            text-shadow:none;
+        }
+}
+
+/* ライブラリ等で追加された要素につけるCSS -------*/
 .jumbotron{
     text-align: center;
 }
 
+/* その他--------------------------------------- */
+
+/*===============================================
+●smart.css  画面の横幅が640pxまで
+===============================================*/
 @media screen and (max-width: 480px) { /* 縦幅480px以下の端末では以下のCSSが適用される */
 /*     ここにCSSを入れる */
 }
