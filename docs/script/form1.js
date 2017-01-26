@@ -49,7 +49,7 @@ function Form1_SetUp(){
 	var p_dnum=0; // #Dateの際にカウントアップで使う
 	// progressバーの実装---------------------------------
 	$('#Name').focusout(function(){
-		if($('#EnemyData [name=Name]').val() != ""){
+		if($('[name=Name]').val() != ""){
 			if(Progress_Flag[0] == 0){
 				Progress_Value += 25;
 				Progress_Flag[0] = 1;
@@ -65,7 +65,7 @@ function Form1_SetUp(){
 	});
 	$('.dtp-btn-ok').click(function(){
 		p_dnum += 1;
-		if($('#EnemyData [name=Date]').val() != "" && p_dnum<=3){
+		if($('[name=Date]').val() != "" && p_dnum<=3){
 			if(Progress_Flag[1] == 0){
 				Progress_Value += 25;
 				Progress_Flag[1] = 1;
@@ -81,14 +81,14 @@ function Form1_SetUp(){
 		}
 	});
 	$('#Number').click(function(){
-		console.log(parseInt($('#EnemyData [name=Number]').val()))
-		if($('#EnemyData [name=Number]').val() != ""){
+		console.log(parseInt($('[name=Number]').val()))
+		if($('[name=Number]').val() != ""){
 			if(Progress_Flag[2] == 0){
 				Progress_Value += 25;
 				Progress_Flag[2] = 1;
 			}
 		}
-		if($('#Member input:checked').length == parseInt($('#EnemyData [name=Number]').val())){
+		if($('#Member input:checked').length == parseInt($('[name=Number]').val())){
 			if(Progress_Flag[2] == 0){
 				Progress_Value += 25;
 				Progress_Flag[3] = 1;
@@ -131,8 +131,8 @@ function Reset(){
 //-------------------------------------------------------------------------------
 function ConfirmEnemyData(){
     // 入力した値の取得
-    EnemyName = $('#EnemyData [name=Name]').val();
-    Date = $('#EnemyData [name=Date]').val();
+    EnemyName = $('[name=Name]').val();
+    Date = $('[name=Date]').val();
     VsNumber = $('#Number input:checked').val();
     $('#Member>input:checked').map(function(){ // チェックボックスの値を取得
 		var val= $(this).attr("id");

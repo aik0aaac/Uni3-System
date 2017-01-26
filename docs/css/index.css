@@ -75,17 +75,17 @@ body{
 	padding: 8px;
 	font-size: 12px;
 }
+#log::-webkit-scrollbar{width:3px;}/*バーの太さ*/
+#log::-webkit-scrollbar-track{background:#ffffff;}/*バーの背景色*/
+#log::-webkit-scrollbar-thumb{background:#d9d9d9;}/*バーの色*/
 
-/* その他のCSS ---------------------*/
-.medals{
-	margin: 0px 0px 0px 10px;
-}
+/* フォーム、リンクボタン ------------*/
 #Forms>a>button{
-	background-color: #006C9A;
+	background-color: rgba(186, 0, 86, 0.4);
 	color: white;
 }
 #Forms>a>button:hover{
-	background-color: #004f71;
+	background-color: rgba(125, 0, 35, 0.7);
 }
 #SpreadSheets>a>button{
 	background-color: #00BEBE;
@@ -102,12 +102,35 @@ body{
 	background-color: #5bcd86;
 	color: white;
 }
+#FormHide>a>button{
+	background-color: white;
+	color: #efefef;
+}
+#FormHide>a>button:hover{
+	background-color: lightgray;
+	color: white;
+}
 
+/* その他のCSS ---------------------*/
+.medals{
+	margin: 0px 0px 0px 10px;
+}
+.detail{
+	margin: 2px 0px 2px 10px;
+	padding: 2px 5px;
+	background-color: #00BEBE;
+	border-radius: 3px;
+	color: #fff;
+	cursor: pointer;
+}
 /*===============================================
 ●smart.css  画面の横幅が640pxまで
 ===============================================*/
 @media only screen and (max-width:640px){
     /* ～以下、画面の横幅が640pxまでの場合のスタイル記入～ */
+    #Top{
+		background-image: url("../img/bg_main-s.jpg");
+	}
     #Link>button{
         margin: 2px auto;
         width: 100%;
