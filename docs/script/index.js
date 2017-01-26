@@ -83,7 +83,8 @@ function Uni3System_SetUp(){
     // 船番ごとの表の表示
     for(var i=1; i<=vsNumber; i++){
         $('#ArksEnemy_table').children("tbody").append('<tr><td class="ark_enemy table-hover" '
-        					+'onclick="ArkWindow()">'+i+'</td><td id="'+i+'"></td>'
+        					+'onclick="ArkWindow()">'+i+'<span class="detail">詳</span></td>'
+        					+'<td id="'+i+'"></td>'
 							+'<td id="Attack'+i+'"></td></tr>');
     }
 
@@ -227,7 +228,7 @@ function Uni3System_SetUp(){
 	}else if(Flag_VsTime == 2){
 		$('.nav-tabs li').removeClass("active");
 		$('.tab-pane').removeClass("active");
-		$('.nav-tabs li:last-child').addClass("active");
+		$('.nav-tabs li:nth-child(3)').addClass("active");
 		$('#Tab3').addClass("active");
 	}
 
@@ -279,7 +280,16 @@ function ArkWindow() {
     for( var i = 0; i < getListAItems.length; i++ ){
         getListAItems[i].onclick = 
             function(){
-                ArkENum = this.innerHTML;
+            	ArkENum = "";
+            	tmp = this.innerHTML;
+            	tmp = tmp.split("");
+                for(var i=0; i<tmp.length; i++){
+                	if(tmp[i] != "<"){
+						ArkENum += tmp[i];
+                	}else{
+                		break;
+                	}
+                }
                 // 本体の表示-----------------------------------------------------------------------
                 displayModalWindow("#EnemyArkOut", "EnemyArkOut_close");
                 $('#number').html("No."+ ArkENum);

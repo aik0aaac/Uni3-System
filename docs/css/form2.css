@@ -42,6 +42,13 @@ nav{
 .reset-btn:hover{
 	background-color: #adc7c4;
 }
+.my-btn-sp{
+	background-color: #00BEBE;
+	color: white;
+}
+.my-btn-sp{
+	background-color: #00a6a6;
+}
 
 /* 確認画面------------------------------------ */
 #Confirm{

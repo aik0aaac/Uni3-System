@@ -54,6 +54,8 @@ function Form2_SetUp(){
 								+'id="num'+i+'" value="'+i+'">');
 		$("#Number").append('<label for="num'+i+'">'+i+'</label>');
 	}
+	console.log("entryM")
+	console.log(entryM)
 	for(var i=0; i<entryM.length; i++){
 		$("#Name").append('<input type="radio" name="Name" '
 								+'id="Name'+i+'" value="'+entryM[i][0]+'">');
@@ -70,7 +72,7 @@ function Form2_SetUp(){
 	var p_dnum=0; // #Dateの際にカウントアップで使う
 	// progressバーの実装---------------------------------
 	$('#Number').click(function(){ // #Number
-		if($('#ArkData [name=Number]').val() != ""){
+		if($('[name=Number]').val() != ""){
 			if(Progress_Flag[0] == 0){
 				Progress_Value += Increment;
 				Progress_Flag[0] = 1;
@@ -83,9 +85,10 @@ function Form2_SetUp(){
 			}
 			$(".progress-bar").css({"width": +Progress_Value+ "%"});
 		}
+		$('#NumberDetail').html('<br>選択した番号：'+$('[name=Number]:checked').val());
 	});
 	$('#Name').click(function(){ //#Name
-		if($('#ArkData [name=Name]').val() != ""){
+		if($('[name=Name]').val() != ""){
 			if(Progress_Flag[1] == 0){
 				Progress_Value += Increment;
 				Progress_Flag[1] = 1;
@@ -98,9 +101,10 @@ function Form2_SetUp(){
 			}
 			$(".progress-bar").css({"width": +Progress_Value+ "%"});
 		}
+		$('#NameDetail').html('<br>選択した攻撃者名：'+$('[name=Name]:checked').val());
 	});
 	$('#Medal').click(function(){
-		if($('#ArkData [name=Medal]').val() != ""){
+		if($('[name=Medal]').val() != ""){
 			if(Progress_Flag[3] == 0){
 				Progress_Value += Increment;
 				Progress_Flag[3] = 1;
@@ -116,7 +120,7 @@ function Form2_SetUp(){
 	});
 	$('.dtp-btn-ok').click(function(){ // #Date
 		p_dnum += 1;
-		if($('#ArkData [name=Date]').val() != "" && p_dnum<=3){
+		if($('[name=Date]').val() != "" && p_dnum<=3){
 			if(Progress_Flag[2] == 0){
 				Progress_Value += Increment;
 				Progress_Flag[2] = 1;
@@ -132,7 +136,7 @@ function Form2_SetUp(){
 		}
 	});
 	$('#Count').click(function(){
-		if($('#ArkData [name=Count]').val() != ""){
+		if($('[name=Count]').val() != ""){
 			if(Progress_Flag[4] == 0){
 				Progress_Value += Increment;
 				Progress_Flag[4] = 1;
@@ -165,7 +169,7 @@ function ConfirmArkData(){
     Number = $('#Number input:checked').val();
     Name = $('#Name input:checked').val();
     Medal = $('#Medal input:checked').val();
-    Date = $('#ArkData [name=Date]').val();
+    Date = $('[name=Date]').val();
     Count = $('#Count input:checked').val();
 
 	displayModalWindow("#Confirm", "ConfirmWindow_close")

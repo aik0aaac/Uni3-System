@@ -21,15 +21,22 @@ header{
 i{
     display: none;
 }
+textarea{
+	outline: none;
+	border: 1px solid #aaa;
+	-webkit-transition: all 3s;
+	transition: all 3s;
+}
+textarea:focus {
+	box-shadow: 0 0 7px #1a96bc;
+	border: 1px solid #1aa6bc;
+}
 
 /* ライブラリ等で追加された要素につけるCSS -------*/
 .btn{
 	border-radius: 5px;
 	border: none;
 	transition-duration: 0.5s;
-}
-.min-font{
-	font-size: 16px;
 }
 .form{
 	border-radius: 10px;
@@ -43,7 +50,7 @@ i{
 
 /* マスキング ---------------------*/
 .masking{
-	background-color:rgba(255,255,255,0.8);
+	background-color:rgba(255,255,255,0.7);
 }
 header.masking{
 	background-color:rgba(0,0,0,0.5);
@@ -171,9 +178,6 @@ header.masking{
 .label{
 	margin: 0px 5px;
 }
-#info{
-	font-size: 12px;
-}
 .info{
 	color:white;
     -webkit-transition: 0.5s;
@@ -190,11 +194,11 @@ header.masking{
 ●smart.css  画面の横幅が640pxまで
 ===============================================*/
 @media only screen and (max-width:640px){
-    img{
+/*     img{
         max-width: 100%;
         height: auto;
         width /***/:auto;　
-    }
+    } */
     /* ～以下、画面の横幅が640pxまでの場合のスタイル記入～ */
     body{
     	font-size: 16px;

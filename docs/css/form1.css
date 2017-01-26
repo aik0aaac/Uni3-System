@@ -32,7 +32,6 @@ body{
 	color: #6c6c6c;
 }
 
-
 /* Formの各種リンクボタン------------------------------ */
 .my-btn2{
 	background-color: #36a2d9;
@@ -53,6 +52,13 @@ body{
 }
 .header:hover{
 	background-color:rgba(255, 255, 255, 0.3);	
+}
+.my-btn-sp{
+	background-color: #00BEBE;
+	color: white;
+}
+.my-btn-sp{
+	background-color: #00a6a6;
 }
 
 /* 確認画面------------------------------------ */
