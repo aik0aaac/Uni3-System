@@ -2,7 +2,7 @@
 <html lang="ja-JP">
 <head> 
     <!-- ページのタイトルを記述 -->
-    <title>Uni3 方舟戦果入力</title>
+    <title>Uni3 戦果報告</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
     <!-- 検索よけ(おまじない程度だけど) -->
@@ -40,7 +40,7 @@
 
         <!-- navバー、進捗バーもここに表示 -->
         <header class="masking">
-            <b>Uni3</b> 対戦戦果入力フォーム
+            <b>Uni3</b> 戦果報告
             <a href="index.html">
                 <span class="glyphicon glyphicon-home info"></span>
             </a>
@@ -50,8 +50,8 @@
         </header>
 
         <!-- フォームここから ---------------------------------------------------------------------------------------------------->
-        <div class="form masking">
-            <form class="form-horizontal" id="ArkData" action="https://script.google.com/macros/s/AKfycbxkCGIxP0VO28_fjbh17maHevL9UDsHGNsm8s9P4jmh4MFw9PSS/exec" method="post" target="Enemy_data">
+        <form class="form-horizontal" id="ArkData" action="https://script.google.com/macros/s/AKfycbxkCGIxP0VO28_fjbh17maHevL9UDsHGNsm8s9P4jmh4MFw9PSS/exec" method="post" target="Enemy_data">
+            <fieldset class="form masking">
 
                 <!-- 何番目か入力 -->
                 <div class="form-group" id="form-contents1">
@@ -147,8 +147,8 @@
                 </div>
             </div>
 
-            </form> 
-        </div>
+            </fieldset>
+        </form> 
         <!-- フォームここまで ---------------------------------------------------------------------------------------------------->
     </div>
 

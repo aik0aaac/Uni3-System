@@ -67,7 +67,7 @@ nav{
 @media screen and (max-width:640px){
     /* ～以下、画面の横幅が640pxまでの場合のスタイル記入～ */
     body{
-        background-image: url("../img/bg_form1-s.jpg");
+        background-image: url("../img/bg_form-s.jpg");
     }
     header{
         text-align: center;
