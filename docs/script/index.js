@@ -28,7 +28,7 @@ $(function(){
 				console.log(Data_Ark)
 				$.getJSON("https://spreadsheets.google.com/feeds/cells"
 						+"/1Gb1srFP5BbDeFN0mocKpwzHp7ww10FKoB3FZI6rQtUg/od6/public/values?alt=json", function(dd){
-					Data_Member = SetSPDate(dd, 13);
+					Data_Member = SetSPDate(dd, 16);
 					console.log(Data_Member);
 					$("#loader-bg").fadeOut("slow");
 					Uni3System_SetUp();
@@ -155,7 +155,7 @@ function Uni3System_SetUp(){
 	}
 	var entryMName = {}; // ギルバトに参加してるギルメンの名前をハッシュ化して入れた配列
 	for(var i=0; i<entryM.length; i++){
-		var nm = entryM[i][0];
+		var nm = entryM[i][3];
 		entryMName[nm] = i;
 	}
 	var entryMResult = Data_Ark; // ギルメンの戦果を名前順に格納した配列
@@ -179,22 +179,22 @@ function Uni3System_SetUp(){
 	console.log(entryMResult)
 	for(var i=0; i<entryM.length; i++){
 		if(flag_entryMResult[i] == 0){ // まだ一戦もしてない∨準備日の時
-			$('#Tab2>table>tbody').append('<tr><td>'+entryM[i][0]+'</td>'
-											+'<td><img src="img/'+entryM[i][5]+'.png" alt="'+entryM[i][5]+'">'
-											+'<img src="img/'+entryM[i][6]+'.png" alt="'+entryM[i][6]+'"></td>'
+			$('#Tab2>table>tbody').append('<tr><td>'+entryM[i][3]+'</td>'
+											+'<td><img src="img/'+entryM[i][7]+'.png" alt="'+entryM[i][7]+'">'
+											+'<img src="img/'+entryM[i][8]+'.png" alt="'+entryM[i][8]+'"></td>'
 											+'<td></td><td></td>');
 		}else if(flag_entryMResult[i] == 1){ // １戦した場合
-			$('#Tab2>table>tbody').append('<tr><td>'+entryM[i][0]+'</td>'
-											+'<td><img src="img/'+entryM[i][5]+'.png" alt="'+entryM[i][5]+'">'
-											+'<img src="img/'+entryM[i][6]+'.png" alt="'+entryM[i][6]+'"></td>'
+			$('#Tab2>table>tbody').append('<tr><td>'+entryM[i][3]+'</td>'
+											+'<td><img src="img/'+entryM[i][7]+'.png" alt="'+entryM[i][7]+'">'
+											+'<img src="img/'+entryM[i][8]+'.png" alt="'+entryM[i][8]+'"></td>'
 											+'<td>No.'+entryMResult[ii][0]
 											+'<img class="medals" src="img/medals'+entryMResult[ii][2]+'.png" '
 											+'alt="'+entryMResult[ii][2]+'"></td><td></td>');
 			ii += 1;
 		}else if(flag_entryMResult[i] == 2){ // ２戦した場合
-			$('#Tab2>table>tbody').append('<tr><td>'+entryM[i][0]+'</td>'
-											+'<td><img src="img/'+entryM[i][5]+'.png" alt="'+entryM[i][5]+'">'
-											+'<img src="img/'+entryM[i][6]+'.png" alt="'+entryM[i][6]+'"></td>'
+			$('#Tab2>table>tbody').append('<tr><td>'+entryM[i][3]+'</td>'
+											+'<td><img src="img/'+entryM[i][7]+'.png" alt="'+entryM[i][7]+'">'
+											+'<img src="img/'+entryM[i][8]+'.png" alt="'+entryM[i][8]+'"></td>'
 											+'<td>No.'+entryMResult[ii][0]
 											+'<img class="medals" src="img/medals'+entryMResult[ii][2]+'.png" '
 											+'alt="'+entryMResult[ii][2]+'"></td>'
@@ -208,23 +208,24 @@ function Uni3System_SetUp(){
 
 	// Tab3の書きこみ------------------------------------------------------------------
 	for(var i=1; i<Data_Member.length; i++){
-		$('#Tab3>table>tbody').append('<tr><td>'+Data_Member[i][0]+'</td>'
-										+'<td><img src="img/'+Data_Member[i][5]+'.png" alt="'+Data_Member[i][5]+'">'
-										+'<img src="img/'+Data_Member[i][6]+'.png" alt="'+Data_Member[i][6]+'"></td>'
-										+'<td>'+Data_Member[i][3]+'</td></tr>');
+		$('#Tab3>table>tbody').append('<tr><td>'+Data_Member[i][3]+'</td>'
+										+'<td><img src="img/'+Data_Member[i][7]+'.png" alt="'+Data_Member[i][7]+'">'
+										+'<img src="img/'+Data_Member[i][8]+'.png" alt="'+Data_Member[i][8]+'"></td>'
+										+'<td>'+Data_Member[i][1]+'</td>'
+										+'<td>'+Data_Member[i][2]+'</td></tr>');
 	}
 
 	// 最初のタブ表示の選択を行う
 	if(Flag_VsTime == 0){
 		$('.nav-tabs li').removeClass("active");
 		$('.tab-pane').removeClass("active");
-		$('.nav-tabs li:first-child').addClass("active");
-		$('#Tab1').addClass("active");
+		$('.nav-tabs li:nth-child(2)').addClass("active");
+		$('#Tab2').addClass("active");
 	}else if(Flag_VsTime == 1){
 		$('.nav-tabs li').removeClass("active");
 		$('.tab-pane').removeClass("active");
-		$('.nav-tabs li:nth-child(2)').addClass("active");
-		$('#Tab2').addClass("active");
+		$('.nav-tabs li:first-child').addClass("active");
+		$('#Tab1').addClass("active");
 	}else if(Flag_VsTime == 2){
 		$('.nav-tabs li').removeClass("active");
 		$('.tab-pane').removeClass("active");
