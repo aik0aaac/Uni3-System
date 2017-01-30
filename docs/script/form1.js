@@ -14,7 +14,7 @@ $(function(){
 	$.getJSON("https://spreadsheets.google.com/feeds/cells"
 			+"/1Gb1srFP5BbDeFN0mocKpwzHp7ww10FKoB3FZI6rQtUg/od6/public/values?alt=json", function(dd, status){
 		if(status == "success"){
-			Data_Member = SetSPDate(dd, 13);
+			Data_Member = SetSPDate(dd, 16);
 			console.log(Data_Member);
 			$("#loader-bg").fadeOut("slow");
 			Form1_SetUp();
@@ -41,9 +41,9 @@ var Increment = 100/Progress_Flag.length; // 1項目で増えるプログレス�
 
 function Form1_SetUp(){
 	for(var i=1; i<Data_Member.length; i++){
-        $('div>#Member').append('<input type="checkbox" name="Member" id="'+Data_Member[i][0]+'" value="'+i+'">');
-        $('div>#Member').append('<label for="'+Data_Member[i][0]+'">'+Data_Member[i][0]
-        							+'<br><span style="color: #bbbbbb">'+Data_Member[i][1]+'</span></label>');
+        $('div>#Member').append('<input type="checkbox" name="Member" id="'+Data_Member[i][3]+'" value="'+i+'">');
+        $('div>#Member').append('<label for="'+Data_Member[i][3]+'">'+Data_Member[i][3]
+        							+'<br><span style="color: #bbbbbb">'+Data_Member[i][5]+'</span></label>');
     }
     // 進捗バーの実装-----------------------------------------------
 	var p_dnum=0; // #Dateの際にカウントアップで使う

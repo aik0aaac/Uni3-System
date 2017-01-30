@@ -14,7 +14,7 @@ $(function(){
 	$.getJSON("https://spreadsheets.google.com/feeds/cells"
 			+"/1Gb1srFP5BbDeFN0mocKpwzHp7ww10FKoB3FZI6rQtUg/od6/public/values?alt=json", function(dd, status){
 		if(status == "success"){
-			Data_Member = SetSPDate(dd, 13);
+			Data_Member = SetSPDate(dd, 16);
 			console.log(Data_Member);
 			$("#loader-bg").fadeOut("slow");
 			Form2_SetUp();
@@ -58,8 +58,8 @@ function Form2_SetUp(){
 	console.log(entryM)
 	for(var i=0; i<entryM.length; i++){
 		$("#Name").append('<input type="radio" name="Name" '
-								+'id="Name'+i+'" value="'+entryM[i][0]+'">');
-		$("#Name").append('<label for="Name'+i+'">'+entryM[i][0]+'</label>');
+								+'id="Name'+i+'" value="'+entryM[i][3]+'">');
+		$("#Name").append('<label for="Name'+i+'">'+entryM[i][3]+'</label>');
 	}
 	$("#Number").click(function(){
 		$("#Number").removeClass("in");
