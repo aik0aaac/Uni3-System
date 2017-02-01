@@ -19,11 +19,7 @@ $(function(){
 			$("#loader-bg").fadeOut("slow");
 			Form1_SetUp();
 		}else if(status == "error"){
-			$("body").html('<div class="jumbotron">'
-				+'<h1>Error!</h1>'
-				+'情報が取得できませんでした。<br>'
-				+'<span class="reload glyphicon glyphicon-repeat" onClick="reload()"></span>'
-				+'</div>');
+			errorSP();
 		}
 	});
 });
@@ -115,6 +111,11 @@ function Form1_SetUp(){
 		}
 		$(".progress-bar").css({"width": +Progress_Value+ "%"});
 	});
+
+	// 現在何人選択しているか表示
+	$('#Member').click(function(){
+		$("#DisplayMemberLength").html($('#Member input:checked').length +"人選択中")
+	});
 }
 
 //---------------------------
@@ -166,6 +167,7 @@ function ConfirmEnemyData(){
 // FORMデータを送信する
 //---------------------------
 function SendData(){
+	Waiting();
 	document.getElementById("EnemyData").submit();
 	ConfirmWindow_close();
 }
@@ -183,10 +185,6 @@ function ConfirmWindow_close() {
 						+'<a id="Eao-close" onClick="ConfirmWindow_close()">&times;</a></button>');
 	$("#Confirm").append('<div class="table-responsive"><table class="table"><tbody></tbody></table></div>');
 }
-
-//-------------------------------------------------------------------------------
-// ユーザー操作関数
-//-------------------------------------------------------------------------------
 
 
 //---------------------------

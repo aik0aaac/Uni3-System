@@ -3,28 +3,38 @@
 //-------------------------------------------------------------------------------
 $(function(){
     $('#Date').bootstrapMaterialDatePicker({ format : 'YYYY/MM/DD  HH:mm' });
+    $('#IrregularDate').bootstrapMaterialDatePicker({ format : 'YYYY/MM/DD  HH:mm' });
 });
 
 //----------------------------------------------------------
 // SP=Google スプレッドシートの取得
 //----------------------------------------------------------
 var Data_Member;// SP【ギルメン詳細】
+var Data_Guild; // SP【ギルバト敵情報】
+var Data_Guild_late; // SP【ギルバト敵情報】の最終行の数値
 
 $(function(){
 	$.getJSON("https://spreadsheets.google.com/feeds/cells"
-			+"/1Gb1srFP5BbDeFN0mocKpwzHp7ww10FKoB3FZI6rQtUg/od6/public/values?alt=json", function(dd, status){
+			+"/1Gb1srFP5BbDeFN0mocKpwzHp7ww10FKoB3FZI6rQtUg/olntvy7/public/values?alt=json", function(dd, status){
+		console.log(status)
 		if(status == "success"){
-			Data_Member = SetSPDate(dd, 16);
-			console.log(Data_Member);
-			$("#loader-bg").fadeOut("slow");
-			Form2_SetUp();
-		}else if(status == "error"){
-			$("body").html('<div class="jumbotron">'
-				+'<h1>Error!</h1>'
-				+'情報が取得できませんでした。<br>'
-				+'<span class="reload glyphicon glyphicon-repeat" onClick="reload()"></span>'
-				+'</div>');
-		}
+			Data_Guild = SetSPDate(dd, 3);
+			Data_Guild_late = dd.feed.entry.length/3-1;
+			console.log(Data_Guild)
+			$.getJSON("https://spreadsheets.google.com/feeds/cells"
+					+"/1Gb1srFP5BbDeFN0mocKpwzHp7ww10FKoB3FZI6rQtUg/od6/public/values?alt=json", function(dd, status){
+				if(status == "success"){
+					Data_Member = SetSPDate(dd, 16);
+					console.log(Data_Member);
+					$("#loader-bg").fadeOut("slow");
+					Form2_SetUp();
+				}else if(status == "error"){
+					errorSP();
+				}
+			});
+			}else if(status == "error"){
+				errorSP();
+			}
 	});
 });
 
@@ -41,8 +51,20 @@ var Medal; // メダル数を入れる
 var Date; // 攻撃した日を入れる
 var Count; // 何戦目か？を入れる
 
+//イレギュラーパターン
+var INumber; // 方舟No.を入れる
+var IName; // 攻撃者名を入れる
+var IMedal; // メダル数を入れる
+var IDate; // 攻撃した日を入れる
+var ICount; // 何戦目か？を入れる
+
 function Form2_SetUp(){
 	//各データ書きこみ----------------------------------------------
+
+	//今戦ってる相手の情報書きこみ
+    $('#NowFighting').html("対戦相手："+ Data_Guild[Data_Guild_late][0]);
+
+	//Formの書きこみ
 	var entryM = []; // ギルバトに参加してる人のデータを格納
 	for(var i=1; i<Data_Member.length; i++){
 		if(Data_Member[i][2] == "○"){
@@ -182,8 +204,13 @@ function ConfirmArkData(){
         										+'<td class="col-sm-7">'+ Number +'</td><tr>');
         $("#Confirm>div>table>tbody").append('<tr><td class="col-sm-5">攻撃者名</td>'
         										+'<td class="col-sm-7">'+ Name + '</td><tr>');
-        $("#Confirm>div>table>tbody").append('<tr><td class="col-sm-5">メダル数：</td>'
-        										+'<td class="col-sm-7">'+Medal+'</td></tr>');
+		if($('#Medal input:checked +label').html() == "バトルが正常に出来なかった"){
+	        $("#Confirm>div>table>tbody").append('<tr><td class="col-sm-5">メダル数：</td>'
+        											+'<td class="col-sm-7">バトルが正常に出来なかった</td></tr>');
+		}else{
+	        $("#Confirm>div>table>tbody").append('<tr><td class="col-sm-5">メダル数：</td>'
+													+'<td class="col-sm-7">'+Medal+'</td></tr>');
+		}
         $("#Confirm>div>table>tbody").append('<tr><td class="col-sm-5">攻撃した日：</td>'
         										+'<td class="col-sm-7">'+ Date + '</td><tr>');
         $("#Confirm>div>table>tbody").append('<tr><td class="col-sm-5">何戦目？：</td>'
@@ -194,14 +221,49 @@ function ConfirmArkData(){
     }
 }
 
+function IrregularConfirmArkData(){
+    // 入力した値の取得
+    INumber = $('[name=IrregularNumber]').val();
+    IName = $('[name=IrregularName]').val();
+    IMedal = $('#IrregularMedal input:checked').val();
+    IDate = $('[name=IrregularDate]').val();
+    ICount = $('#IrregularCount input:checked').val();
+
+	displayModalWindow("#IrregularConfirm", "IrregularConfirmWindow_close")
+    // 確認用メッセージ内容-------------------------------------------------------------
+    // 入力不足のチェック
+    if(INumber == ""||IName == ""||IMedal == ""||IDate == ""||ICount == ""){
+        $("#IrregularConfirm").append("入力不足があります。");
+    }else{
+        $("#IrregularConfirm>div>table>tbody").append('<tr><td class="col-sm-5">方舟No.：</td>'
+        										+'<td class="col-sm-7">'+ INumber +'</td><tr>');
+        $("#IrregularConfirm>div>table>tbody").append('<tr><td class="col-sm-5">攻撃者名</td>'
+        										+'<td class="col-sm-7">'+ IName + '</td><tr>');
+        $("#IrregularConfirm>div>table>tbody").append('<tr><td class="col-sm-5">メダル数：</td>'
+        										+'<td class="col-sm-7">'+ IMedal+'</td></tr>');
+        $("#IrregularConfirm>div>table>tbody").append('<tr><td class="col-sm-5">攻撃した日：</td>'
+        										+'<td class="col-sm-7">'+ IDate + '</td><tr>');
+        $("#IrregularConfirm>div>table>tbody").append('<tr><td class="col-sm-5">何戦目？：</td>'
+        										+'<td class="col-sm-7">'+ ICount+'</td></tr>');
+        $("#IrregularConfirm").append('<p>上記でよろしいですか？</p>');
+        $("#IrregularConfirm").append('<input value="OK!" '
+        						+'class="btn my-btn-Irregular" onClick="SendIrregularData()">');
+    }
+}
 //---------------------------
 // FORMデータを送信する
 //---------------------------
 function SendData(){
+	Waiting();
 	document.getElementById("ArkData").submit();
 	ConfirmWindow_close();
 }
 
+function SendIrregularData(){
+	Waiting();
+	document.getElementById("IrregularArkData").submit();
+	IrregularConfirmWindow_close();
+}
 //---------------------------
 // モーダルウィンドウを閉じる関数
 //---------------------------
@@ -215,5 +277,18 @@ function ConfirmWindow_close() {
 	$("#Confirm").html('<button type="button" class="close" aria-label="Close">'
 						+'<a id="Eao-close" onClick="ConfirmWindow_close()">&times;</a></button>');
 	$("#Confirm").append('<div class="table-responsive"><table class="table">'
+						+'<tbody></tbody></table></div>');
+}
+
+function IrregularConfirmWindow_close() {
+	INumber = "";
+	IName = "";
+	IDate = "";
+	IMedal = "";
+	ICount = "";
+	ModalWindow_close("#IrregularConfirm");
+	$("#IrregularConfirm").html('<button type="button" class="close" aria-label="Close">'
+						+'<a id="Eao-close" onClick="IrregularConfirmWindow_close()">&times;</a></button>');
+	$("#IrregularConfirm").append('<div class="table-responsive"><table class="table">'
 						+'<tbody></tbody></table></div>');
 }
