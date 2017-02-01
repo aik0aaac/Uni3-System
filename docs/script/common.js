@@ -21,6 +21,17 @@ function SetSPDate(dd, row){
 }
 
 /**
+ * SP取得にエラーが出た際の処理
+*/
+function errorSP(){
+	$("body").html('<div class="jumbotron">'
+		+'<h1>Error!</h1>'
+		+'情報が取得できませんでした。<br>'
+		+'<span class="reload glyphicon glyphicon-repeat" onClick="reload()"></span>'
+		+'</div>');
+}
+
+/**
  * 小数点の計算
  * @param number 小数点にしたい数値
    @param n 切り上げしたい桁数
@@ -96,6 +107,13 @@ function ModalWindow_close(val) {
 	$("html,body").prop({scrollTop:CurrentScrollY});
 }
 
+/**
+ * データ送信後画面を表示
+*/
+function Waiting() {
+	$("#Waiting-bg").fadeIn("slow");
+	$("#Waiting").fadeIn("slow");
+}
 
 //---------------------------------------------------------
 //---------------------------------------------------------

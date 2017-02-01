@@ -35,23 +35,40 @@
         </div>
     </div>
 
+    <!-- 送信後Waiting画面 -->
+    <div id="Waiting-bg">
+        <div id="Waiting">
+            <p>情報を送信しています...</p>
+            <img src="img/nowLoading.gif" alt="Waiting">
+        </div>
+    </div>
+
     <!-- 全体を囲う大きなbody ---------------------------------------->
     <div id="my-body">
 
         <!-- navバー、進捗バーもここに表示 -->
         <header class="masking">
-            <b>Uni3</b> 戦果報告
-            <a href="index.html">
-                <span class="glyphicon glyphicon-home info"></span>
-            </a>
+            <p>
+                <b>Uni3</b> 戦果報告
+                <a href="index.html">
+                    <span class="glyphicon glyphicon-home info"></span>
+                </a>
+            </p>
             <div class="progress">
               <div class="progress-bar" role="progressbar"></div>
             </div>
         </header>
 
+        <!-- 説明文 -->
+        <div class="description masking">
+            <p>受付中のギルバト対戦相手名：<span id="NowFighting"></span></p>
+            <p>※自分が戦ったギルド名と異なる場合、一番下の「特別フォーム」のボタンから情報を送信してください。</p>
+        </div>
+
         <!-- フォームここから ---------------------------------------------------------------------------------------------------->
-        <form class="form-horizontal" id="ArkData" action="https://script.google.com/macros/s/AKfycbxkCGIxP0VO28_fjbh17maHevL9UDsHGNsm8s9P4jmh4MFw9PSS/exec" method="post" target="Enemy_data">
+        <form class="form-horizontal" id="ArkData" action="https://script.google.com/macros/s/AKfycbxkCGIxP0VO28_fjbh17maHevL9UDsHGNsm8s9P4jmh4MFw9PSS/exec" method="post">
             <fieldset class="form masking">
+
 
                 <!-- 何番目か入力 -->
                 <div class="form-group" id="form-contents1">
@@ -85,6 +102,8 @@
                         <label for="Medal2">2</label>
                         <input type="radio" name="Medal" id="Medal3" value="3">
                         <label for="Medal3">3</label>
+                        <input type="radio" name="Medal" id="MedalEX" value="0">
+                        <label for="MedalEX">バトルが正常に出来なかった</label>
                     </div>
                 </div>
 
@@ -150,6 +169,92 @@
             </fieldset>
         </form> 
         <!-- フォームここまで ---------------------------------------------------------------------------------------------------->
+
+        <!-- イレギュラーパターンのフォームここから ---------------------------------------------------------------------------------------------------->
+        <form class="form-horizontal" id="IrregularArkData" action="https://script.google.com/macros/s/AKfycbxkCGIxP0VO28_fjbh17maHevL9UDsHGNsm8s9P4jmh4MFw9PSS/exec" method="post">
+            <fieldset class="form masking">
+
+                <!-- 説明文 -->
+                <div>
+                    <a class="btn my-btn-Irregular" data-toggle="collapse" href="#Irregular">
+                        特別フォーム
+                    </a>
+                </div>
+
+                <div class="collapse" id="Irregular">
+                    <!-- 何番目か入力 -->
+                    <div class="form-group input-group" id="Irregular-form-contents1">
+                        <label for="IrregularNumber" class="col-sm-2 col-xs-12 control-label">方舟No.</label>
+                        <input type="text" class="col-sm-10 col-xs-12 form-control" name="IrregularNumber" placeholder="攻撃した方舟の番号を入力してください">
+                    </div>
+
+                    <!-- 攻撃者の入力 -->
+                    <div class="form-group input-group" id="Irregular-form-contents2">
+                        <label for="IrregularName" class="col-sm-2 col-xs-12 control-label">攻撃者名</label>
+                        <input type="text" class="col-sm-10 col-xs-12 form-control" name="IrregularName" placeholder="攻撃者の名前を入力してください">
+                    </div>
+
+                    <!-- メダル数の選択 -->
+                    <div class="form-group" id="form-contents3">
+                        <label for="IrregularMedal" class="col-sm-2 col-xs-12 control-label">メダル数</label>
+                        <div class="col-sm-10 col-xs-12 my-btn" id="IrregularMedal">
+                            <input type="radio" name="IrregularMedal" id="IrregularMedal0" value="0">
+                            <label for="IrregularMedal0">0</label>
+                            <input type="radio" name="IrregularMedal" id="IrregularMedal1" value="1">
+                            <label for="IrregularMedal1">1</label>
+                            <input type="radio" name="IrregularMedal" id="IrregularMedal2" value="2">
+                            <label for="IrregularMedal2">2</label>
+                            <input type="radio" name="IrregularMedal" id="IrregularMedal3" value="3">
+                            <label for="IrregularMedal3">3</label>
+                        </div>
+                    </div>
+
+                    <!-- 日の入力 -->
+                    <div class="form-group input-group" id="form-contents4">
+                        <label for="IrregularDate" class="col-sm-2 col-xs-12 control-label">攻撃した日</label>
+                        <div class="col-sm-10 col-xs-12">
+                            <input type="text" name="IrregularDate" id="IrregularDate" class="form-control" placeholder="ここを押してください">
+                        </div>
+                    </div>
+
+                    <!-- 何戦目か？の入力 -->
+                    <div class="form-group" id="form-contents5">
+                        <label for="IrregularCount" class="col-sm-2 col-xs-12 control-label">何戦目か？</label>
+                        <div class="col-sm-10 col-xs-12 my-btn" id="IrregularCount">
+                            <input type="radio" name="IrregularCount" id="IrregularCount1" value="1">
+                            <label for="IrregularCount1">1</label>
+                            <input type="radio" name="IrregularCount" id="IrregularCount2" value="2">
+                            <label for="IrregularCount2">2</label>
+                        </div>
+                    </div>
+
+                    <!-- 確認ボタン -->
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10 col-xs-12 col-xs-12">
+                            <div>
+                                <input type="button" value="OK!" onclick="IrregularConfirmArkData()" class="btn my-btn-Irregular">
+                            </div>
+                            <div>
+                                <input type="reset" value="リセット" class="btn my-btn-Irregular-reset reset-btn">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 確認ウィンドウ -->
+                    <div id="IrregularConfirm">
+                        <button type="button" class="close" aria-label="Close"><a id="Eao-close" onClick="IrregularConfirmWindow_close()">&times;</a></button>
+                        <div class="table-responsive">
+                            <table class="table">
+                               <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </fieldset>
+        </form>
+        
     </div>
 
 

@@ -10,7 +10,7 @@ $(function () {
 // SP=Google スプレッドシートの取得
 //----------------------------------------------------------
 var Data_Guild; // SP【ギルバト敵情報】
-var Data_Guild_late; // SPの最終行の数値
+var Data_Guild_late; // SP【ギルバト敵情報】の最終行の数値
 var Data_Ark; // SP(【ギルバト各方舟戦果】
 var Data_Member;// SP【ギルメン詳細】
 
@@ -35,11 +35,7 @@ $(function(){
 					});
 			});
 		}else if(status == "error"){
-			$("body").html('<div class="jumbotron">'
-					+'<h1>Error!</h1>'
-					+'情報が取得できませんでした。<br>'
-					+'<span class="reload glyphicon glyphicon-repeat" onClick="reload()"></span></div>');
-
+			errorSP();
 		}
 	});
 });
@@ -65,7 +61,6 @@ var ArkENum; // 何番の船をクリックしたか取得
 // ページの成形
 //----------------------------------------------------------
 function Uni3System_SetUp(){
-    var enemyName = Data_Guild[Data_Guild_late][0]; // 最新の敵の名
     var vsNumber = Data_Guild[Data_Guild_late][2]; // 戦闘方舟数
 
     // 時間について--------------------------------
@@ -79,7 +74,7 @@ function Uni3System_SetUp(){
     VsTime.setHours(VsTime.getHours() + 23);
 
     // 対戦ギルド名の表示-----------
-    $('#EnemyGuildName').html("対戦相手："+ enemyName);
+    $('#EnemyGuildName').html("対戦相手："+ Data_Guild[Data_Guild_late][0]);
     // 船番ごとの表の表示
     for(var i=1; i<=vsNumber; i++){
         $('#ArksEnemy_table').children("tbody").append('<tr><td class="ark_enemy table-hover" '
@@ -211,8 +206,11 @@ function Uni3System_SetUp(){
 		$('#Tab3>table>tbody').append('<tr><td>'+Data_Member[i][3]+'</td>'
 										+'<td><img src="img/'+Data_Member[i][7]+'.png" alt="'+Data_Member[i][7]+'">'
 										+'<img src="img/'+Data_Member[i][8]+'.png" alt="'+Data_Member[i][8]+'"></td>'
-										+'<td>'+Data_Member[i][1]+'</td>'
-										+'<td>'+Data_Member[i][2]+'</td></tr>');
+										+'<td>'+Data_Member[i][0]+'</td>'
+										+'<td>'+Data_Member[i][1]+'</td></tr>');
+		if(Data_Member[i][0] == 0){
+			$('#Tab3>table>tbody>tr:last-child').css({'background-color': '#e6a1c3'})
+		}
 	}
 
 	// 最初のタブ表示の選択を行う

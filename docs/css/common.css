@@ -95,6 +95,47 @@ header.masking{
 	height: 40%;
 }
 
+/* Waiting画面----------------------------------- */
+#Waiting-bg{
+	position: fixed;
+	display: none;
+	width: 110%;
+	height: 110%;
+	top: 0px;
+	left: 0px;
+	background-color: rgba(0, 0, 0, 0.7);
+	z-index: 10;
+}
+#Waiting{
+	position: fixed;
+	display: none;
+	width: 300px;
+	height: 300px;
+	top: 50%;
+	left: 50%;
+	margin-top: -100px;
+	margin-left: -100px;
+	text-align: center;
+	color: white;
+	z-index: 11;
+	animation-name: show;
+	animation-duration: 1s;
+}
+@keyframes show {
+	0% {
+		transform:translate(0,2em);
+		opacity:0;
+	}
+	100% {
+		transform:translate(0,0);
+		opacity:1;
+	}
+}
+#Waiting>img{
+	width: 30%;
+	height: 30%;
+}
+
 /* Formのラジオ/チェックボタン--------------------- */
 .my-btn input{
     display: none;
