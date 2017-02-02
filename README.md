@@ -2,7 +2,7 @@
 This is the system of "Uni3".  
 
 ### What's Uni3
-※"Uni3" is social game "LITTLE NOAH"(Battle Champs)'s guild.  
+※"Uni3" is guild of social game "LITTLE NOAH"(Battle Champs).  
 HP:https://littlenoah.jp/  
 HP:http://battlechamps.wixsite.com/uni3  
 
