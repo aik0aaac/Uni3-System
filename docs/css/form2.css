@@ -27,12 +27,12 @@ nav{
 	margin:110px auto;
 	margin-bottom: 10px;
 	padding: 30px;
-	width:80%;
+	width:90%;
 	font-size: 14px;
+	text-align:center;
 }
 .description>p:first-child{
 	font-weight: bold;
-	text-align:center;
 }
 /* Formのラジオ/チェックボタン--------------------- */
 .my-btn input[type="radio"]:checked + label {
@@ -100,11 +100,10 @@ nav{
 /* イレギュラーのForm------------------------------------ */
 #Irregular{
 	font-size: 80%;
-	margin-top:20px;
 }
 .my-btn-Irregular{
 	width: 100%;
-	margin: 5px 0px;
+	margin: 20px 0px;
 	background-color: #353535;
 	color: white;
 }
@@ -139,7 +138,7 @@ nav{
     header{
         text-align: center;
     }
-    #Confirm{
+    #Confirm, #IrregularConfirm{
     	font-size: 14px;
         width:80%;
     	padding:25px;

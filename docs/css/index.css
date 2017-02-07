@@ -102,14 +102,6 @@ body{
 	background-color: #5bcd86;
 	color: white;
 }
-#FormHide>a>button{
-	background-color: white;
-	color: #efefef;
-}
-#FormHide>a>button:hover{
-	background-color: lightgray;
-	color: white;
-}
 
 /* その他のCSS ---------------------*/
 .medals{
