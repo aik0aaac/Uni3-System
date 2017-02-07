@@ -2,9 +2,9 @@
 This is the system of "Uni3".  
 
 ### What's Uni3
-※"Uni3" is social game "LITTLE NOAH"(Battle Champs)'s guild.  
-"LITTLE NOAH" HP:https://littlenoah.jp/  
-Uni3 HP:http://battlechamps.wixsite.com/uni3  
+※"Uni3" is guild of social game "LITTLE NOAH"(Battle Champs).  
+HP:https://littlenoah.jp/  
+HP:http://battlechamps.wixsite.com/uni3  
 
 ## How to use
 Please access to URL.  
@@ -22,4 +22,4 @@ https://aik0aaac.github.io/Uni3-System/
 - Google Spread Sheet  
 
 ## Special Thanks
-<!-- Image provider: Sesamigai no akumu.   -->
+Image provider: Sesamigai no akumu.  
