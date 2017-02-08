@@ -59,6 +59,9 @@ var IDate; // 攻撃した日を入れる
 var ICount; // 何戦目か？を入れる
 
 function Form2_SetUp(){
+	//準備日かどうか確認、準備日であれば通常の戦果報告の入力をはじく
+	TimeSet();
+
 	//各データ書きこみ----------------------------------------------
 
 	//今戦ってる相手の情報書きこみ
@@ -172,6 +175,53 @@ function Form2_SetUp(){
 		}
 		$(".progress-bar").css({"width": +Progress_Value+ "%"});
 	});
+}
+
+//----------------------------------------------------------
+// 準備日、戦闘日の時間をカウントする関数
+//----------------------------------------------------------
+function TimeSet(){
+    var time=[];
+    var nowTime = new Date(); //今の時間を入れる
+    // 準備日終了時間(23時間なので、日を++、時間を--)
+    var readyTime = new Date(Data_Guild[Data_Guild_late][1]);
+    readyTime.setDate(readyTime.getDate() + 1);
+    readyTime.setHours(readyTime.getHours() - 1);
+    // 戦闘日終了時間(23+24 = 47時間後なので、日を++、時間を+23)
+    var vsTime = new Date(Data_Guild[Data_Guild_late][1]);
+    vsTime.setDate(vsTime.getDate() + 1);
+    vsTime.setHours(vsTime.getHours() + 23);
+	var Time23 = 82800; // 23時間分の秒数
+
+	console.log(readyTime)
+	console.log(nowTime)
+	var TimeDiff = readyTime.getTime() - nowTime.getTime(); // 時間差
+    // 準備日の時
+	if(TimeDiff > 0){ // 時間差が規定以上なら、戦闘日フェイズへ
+		console.log("zyunnbibi")
+        time[0] = Math.floor(TimeDiff / (1000 * 60 * 60 *24)); // 日付変換
+        time[1] = Math.floor((TimeDiff-time[0]*86400000) / (1000 * 60 * 60)); // 時間変換
+        time[2] = Math.floor((TimeDiff-time[0]*86400000-time[1]*3600000) / (1000 * 60)); // 分変換
+        time[3] = Math.floor((TimeDiff-time[0]*86400000-time[1]*3600000-time[2]*60000) / 1000 ); // 秒変換
+        $('header').replaceWith('');
+        $('.description').replaceWith('');
+		$('#ArkData').replaceWith('<div class="jumbotron">'+
+			        					'<h1>Sorry, Wait!</h1>'+
+										'<p>準備日終了の時間になるまでお待ちください…</p>'+
+							        	"<p>準備日終了まであと："+ time[0] +"日"+
+							        	time[1] +"時間"+ time[2] +"分"+ time[3] +"秒</p>"+
+									'</div>'+
+									'<div class="sorryWait">'+
+										'前回のギルバトの戦果報告をしたい方は、<br>以下の特別フォームからお願いします。'+
+									'</div>'+
+									'<style>'+
+										'body{'+
+												'background-color: white;'+
+												'background-image: none;'+
+										'}'+
+									'</style>'
+		);
+	}
 }
 
 //---------------------------

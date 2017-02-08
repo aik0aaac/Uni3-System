@@ -21,6 +21,41 @@ nav{
 	margin:15px auto;
 }
 
+/* 準備日だった際にはじいた時のコンテンツのCSS-------*/
+.jumbotron{
+	text-align: center;
+	animation-name: show;
+	animation-duration: 1s;
+}
+@keyframes show {
+	0% {
+		transform:translate(0,2em);
+		opacity:0;
+	}
+	100% {
+		transform:translate(0,0);
+		opacity:1;
+	}
+}
+
+.sorryWait{
+	width: 100%;
+	padding: 20px;
+	background-color: #eee;
+	font-size: 14px;
+	text-align: center;
+}
+@keyframes show {
+	0% {
+		transform:translate(0,2em);
+		opacity:0;
+	}
+	100% {
+		transform:translate(0,0);
+		opacity:1;
+	}
+}
+
 /* 説明文-----------------------------------------*/
 .description{
 	border-radius: 10px;
@@ -142,5 +177,8 @@ nav{
     	font-size: 14px;
         width:80%;
     	padding:25px;
+    }
+	.jumbotron>p{
+    	font-size: 15px;
     }
 }
