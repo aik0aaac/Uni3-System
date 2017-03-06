@@ -20,15 +20,22 @@ $(function(){
 		console.log(status)
 		if(status == "success"){
 			Data_Guild = SetSPDate(dd, 3);
-			Data_Guild_late = dd.feed.entry.length/3-1;
+			Data_Guild.shift();
+			Data_Guild_late = dd.feed.entry.length/3-2;
+			console.log("***Data_Guild is")
 			console.log(Data_Guild)
+			console.log("***Data_Guild_late is"+ Data_Guild_late)
 			$.getJSON("https://spreadsheets.google.com/feeds/cells"
 					+"/1Gb1srFP5BbDeFN0mocKpwzHp7ww10FKoB3FZI6rQtUg/oti3asw/public/values?alt=json", function(dd){
 				Data_Ark = SetSPDate(dd, 5);
+				Data_Ark.shift();
+				console.log("***Data_Ark is")
 				console.log(Data_Ark)
 				$.getJSON("https://spreadsheets.google.com/feeds/cells"
 						+"/1Gb1srFP5BbDeFN0mocKpwzHp7ww10FKoB3FZI6rQtUg/od6/public/values?alt=json", function(dd){
 					Data_Member = SetSPDate(dd, 16);
+					Data_Member.shift();
+					console.log("***Data_Member is")
 					console.log(Data_Member);
 					$("#loader-bg").fadeOut("slow");
 					Uni3System_SetUp();
@@ -95,12 +102,12 @@ function Uni3System_SetUp(){
 	// 敵番号の横にメダル数を表示
 	var arkMedal=[]; // 各船番ごとの最高メダル数を格納
 	for(var i=0; i<=vsNumber; i++){ arkMedal[i]=-1; }
-	for(var i=1; i<Data_Ark.length; i++){
+	for(var i=0; i<Data_Ark.length; i++){
 		if(parseInt(arkMedal[Data_Ark[i][0]]) < parseInt(Data_Ark[i][2])){
 			arkMedal[Data_Ark[i][0]] = Data_Ark[i][2];
 		}
 	}
-	for(var i=1; i<arkMedal.length; i++){
+	for(var i=0; i<arkMedal.length; i++){
 		switch (arkMedal[i]) {
 		  case "0":
 			$("#"+i).html('<img src="img/medal0.png" alt="0枚">');
@@ -121,7 +128,7 @@ function Uni3System_SetUp(){
 	}
 
 	// 敵番号-メダル数の横に何回攻めたかを表示
-	for(var i=1; i<Data_Ark.length; i++){
+	for(var i=0; i<Data_Ark.length; i++){
 		$("#Attack"+Data_Ark[i][0]).append('<img src="img/attackIco.png" alt="★">');
 	}
 
@@ -131,7 +138,7 @@ function Uni3System_SetUp(){
 		flag_Results.push(0);
 	}
 	var sum=0;
-	for(var i=1; i<Data_Ark.length; i++){
+	for(var i=0; i<Data_Ark.length; i++){
 		if(!flag_Results[Data_Ark[i][0]]){
 			sum += parseInt(Data_Ark[i][2]);
 			flag_Results[Data_Ark[i][0]] = 1;
@@ -143,7 +150,7 @@ function Uni3System_SetUp(){
 
 	// Tab2の書きこみ------------------------------------------------------------------
 	var entryM = []; // ギルバトに参加してる人のデータを格納
-	for(var i=1; i<Data_Member.length; i++){
+	for(var i=0; i<Data_Member.length; i++){
 		if(Data_Member[i][2] == "○"){
 			entryM.push(Data_Member[i]);
 		}
@@ -154,6 +161,8 @@ function Uni3System_SetUp(){
 		entryMName[nm] = i;
 	}
 	var entryMResult = Data_Ark; // ギルメンの戦果を名前順に格納した配列
+	//要素を削除する
+	entryMResult.shift(); // 先頭の要素を削除
 	entryMResult.sort(function(a,b){
 		if( entryMName[a[1]] < entryMName[b[1]] ) return -1;
 		if( entryMName[a[1]] > entryMName[b[1]] ) return 1;
@@ -165,13 +174,18 @@ function Uni3System_SetUp(){
 		flag_entryMResult.push(0);
 	}
 	var tmp;
-	for(var i=1; i<Data_Ark.length; i++){
+	for(var i=0; i<Data_Ark.length; i++){
 		tmp = entryMResult[i][1];
 		flag_entryMResult[entryMName[tmp]] += 1;
 	}
 
-	var ii=1;
+	console.log("***entryM is")
+	console.log(entryM)
+	console.log("***flag_entryMResult is")
+	console.log(flag_entryMResult)
+	console.log("***entryMResult is")
 	console.log(entryMResult)
+	var ii=0;
 	for(var i=0; i<entryM.length; i++){
 		if(flag_entryMResult[i] == 0){ // まだ一戦もしてない∨準備日の時
 			$('#Tab2>table>tbody').append('<tr><td>'+entryM[i][3]+'</td>'
@@ -179,6 +193,7 @@ function Uni3System_SetUp(){
 											+'<img src="img/'+entryM[i][8]+'.png" alt="'+entryM[i][8]+'"></td>'
 											+'<td></td><td></td>');
 		}else if(flag_entryMResult[i] == 1){ // １戦した場合
+			console.log("★"+ii+"★"+i)
 			$('#Tab2>table>tbody').append('<tr><td>'+entryM[i][3]+'</td>'
 											+'<td><img src="img/'+entryM[i][7]+'.png" alt="'+entryM[i][7]+'">'
 											+'<img src="img/'+entryM[i][8]+'.png" alt="'+entryM[i][8]+'"></td>'
@@ -199,10 +214,16 @@ function Uni3System_SetUp(){
 			ii += 2;
 		}
 	}
+	console.log("***entryM is")
+	console.log(entryM)
+	console.log("***flag_entryMResult is")
+	console.log(flag_entryMResult)
+	console.log("***entryMResult is")
+	console.log(entryMResult)
 
 
 	// Tab3の書きこみ------------------------------------------------------------------
-	for(var i=1; i<Data_Member.length; i++){
+	for(var i=0; i<Data_Member.length; i++){
 		$('#Tab3>table>tbody').append('<tr><td>'+Data_Member[i][3]+'</td>'
 										+'<td><img src="img/'+Data_Member[i][7]+'.png" alt="'+Data_Member[i][7]+'">'
 										+'<img src="img/'+Data_Member[i][8]+'.png" alt="'+Data_Member[i][8]+'"></td>'
