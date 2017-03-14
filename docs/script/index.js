@@ -89,16 +89,23 @@ function Uni3System_SetUp(){
         					+'<td id="'+i+'"></td>'
 							+'<td id="Attack'+i+'"></td></tr>');
     }
-
+    
     // 最初に時間をマイナス表示させないため
     NowTime = new Date();
-    TimeDiff = ReadyTime.getTime() - NowTime.getTime(); // 時間差
-    if(TimeDiff <= Time23*2+3600){
-        Flag_VsTime = 2;
-    }else if(TimeDiff <= Time23){
-        Flag_VsTime = 1;
-    }
-    
+	TimeDiff = ReadyTime.getTime() - NowTime.getTime(); // 時間差
+	if(TimeDiff <= Time23){ // 時間差が規定以上なら、戦闘日フェイズへ
+		TimeDiff = VsTime.getTime() - NowTime.getTime(); // 時間差
+		if(TimeDiff <= Time23+3600){// 時間差が規定以上なら、戦闘日終了フェイズへ
+			$('#VsTime').html("戦闘日終了");
+			Flag_VsTime = 2;
+		}else{
+			Flag_VsTime = 1;
+			$('#VsTime').html("戦闘日終了まであと：");
+		}
+	}else{
+			$('#VsTime').html("準備日終了まであと：");
+	}
+
 	// 敵番号の横にメダル数を表示
 	var arkMedal=[]; // 各船番ごとの最高メダル数を格納
 	for(var i=0; i<=vsNumber; i++){ arkMedal[i]=-1; }
@@ -162,7 +169,6 @@ function Uni3System_SetUp(){
 	}
 	var entryMResult = Data_Ark; // ギルメンの戦果を名前順に格納した配列
 	//要素を削除する
-	entryMResult.shift(); // 先頭の要素を削除
 	entryMResult.sort(function(a,b){
 		if( entryMName[a[1]] < entryMName[b[1]] ) return -1;
 		if( entryMName[a[1]] > entryMName[b[1]] ) return 1;
@@ -252,7 +258,6 @@ function Uni3System_SetUp(){
 		$('#Tab3').addClass("active");
 	}
 
-	OnStep();
     // 一秒ごとの処理
 	setInterval("OnStep()",1000);
 };
@@ -269,23 +274,27 @@ function OnStep(){
         TimeDiff = ReadyTime.getTime() - NowTime.getTime(); // 時間差
         if(TimeDiff <= Time23){ // 時間差が規定以上なら、戦闘日フェイズへ
             Flag_VsTime = 1;
+        }else if(TimeDiff <= Time23+3600){// 時間差が規定以上なら、戦闘日終了フェイズへ
+            Flag_VsTime = 2;
+        }else{
+			time[0] = Math.floor(TimeDiff / (1000 * 60 * 60 *24)); // 日付変換
+			time[1] = Math.floor((TimeDiff-time[0]*86400000) / (1000 * 60 * 60)); // 時間変換
+			time[2] = Math.floor((TimeDiff-time[0]*86400000-time[1]*3600000) / (1000 * 60)); // 分変換
+			time[3] = Math.floor((TimeDiff-time[0]*86400000-time[1]*3600000-time[2]*60000) / 1000 ); // 秒変換
+			$('#VsTime').html("準備日終了まであと："+ time[0] +"日"+ time[1] +"時間"+ time[2] +"分"+ time[3] +"秒");
         }
-        time[0] = Math.floor(TimeDiff / (1000 * 60 * 60 *24)); // 日付変換
-        time[1] = Math.floor((TimeDiff-time[0]*86400000) / (1000 * 60 * 60)); // 時間変換
-        time[2] = Math.floor((TimeDiff-time[0]*86400000-time[1]*3600000) / (1000 * 60)); // 分変換
-        time[3] = Math.floor((TimeDiff-time[0]*86400000-time[1]*3600000-time[2]*60000) / 1000 ); // 秒変換
-        $('#VsTime').html("準備日終了まであと："+ time[0] +"日"+ time[1] +"時間"+ time[2] +"分"+ time[3] +"秒");
     }// 戦闘日の時
     else if(Flag_VsTime == 1){
         TimeDiff = VsTime.getTime() - NowTime.getTime(); // 時間差
         if(TimeDiff <= Time23+3600){// 時間差が規定以上なら、戦闘日終了フェイズへ
             Flag_VsTime = 2;
-        }
-        time[0] = Math.floor(TimeDiff / (1000 * 60 * 60 *24)); // 日付変換
-        time[1] = Math.floor((TimeDiff-time[0]*86400000) / (1000 * 60 * 60)); // 時間変換
-        time[2] = Math.floor((TimeDiff-time[0]*86400000-time[1]*3600000) / (1000 * 60)); // 分変換
-        time[3] = Math.floor((TimeDiff-time[0]*86400000-time[1]*3600000-time[2]*60000) / 1000 ); // 秒変換
-        $('#VsTime').html("戦闘日終了まであと："+ time[0] +"日"+ time[1] +"時間"+ time[2] +"分"+ time[3] +"秒");
+        }else{
+			time[0] = Math.floor(TimeDiff / (1000 * 60 * 60 *24)); // 日付変換
+			time[1] = Math.floor((TimeDiff-time[0]*86400000) / (1000 * 60 * 60)); // 時間変換
+			time[2] = Math.floor((TimeDiff-time[0]*86400000-time[1]*3600000) / (1000 * 60)); // 分変換
+			time[3] = Math.floor((TimeDiff-time[0]*86400000-time[1]*3600000-time[2]*60000) / 1000 ); // 秒変換
+			$('#VsTime').html("戦闘日終了まであと："+ time[0] +"日"+ time[1] +"時間"+ time[2] +"分"+ time[3] +"秒");
+		}
     }// 戦闘日終了の時
     else if(Flag_VsTime == 2){
         $('#VsTime').html("戦闘日終了");

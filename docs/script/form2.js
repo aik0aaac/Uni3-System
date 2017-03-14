@@ -247,7 +247,7 @@ function ConfirmArkData(){
 	displayModalWindow("#Confirm", "ConfirmWindow_close")
     // 確認用メッセージ内容-------------------------------------------------------------
     // 入力不足のチェック
-    if(Number == ""||Name == ""||Medal == ""||Date == ""||Count == ""){
+    if(Number == null||Name == null||Medal == null||Date == ""||Count == null){
         $("#Confirm").append("入力不足があります。");
     }else{
         $("#Confirm>div>table>tbody").append('<tr><td class="col-sm-5">方舟No.：</td>'
