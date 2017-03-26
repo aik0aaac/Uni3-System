@@ -168,64 +168,28 @@ function Uni3System_SetUp(){
 		entryMName[nm] = i;
 	}
 	var entryMResult = Data_Ark; // ギルメンの戦果を名前順に格納した配列
-	//要素を削除する
-	entryMResult.sort(function(a,b){
-		if( entryMName[a[1]] < entryMName[b[1]] ) return -1;
-		if( entryMName[a[1]] > entryMName[b[1]] ) return 1;
-		return 0;
-	});
 
-	var flag_entryMResult = []; // 各メンバーが何戦したかを判定する数値を格納した配列
 	for(var i=0; i<entryM.length; i++){
-		flag_entryMResult.push(0);
-	}
-	var tmp;
-	for(var i=0; i<Data_Ark.length; i++){
-		tmp = entryMResult[i][1];
-		flag_entryMResult[entryMName[tmp]] += 1;
+		$('#Tab2>table>tbody').append('<tr><td>'+entryM[i][3]+'</td>'
+										+'<td><img src="img/'+entryM[i][7]+'.png" alt="'+entryM[i][7]+'">'
+										+'<img src="img/'+entryM[i][8]+'.png" alt="'+entryM[i][8]+'"></td>'
+										+'<td id="1_'+i+'"></td><td id="2_'+i+'"></td>');
 	}
 
-	console.log("***entryM is")
-	console.log(entryM)
-	console.log("***flag_entryMResult is")
-	console.log(flag_entryMResult)
-	console.log("***entryMResult is")
-	console.log(entryMResult)
-	var ii=0;
-	for(var i=0; i<entryM.length; i++){
-		if(flag_entryMResult[i] == 0){ // まだ一戦もしてない∨準備日の時
-			$('#Tab2>table>tbody').append('<tr><td>'+entryM[i][3]+'</td>'
-											+'<td><img src="img/'+entryM[i][7]+'.png" alt="'+entryM[i][7]+'">'
-											+'<img src="img/'+entryM[i][8]+'.png" alt="'+entryM[i][8]+'"></td>'
-											+'<td></td><td></td>');
-		}else if(flag_entryMResult[i] == 1){ // １戦した場合
-			console.log("★"+ii+"★"+i)
-			$('#Tab2>table>tbody').append('<tr><td>'+entryM[i][3]+'</td>'
-											+'<td><img src="img/'+entryM[i][7]+'.png" alt="'+entryM[i][7]+'">'
-											+'<img src="img/'+entryM[i][8]+'.png" alt="'+entryM[i][8]+'"></td>'
-											+'<td>No.'+entryMResult[ii][0]
-											+'<img class="medals" src="img/medals'+entryMResult[ii][2]+'.png" '
-											+'alt="'+entryMResult[ii][2]+'"></td><td></td>');
-			ii += 1;
-		}else if(flag_entryMResult[i] == 2){ // ２戦した場合
-			$('#Tab2>table>tbody').append('<tr><td>'+entryM[i][3]+'</td>'
-											+'<td><img src="img/'+entryM[i][7]+'.png" alt="'+entryM[i][7]+'">'
-											+'<img src="img/'+entryM[i][8]+'.png" alt="'+entryM[i][8]+'"></td>'
-											+'<td>No.'+entryMResult[ii][0]
-											+'<img class="medals" src="img/medals'+entryMResult[ii][2]+'.png" '
-											+'alt="'+entryMResult[ii][2]+'"></td>'
-											+'<td>No.'+entryMResult[ii+1][0]
-											+'<img class="medals" src="img/medals'+entryMResult[ii+1][2]+'.png" '
-											+'alt="'+entryMResult[ii+1][2]+'"></td>');
-			ii += 2;
+	for(var i=0; i<entryMResult.length; i++){
+		if(entryMResult[i][4] == 1){
+			$('#Tab2>table>tbody>tr>#1_'+entryMName[entryMResult[i][1]]).append(''
+										+'No.'+entryMResult[i][0]
+										+'<img class="medals" src="img/medals'+entryMResult[i][2]+'.png" '
+										+'alt="'+entryMResult[i][2]+'"></td><td></td>');
+		}
+		if(entryMResult[i][4] == 2){
+			$('#Tab2>table>tbody>tr>#2_'+entryMName[entryMResult[i][1]]).append(''
+										+'No.'+entryMResult[i][0]
+										+'<img class="medals" src="img/medals'+entryMResult[i][2]+'.png" '
+										+'alt="'+entryMResult[i][2]+'"></td><td></td>');
 		}
 	}
-	console.log("***entryM is")
-	console.log(entryM)
-	console.log("***flag_entryMResult is")
-	console.log(flag_entryMResult)
-	console.log("***entryMResult is")
-	console.log(entryMResult)
 
 
 	// Tab3の書きこみ------------------------------------------------------------------

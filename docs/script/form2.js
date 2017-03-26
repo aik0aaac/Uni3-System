@@ -93,6 +93,13 @@ function Form2_SetUp(){
 		$("#Name").removeClass("in");
 	});
 
+	// 特別フォームの分
+	for(var i=1; i<Data_Member.length; i++){
+		$("#IrregularName").append('<input type="radio" name="Name" '
+								+'id="Name'+i+'" value="'+entryM[i][3]+'">');
+		$("#IrregularName").append('<label for="Name'+i+'">'+entryM[i][3]+'</label>');
+	}
+	
 	// 進捗バーの実装-----------------------------------------------
 	var p_dnum=0; // #Dateの際にカウントアップで使う
 	// progressバーの実装---------------------------------

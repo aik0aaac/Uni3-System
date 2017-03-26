@@ -194,7 +194,7 @@
                 <div class="collapse" id="Irregular">
                     <!-- 何番目か入力 -->
                     <div class="form-group input-group container row" id="Irregular-form-contents1">
-                        <label for="IrregularNumber" class="col-sm-2 col-xs-12 control-label">方舟No.</label>
+                        <label for="IrregularNumber" class="col-sm-2 col-xs-12 control-label">敵船No.</label>
                         <div class="col-sm-9 col-xs-12">
                             <input type="text" class="form-control" name="IrregularNumber" placeholder="攻撃した方舟の番号を入力してください">
                         </div>
@@ -204,10 +204,16 @@
                     <!-- 攻撃者の入力 -->
                     <div class="form-group input-group container row" id="Irregular-form-contents2">
                         <label for="IrregularName" class="col-sm-2 col-xs-12 control-label">攻撃者名</label>
-                        <div class="col-sm-9 col-xs-12">
-                            <input type="text" class="col-sm-10 col-xs-12 form-control" name="IrregularName" placeholder="攻撃者の名前を入力してください">
-                        </div>
+                        <a class="col-sm-9 col-xs-12 btn my-btn-Irregular" data-toggle="collapse" href="#IrregularName">
+                            ここを押してください<span id="IrregularNameDetail"></span>
+                        </a>
                         <div class="col-sm-1 col-xs-12"></div>
+                        <div class="col-sm-offset-2 col-sm-10 col-xs-12 my-btn collapse" id="IrregularName">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-1 col-xs-12"></div>
+                    <div class="col-sm-offset-2 col-sm-10 col-xs-12 my-btn collapse" id="Name">
                     </div>
 
                     <!-- メダル数の選択 -->
