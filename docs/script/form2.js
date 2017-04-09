@@ -92,13 +92,17 @@ function Form2_SetUp(){
 	$("#Name").click(function(){
 		$("#Name").removeClass("in");
 	});
-
+	
 	// 特別フォームの分
 	for(var i=1; i<Data_Member.length; i++){
-		$("#IrregularName").append('<input type="radio" name="Name" '
-								+'id="Name'+i+'" value="'+entryM[i][3]+'">');
-		$("#IrregularName").append('<label for="Name'+i+'">'+entryM[i][3]+'</label>');
+		$("#IrregularName").append('<input type="radio" name="IrregularName" '
+								+'id="IrregularName'+i+'" value="'+Data_Member[i][3]+'">');
+		$("#IrregularName").append('<label for="IrregularName'+i+'" class="my-btn-Irregular">'+Data_Member[i][3]+'</label>');
 	}
+	$('#IrregularName').click(function(){ //#IrregularName
+		$('#IrregularNameDetail').html('<br>選択した攻撃者名：'+$('[name=IrregularName]:checked').val());
+	});
+
 	
 	// 進捗バーの実装-----------------------------------------------
 	var p_dnum=0; // #Dateの際にカウントアップで使う
@@ -235,9 +239,22 @@ function TimeSet(){
 // プログレスバーの初期化
 //---------------------------
 function Reset(){
+	$('#NumberDetail').html('');
+	$('#NameDetail').html('');
 	$(".progress-bar").css({"width": "0%"});
 	Progress_Flag[0]=0; Progress_Flag[1]=0; Progress_Flag[2]=0; Progress_Flag[3]=0; Progress_Flag[4]=0;
 	Progress_Value = 0;
+}
+
+
+function IrregularReset(){
+	$('#IrregularNameDetail').html('');
+	$('#IrregularName').click(function(){
+		console.log("#IrregularName is "+$('IrregularName input:checked').val())
+	});
+	$('#IrregularNumber').click(function(){
+		console.log("#IrregularNumber is "+$('[name=IrregularNumber]').val())
+	});
 }
 
 //-------------------------------------------------------------------------------
@@ -245,7 +262,6 @@ function Reset(){
 //-------------------------------------------------------------------------------
 function ConfirmArkData(){
     // 入力した値の取得
-    Number = $('#Number input:checked').val();
     Name = $('#Name input:checked').val();
     Medal = $('#Medal input:checked').val();
     Date = $('[name=Date]').val();
@@ -281,7 +297,7 @@ function ConfirmArkData(){
 function IrregularConfirmArkData(){
     // 入力した値の取得
     INumber = $('[name=IrregularNumber]').val();
-    IName = $('[name=IrregularName]').val();
+    IName = $('#IrregularName input:checked').val();
     IMedal = $('#IrregularMedal input:checked').val();
     IDate = $('[name=IrregularDate]').val();
     ICount = $('#IrregularCount input:checked').val();
@@ -289,9 +305,10 @@ function IrregularConfirmArkData(){
 	displayModalWindow("#IrregularConfirm", "IrregularConfirmWindow_close")
     // 確認用メッセージ内容-------------------------------------------------------------
     // 入力不足のチェック
-    if(INumber == ""||IName == ""||IMedal == ""||IDate == ""||ICount == ""){
-        $("#IrregularConfirm").append("入力不足があります。");
+    if(INumber == ""||IName == null||IMedal == null||IDate == ""||ICount == null){
+        $("#IrregularConfirm").append("特別フォーム送信：<br>入力不足があります。");
     }else{
+        $("#IrregularConfirm").append("特別フォーム送信：");
         $("#IrregularConfirm>div>table>tbody").append('<tr><td class="col-sm-5">方舟No.：</td>'
         										+'<td class="col-sm-7">'+ INumber +'</td><tr>');
         $("#IrregularConfirm>div>table>tbody").append('<tr><td class="col-sm-5">攻撃者名</td>'
