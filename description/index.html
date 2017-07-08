@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+<head> 
+    <!-- ページのタイトルを記述 -->
+    <title>Uni3システムの説明</title>
+    <meta charset="utf-8">
+    <!-- ライブラリファイル -->
+    <script src="lib/jquery-3.1.1.min.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
+    <link href="lib/bootstrap.min.css" rel="stylesheet">
+    <!-- 自作ファイル群 -->
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <!--  ブラウザタブに表示されるアイコン画像の指定  -->
+    <link rel="icon" sizes="196x196" href="img/icon.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/icon.png">
+</head>
+<body>
+    <!-- 全体を囲う大きなbody ---------------------------------------->
+    <div id="my-body">
+
+    <!-- 共通コンテンツ ------------------------------------------>
+     <div class="jumbotron">
+        <h1>Uni3 システム説明</h1>
+        <p>
+            システムへのURL：
+            <a href="https://aik0aaac.github.io/Uni3-System/">https://aik0aaac.github.io/Uni3-System/</a>
+        </p>
+        <p>
+           開発者への連絡先<br>
+            メールアドレス：aik0aaad@gmail.com <br>
+            Twitter：@aik0aaac <br>
+         </p>
+     </div>
+
+   <p id="tab-description">↓ 各タブをクリックしてください</p>
+    <!-- タブ・メニュー ------------------------------------------>
+    <ul class="nav nav-tabs">
+        <li><a href="#Tab1" data-toggle="tab">Docsフォルダ内説明</a></li>
+        <li><a href="#Tab2" data-toggle="tab">システムの説明</a></li>
+        <li><a href="#Tab3" data-toggle="tab">このシステムの導入手順</a></li>
+    </ul>
+
+    <!-- タブ内容 -------------------------------------->
+    <div class="tab-content">
+      <!-- タブ(Tab1)：ここから ----------------------->
+      <div class="tab-pane" id="Tab1">
+       <p>
+           ※cssフォルダやscriptフォルダ等、名前を見れば何となく内容が察しがつくようなものの説明は省きます。
+       </p>
+        <h2><a data-toggle="collapse" href="#html">
+            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>htmlファイル関連
+        </a></h2>
+        <div class="collapse" id="html">
+            <p>docsフォルダ直下のhtmlファイルに関する説明です。</p>
+            <table class="table">
+                <thead><tr>
+                        <th>ファイル名</th>
+                        <th>概要</th>
+                </tr></thead>
+                <tbody>
+                    <tr>
+                        <td>index.html</td>
+                        <td>システムのメイン画面です。</td>
+                    </tr>
+                    <tr>
+                        <td>form1.html</td>
+                        <td>マッチングギルド入力画面です。</td>
+                    </tr>
+                    <tr>
+                        <td>form2.html</td>
+                        <td>戦果報告入力画面です。</td>
+                    </tr>
+                    <tr>
+                        <td>flow.html</td>
+                        <td>戦果フローを表示する画面です。<br>メイン画面にて、iframeで表示されるページです。
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>test.html</td>
+                        <td>画面遷移等の演出のテスト用に用意したHTMLファイルです。<br>
+                            現在はチュロスのアニメーションが表示されるだけのファイルです。
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+         </div>
+         
+        <h2><a data-toggle="collapse" href="#gas">
+            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>GASファイル関連
+        </a></h2>
+        <div class="collapse" id="gas">
+            <p>GASフォルダ内の各ファイルの説明です。</p>
+            <table class="table">
+                <thead><tr>
+                        <th>ファイル名</th>
+                        <th>概要</th>
+                </tr></thead>
+                <tbody>
+                    <tr>
+                        <td>コード.gs.txt</td>
+                        <td>
+                            Googleスプレッドシートのスクリプトコードを書いたコードです。<br>
+                            このコードの使用方法は「このシステムの導入手順」タブに書かれています。
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>GAS-htmlフォルダ内の各htmlファイル</td>
+                        <td>各フォーム画面入力後に表示されるhtmlファイルを置いています。<br>エラー処理で遷移先が変わるため、複数のhtmlファイルがあります。</td>
+                    </tr>
+                </tbody>
+            </table>
+         </div>
+      </div>
+      <!-- タブ(Tab1)：ここまで ----------------------->
+
+      <!-- タブ(Tab2)：ここから ------------------------->
+      <div class="tab-pane" id="Tab2">
+          <p>システムは3つの画面から成り立っています。</p>
+          <div id="sys-main">
+              <h2>メイン画面</h2>
+          </div>
+      </div>
+      <!-- タブ(Tab2)：ここまで ------------------------->
+
+      <!-- タブ(Tab3)：ここから ------------------------->
+      <div class="tab-pane" id="Tab3">
+      
+      </div>
+      <!-- タブ(Tab3)：ここまで ------------------------->
+
+
+    </div>
+    <!-- ライブラリファイル -->
+    <script src="lib/jquery-3.1.1.min.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
+
+</body>
+</html>

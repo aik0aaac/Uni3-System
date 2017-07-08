@@ -1,0 +1,253 @@
+function doPost(e){
+  Logger.log(e);
+  // SPの情報を取得-----------------------------------------------------
+  var ss = SpreadsheetApp.openById("1Gb1srFP5BbDeFN0mocKpwzHp7ww10FKoB3FZI6rQtUg");
+  var sheet1 = ss.getSheetByName("ギルメン情報詳細");
+  var sheet2 = ss.getSheetByName("マッチング履歴");
+  var sheet3 = ss.getSheetByName("ギルバト戦況詳細"); 
+  var sheet4 = ss.getSheetByName("ギルバト戦況履歴"); 
+  var sheet5 = ss.getSheetByName("ギルバト戦況詳細_イレギュラー"); 
+
+  // Form1のデータ-------------------------------------------------------
+  if(e.parameter.Medal == null && e.parameter.IrregularMedal == null){
+    
+    //【ギルバト各方舟戦果】の値を過去ログへ
+    moveLog(sheet2, sheet3, sheet4);
+
+    //formデータを取り出して、配列に格納
+    var data = [e.parameter.Name, e.parameter.Date, e.parameter.Number];
+    var member = e.parameters.Member;
+    
+    //【ギルバト敵情報】に敵ギルド情報を送信
+    sheet2.appendRow(data);
+
+    //今日が【ギルメン詳細】の今月ギルバト参加した数カウンターの月と違うかチェック、違ったらカウンター初期化
+    checkTodayMonth(sheet1)
+    //【ギルメン詳細】のギルバト参加に○×書きこみ
+    memberJoin(member, sheet1);
+    
+    //Form完了後、お礼表示のURLへジャンプ
+    return HtmlService.createHtmlOutputFromFile('form1-comp')
+    .setSandboxMode(HtmlService.SandboxMode.IFRAME);
+    
+  }// Form2のデータ--------------------------------------------------------
+  else if(e.parameter.Medal != null){
+    
+    //formデータを取り出して、配列に格納
+    var array = [e.parameter.Number, e.parameter.Name, e.parameter.Medal, e.parameter.Date, e.parameter.Count];
+    
+    //データが二重に送信されたかチェック、もし送信されてたらERRORページへ
+    if(form2DataCheck_Duplicate(e.parameter.Number, e.parameter.Name, e.parameter.Count, sheet3)){
+      return HtmlService.createHtmlOutputFromFile('form2-error1')
+      .setSandboxMode(HtmlService.SandboxMode.IFRAME);
+    }else if(form2DataCheck_Double(e.parameter.Name, e.parameter.Count, sheet3)==1){
+      return HtmlService.createHtmlOutputFromFile('form2-error2')
+      .setSandboxMode(HtmlService.SandboxMode.IFRAME);
+    }else if(form2DataCheck_Double(e.parameter.Name, e.parameter.Count, sheet3)==2){
+      return HtmlService.createHtmlOutputFromFile('form2-error3')
+      .setSandboxMode(HtmlService.SandboxMode.IFRAME);
+    }else if(form2DataCheck_Runaway(e.parameter.Name, e.parameter.Count, sheet3)){
+      return HtmlService.createHtmlOutputFromFile('form2-error4')
+      .setSandboxMode(HtmlService.SandboxMode.IFRAME);
+    }else if(form2DataCheck_SameNumber(e.parameter.Number, e.parameter.Name, e.parameter.Count, sheet3)){
+      return HtmlService.createHtmlOutputFromFile('form2-error5')
+      .setSandboxMode(HtmlService.SandboxMode.IFRAME);
+    }else{
+      //一発で最終行に書込みする
+      sheet3.appendRow(array);
+    }    
+    //もし2戦していたら【ギルメン詳細】の参加数を++
+    memberCountUP(e.parameter.Name, sheet1, sheet3)
+
+    //Form完了後、お礼表示のURLへジャンプ
+    return HtmlService.createHtmlOutputFromFile('form2-comp')
+    .setSandboxMode(HtmlService.SandboxMode.IFRAME);
+    
+  }// Form2のデータ(イレギュラーパターン)--------------------------------------------------------
+  else if(e.parameter.IrregularMedal != null){
+    
+    //formデータを取り出して、配列に格納
+    var array = [e.parameter.IrregularNumber, e.parameter.IrregularName, e.parameter.IrregularMedal, e.parameter.IrregularDate, e.parameter.IrregularCount];
+    
+    //一発で最終行に書込みする
+    sheet5.appendRow(array);
+    
+    //Form完了後、お礼表示のURLへジャンプ
+    return HtmlService.createHtmlOutputFromFile('form2-Irregular-comp')
+    .setSandboxMode(HtmlService.SandboxMode.IFRAME);
+  }
+
+}
+
+// doPostの部品類ここから----------------------------------------------------------------------------------
+
+function moveLog(sheet2, sheet3, sheet4){ // ギルバト各方舟戦果シートの値を過去ログへ
+  // 【ギルバト敵情報】の一番下の行をGET,【ギルバト各方舟戦果_過去ログ】に格納
+  var range,val;
+  var values=[];
+  for(var i=0; i<sheet2.getLastColumn(); i++){
+    range = sheet2.getRange(sheet2.getLastRow(),i+1);
+    val = range.getValues().toString();
+    values.push(val);
+  }
+  sheet4.appendRow(values);
+  
+  // 【ギルバト各方舟戦果】の情報をまとめてGET
+  var range = sheet3.getRange(1, 1, sheet3.getLastRow(), sheet3.getLastColumn());
+  Logger.log(range.getValues());
+  // 【ギルバト各方舟戦果_過去ログ】の最終行を取得、そこにコピー
+  var target = sheet4.getRange(sheet4.getLastRow()+1, 1);
+  range.copyTo(target);
+
+  // 【ギルバト各方舟戦果】のインデックス部分以外のデータを消去
+  range = sheet3.getRange(2, 1, sheet3.getLastRow(), sheet3.getLastColumn());
+  range.clear({contentsOnly: true});
+ 
+}
+
+function checkTodayMonth(sheet1){ //今日が【ギルメン詳細】の今月ギルバト参加した数カウンターの月と違うかチェック、違ったらカウンター初期化、先月の方へ
+  var today = new Date();
+  var todayMonth = today.getMonth()+1;
+  var preMonth = sheet1.getRange(1,1).getValues().toString(); //「SPに書いてある今月」の値
+  var prepreMonth = sheet1.getRange(1,2).getValues().toString(); //「SPに書いてある先月」の値
+  if(preMonth == '11月のギルバト参加数' || preMonth == '12月のギルバト参加数'){
+    preMonth = sheet1.getRange(1,1).getValues().toString().slice(0,2);
+  }else{
+    preMonth = sheet1.getRange(1,1).getValues().toString().slice(0,1);    
+  }
+  if(prepreMonth == '11月のギルバト参加数' || prepreMonth == '12月のギルバト参加数'){
+    prepreMonth = sheet1.getRange(1,2).getValues().toString().slice(0,2);
+  }else{
+    prepreMonth = sheet1.getRange(1,2).getValues().toString().slice(0,1);    
+  }
+
+  if(todayMonth != preMonth){ //今日の日付が「SPに書いてある今月」の値と違ったら
+    if(todayMonth == 1){
+      sheet1.getRange(1,2).setValue('12月のギルバト参加数');
+    }else{
+      sheet1.getRange(1,2).setValue(todayMonth-1+'月のギルバト参加数');
+    }
+    for(var i=2; i<=sheet1.getLastRow(); i++){
+      sheet1.getRange(i,2).setValue(sheet1.getRange(i,1).getValues());
+    }
+    sheet1.getRange(1,1).setValue(todayMonth+'月のギルバト参加数');
+    for(var i=2; i<=sheet1.getLastRow(); i++){
+      sheet1.getRange(i,1).setValue(0);
+    }
+  }
+}
+
+function memberJoin(member, sheet1){ //【ギルメン詳細】のギルバト参加：○×書きこみ
+  var FlagMember=[];
+  var values=[];
+  var value;
+  for(var i=2; i<=sheet1.getLastRow(); i++){
+    FlagMember.push(0);
+  }
+  for(var i=0; i<member.length; i++){
+    FlagMember[member[i]-1] = 1;
+  }
+  Logger.log(FlagMember);
+  for(var i=2; i<=sheet1.getLastRow(); i++){
+    if(FlagMember[i-2]){
+      sheet1.getRange(i,3).setValue('○');
+    }else{
+      sheet1.getRange(i,3).setValue('×');
+    }
+  }
+}
+
+function memberCountUP(name, sheet1, sheet3){ //【ギルメン詳細】のギルバト参加：今月ギルバト参加した数カウンターの更新
+
+  var member = {}; // ギルメンの名前をハッシュ化し,各メンバーが何戦したかを判定する数値を格納し配列
+  for(var i=2; i<=sheet1.getLastRow(); i++){
+    var mname = sheet1.getRange(i,4).getValues();
+    member[mname] = 0;
+  }
+  Logger.log(member);
+  for(var i=2; i<=sheet3.getLastRow(); i++){
+    member[sheet3.getRange(i,2).getValues()] += 1
+  }
+  Logger.log(member);
+  
+  var tmp;
+  if(member[name] == 2){
+    for(var i=2; i<=sheet1.getLastRow(); i++){
+      var mname = sheet1.getRange(i,4).getValues();
+      if(mname == name){
+        tmp = sheet1.getRange(i,1).getValues();
+        sheet1.getRange(i,1).setValue(parseInt(tmp)+1);
+        break;
+      }
+    }
+  }  
+}
+
+function form2DataCheck_Duplicate(Number, Name, Count, sheet3){ //Form2でのデータが二重に送信されてないかチェックする関数
+  Logger.log("--------form2Datacheck--------")
+  Logger.log(sheet3.getRange(2,1).getValues());
+  Logger.log(Number)
+  Logger.log(sheet3.getRange(2,2).getValues());
+  Logger.log(Name)
+  Logger.log(sheet3.getRange(2,5).getValues());
+  Logger.log(Count)
+  Logger.log("------------------------------")
+  for(var i=2; i<=sheet3.getLastRow(); i++){
+    if(sheet3.getRange(i,1).getValues()==Number && sheet3.getRange(i,2).getValues()==Name && sheet3.getRange(i,5).getValues()==Count){
+      return 1; //間違ったデータが送信されていたら「1」を返す
+    }
+  }
+  return 0; //正しくデータが送信されていたら「0」を返す
+}
+
+function form2DataCheck_Double(Name, Count, sheet3){ //1戦目&2戦目があるのに二重で報告してないかチェックする関数
+  for(var i=2; i<=sheet3.getLastRow(); i++){
+    if(sheet3.getRange(i,2).getValues()==Name && sheet3.getRange(i,5).getValues()==Count){
+      if(Count == 1){
+        return 1; //間違ったデータが送信されていたら：1戦目の場合「1」を返す
+      }else if(Count == 2){
+        return 2;; //間違ったデータが送信されていたら：2戦目の場合「2」を返す
+      }
+    }
+  }
+  return 0; //正しくデータが送信されていたら「0」を返す
+}
+
+function form2DataCheck_Runaway(Name, Count, sheet3){ //1戦目を報告してないのに2戦目報告してないかチェックする関数
+  if(Count == 1){ //1戦目の場合はスルー
+    return 0;
+  }
+  for(var i=2; i<=sheet3.getLastRow(); i++){
+    if(sheet3.getRange(i,2).getValues()==Name && sheet3.getRange(i,5).getValues()==1){ // すでにデータが存在してたならスルー
+      return 0;
+    }
+  }
+  return 1; //データがない＝報告してないことなのでエラー
+}
+
+function form2DataCheck_SameNumber(Number, Name, Count, sheet3){ //2戦目に１戦目と同じ敵船番を選択して送信してないかチェックする関数
+  if(Count == 1){ //1戦目の場合はスルー
+    return 0;
+  }
+  for(var i=2; i<=sheet3.getLastRow(); i++){
+    if(sheet3.getRange(i,1).getValues()==Number && sheet3.getRange(i,2).getValues()==Name){
+      return 1;
+    }
+  }
+  return 0; //正しくデータが送信されていたら「0」を返す
+}
+
+// doPostの部品類ここまで----------------------------------------------------------------------------------
+
+// -------------------------------------------------------------------------
+function myGetGID(){// SPの各シートIDを表示
+     var sheets = SpreadsheetApp.getActiveSpreadsheet().getSheets();
+     for (var i = 0 ; i < sheets.length ; i++) {
+         Logger.log(sheets[i].getName() + " = " + sheets[i].getIndex() + ", " + gid_to_wid(sheets[i].getSheetId()));
+     }
+}
+function gid_to_wid(gid) {// SPの各シートIDを取得
+ var xorval = gid > 31578 ? 474 : 31578;
+ var letter = gid > 31578 ? 'o' : '';
+ return letter + parseInt((gid ^ xorval)).toString(36);
+}

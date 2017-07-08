@@ -24,7 +24,7 @@ form1とform2からの情報を表示する画面です。
 また、DBにある各ギルドメンバーの援軍希望キャラや今月のギルドバトル参加数を見ることが出来ます。  
 ※「戦略フロー」画像は実際にギルド内で使用したものであるため、モザイクをかけています
 
-### 戦果報告入力画面(form1.html)  
+### マッチングギルド入力画面(form1.html)  
 マッチングしたギルドの名前、マッチング日、方舟数、参加メンバーを入力します。  
 この機能は特定の権限者のみが利用します。   
 
@@ -40,6 +40,8 @@ form1とform2からの情報を表示する画面です。
   - Bootstrap  
   - Bootstrap-material-picker  
   - Mr.StickyTableHeaders  
+  - moment.js
+  - vivus.js
 - GAS(Google Apps Script)
 - Google Spread Sheet※DBの代わりとして用いました  
 

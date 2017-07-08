@@ -1,0 +1,47 @@
+/* 基礎タグにつけるCSS ---------------------*/
+*{
+	font-family: "Meiryo",sans-serif;
+}
+body{
+	font-size: 16px;
+}
+ul{
+    list-style: square;
+}
+h2{
+    font-size: 1.5rem;
+}
+a{
+    padding: .6em;
+    transition: .5s;
+    border-radius: 5px;
+}
+a:hover{
+    text-decoration: none;
+    background-color: #eee;
+}
+/* ライブラリで追加されたタグに付けるCSS -------*/
+.glyphicon{
+    margin-right: .3em;
+    font-size: .7em;
+}
+.jumbotron{
+    padding: 5rem;
+}
+.jumbotron h1{
+    margin-bottom: 2rem;
+}
+.jumbotron p{
+    margin: 1rem;
+    font-size: 1.5rem;
+}
+.tab-content{
+    padding: 3rem;
+}
+.collapse{
+    margin: 1em 2em;
+}
+/* その他 -------------------*/
+#tab-description{
+    margin: 2rem;
+}
