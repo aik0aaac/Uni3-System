@@ -1,163 +1,171 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
-<head> 
+
+  <head>
     <!-- ページのタイトルを記述 -->
     <title>Uni3 マッチング情報入力</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 検索よけ(おまじない程度だけど) -->
     <meta NAME="ROBOTS" CONTENT="NOINDEX,NOFOLLOW,NOARCHIVE">
     <!-- Chrome + Lollipopでタブの色を変える -->
     <meta content="#89ffff" name="theme-color">
     <!-- ライブラリファイル ------------------------------------------------------>
-    <script src="lib/jquery-3.1.1.min.js"></script>
-    <script src="lib/moment.js"></script>
-    <script src="lib/bootstrap.min.js"></script>
     <link href="lib/bootstrap.min.css" rel="stylesheet">
 
-    <link href='lib/bootstrap-material-datetimepicker.css' rel='stylesheet'>  
-    <script src='lib/bootstrap-material-datetimepicker.js'></script>
+    <link href='lib/bootstrap-material-datetimepicker.css' rel='stylesheet'>
 
     <!-- 自作ファイル群 -->
     <link rel="stylesheet" type="text/css" href="css/common.css">
-    <script type="text/javascript" src="script/common.js"></script>
     <link rel="stylesheet" href="css/form1.css">
-    <script type="text/javascript" src="script/form1.js"></script>
     <link rel="icon" sizes="196x196" href="img/icon.png">
     <link rel="apple-touch-icon" sizes="152x152" href="img/icon.png">
-</head>
-<body>
+  </head>
+
+  <body>
     <!-- Now Loading画面 -->
     <div id="loader-bg">
-        <div id="loader">
-            <p>Now Loading...</p>
-            <img src="img/nowLoading.gif" alt="Loading">
-        </div>
+      <div id="loader">
+        <p>Now Loading...</p>
+        <img src="img/nowLoading.gif" alt="Loading">
+      </div>
     </div>
 
     <!-- 送信後Waiting画面 -->
     <div id="Waiting-bg">
-        <div id="Waiting">
-            <p>情報を送信しています...</p>
-            <img src="img/nowLoading.gif" alt="Waiting">
-        </div>
+      <div id="Waiting">
+        <p>情報を送信しています...</p>
+        <img src="img/nowLoading.gif" alt="Waiting">
+      </div>
     </div>
 
     <!-- 全体を囲う大きなbody ---------------------------------------->
     <div id="my-body">
-        <!-- navバー、進捗バーもここに表示 -->
-        <header class="masking">
-            <b>Uni3</b> マッチング情報入力
-            <a href="index.html">
-                <span class="glyphicon glyphicon-home info"></span>
-            </a>
-            <div class="progress">
-              <div class="progress-bar" role="progressbar"></div>
+      <!-- navバー、進捗バーもここに表示 -->
+      <header class="masking">
+        <b>Uni3</b> マッチング情報入力
+        <a href="index.html">
+          <span class="glyphicon glyphicon-home info"></span>
+        </a>
+        <div class="progress">
+          <div class="progress-bar" role="progressbar"></div>
+        </div>
+      </header>
+
+      <!-- フォームここから ---------------------------------------------------------------------------------------------------->
+      <form class="form-horizontal" id="EnemyData"
+        action="https://script.google.com/macros/s/AKfycbxkCGIxP0VO28_fjbh17maHevL9UDsHGNsm8s9P4jmh4MFw9PSS/exec"
+        method="post">
+        <fieldset class="form masking">
+
+          <!-- 対戦相手名の入力 -->
+          <div class="form-group">
+            <label for="Name" class="col-sm-2 col-xs-12 control-label">対戦相手名</label>
+            <div class="col-sm-10 col-xs-12">
+              <input type="text" name="Name" id="Name" class="form-control" placeholder="対戦するギルドの名前を入力">
             </div>
-        </header>
+          </div>
 
-        <!-- フォームここから ---------------------------------------------------------------------------------------------------->
-        <form class="form-horizontal" id="EnemyData" action="https://script.google.com/macros/s/AKfycbxkCGIxP0VO28_fjbh17maHevL9UDsHGNsm8s9P4jmh4MFw9PSS/exec" method="post">
-          <fieldset class="form masking">
-
-                <!-- 対戦相手名の入力 -->
-                <div class="form-group">
-                    <label for="Name" class="col-sm-2 col-xs-12 control-label">対戦相手名</label>
-                    <div class="col-sm-10 col-xs-12">
-                        <input type="text" name="Name" id="Name" class="form-control" placeholder="対戦するギルドの名前を入力">
-                    </div>
-                </div>
-
-                <!-- マッチング日の入力 -->
-                <div class="form-group">
-                    <label for="Date" class="col-sm-2 col-xs-12 control-label">マッチング日</label>
-                    <div class="col-sm-10 col-xs-12">
-                        <input type="text" name="Date" id="Date" class="form-control" placeholder="ここを押してください">
-                    </div>
-                </div>
-
-                <!-- 対戦数の選択 -->
-                <div class="form-group">
-                    <label for="Number" class="col-sm-2 col-xs-12 control-label">対戦数</label>
-                    <div class="col-sm-10 col-xs-12 my-btn" id="Number">
-                        <input type="radio" name="Number" id="num10" value="10">
-                        <label for="num10">10</label>
-                        <input type="radio" name="Number" id="num15" value="15">
-                        <label for="num15">15</label>
-                        <input type="radio" name="Number" id="num20" value="20">
-                        <label for="num20">20</label>
-                        <input type="radio" name="Number" id="num25" value="25">
-                        <label for="num25">25</label>
-                        <input type="radio" name="Number" id="num30" value="30">
-                        <label for="num30">30</label>
-                        <input type="radio" name="Number" id="num35" value="35">
-                        <label for="num35">35</label>
-                        <input type="radio" name="Number" id="num40" value="40">
-                        <label for="num40">40</label>
-                        <input type="radio" name="Number" id="num45" value="45">
-                        <label for="num45">45</label>
-                        <input type="radio" name="Number" id="num50" value="50">
-                        <label for="num50">50</label>
-                    </div>
-                </div>
-
-                <!-- 参加ギルメンの入力 -->
-                <div class="form-group">
-                    <label for="Member" class="col-sm-2 col-xs-12 control-label">参加メンバー：<span id="DisplayMemberLength"></span></label>
-                    <div class="col-sm-10 col-xs-12 my-btn" id="Member">
-                        <button type="button" class="btn my-btn3 control col-xs-12" onClick="AllChecked()">すべてチェック</button>
-                        <button type="button" class="btn my-btn3 control col-xs-12" onClick="ResetAllChecked()">チェックを解除</button>
-                        <br><br>
-                    </div>
-                </div>
-
-                <!-- 確認ボタン -->
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10 col-xs-12 col-xs-12">
-                        <div>
-                            <input type="button" value="OK!" onclick="ConfirmEnemyData()" class="btn my-btn2">
-                        </div>
-                        <div>
-                            <input type="reset" value="リセット" onclick="Reset()" class="btn my-btn2 reset-btn">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- サブテキスト、GoogleSPへのリンク -->
-                <div id="info" class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10 col-xs-12">
-                        <a href="https://docs.google.com/spreadsheets/d/1Gb1srFP5BbDeFN0mocKpwzHp7ww10FKoB3FZI6rQtUg/pubhtml?gid=1309814821&single=true" target="_blank">
-                            <button type="button" id="guild_SP" class="btn btn-sm my-btn2 info my-btn-sp">
-                              <span class="glyphicon glyphicon-list-alt"></span>
-                              マッチング履歴
-                            </button>
-                        </a>
-                        <a href="index.html">
-                            <button type="button" class="btn btn-sm my-btn2 info">
-                            <span class="glyphicon glyphicon-home"></span>
-                            Uni3システム メインページへ
-                            </button>
-                        </a>
-                    </div>
-                </div>        
-
-            <!-- 確認ウィンドウ -->
-            <div id="Confirm">
-                <button type="button" class="close" aria-label="Close"><a id="Eao-close" onClick="ConfirmWindow_close()">&times;</a></button>
-                <div class="table-responsive">
-                    <table class="table">
-                       <tbody></tbody>
-                    </table>
-                </div>
+          <!-- マッチング日の入力 -->
+          <div class="form-group">
+            <label for="Date" class="col-sm-2 col-xs-12 control-label">マッチング日</label>
+            <div class="col-sm-10 col-xs-12">
+              <input type="text" name="Date" id="Date" class="form-control" placeholder="ここを押してください">
             </div>
+          </div>
 
-            </fieldset>
-        </form> 
-        <!-- フォームここまで ---------------------------------------------------------------------------------------------------->
+          <!-- 対戦数の選択 -->
+          <div class="form-group">
+            <label for="Number" class="col-sm-2 col-xs-12 control-label">対戦数</label>
+            <div class="col-sm-10 col-xs-12 my-btn" id="Number">
+              <input type="radio" name="Number" id="num10" value="10">
+              <label for="num10">10</label>
+              <input type="radio" name="Number" id="num15" value="15">
+              <label for="num15">15</label>
+              <input type="radio" name="Number" id="num20" value="20">
+              <label for="num20">20</label>
+              <input type="radio" name="Number" id="num25" value="25">
+              <label for="num25">25</label>
+              <input type="radio" name="Number" id="num30" value="30">
+              <label for="num30">30</label>
+              <input type="radio" name="Number" id="num35" value="35">
+              <label for="num35">35</label>
+              <input type="radio" name="Number" id="num40" value="40">
+              <label for="num40">40</label>
+              <input type="radio" name="Number" id="num45" value="45">
+              <label for="num45">45</label>
+              <input type="radio" name="Number" id="num50" value="50">
+              <label for="num50">50</label>
+            </div>
+          </div>
+
+          <!-- 参加ギルメンの入力 -->
+          <div class="form-group">
+            <label for="Member" class="col-sm-2 col-xs-12 control-label">参加メンバー：<span
+                id="DisplayMemberLength"></span></label>
+            <div class="col-sm-10 col-xs-12 my-btn" id="Member">
+              <button type="button" class="btn my-btn3 control col-xs-12" onClick="AllChecked()">すべてチェック</button>
+              <button type="button" class="btn my-btn3 control col-xs-12" onClick="ResetAllChecked()">チェックを解除</button>
+              <br><br>
+            </div>
+          </div>
+
+          <!-- 確認ボタン -->
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10 col-xs-12 col-xs-12">
+              <div>
+                <input type="button" value="OK!" onclick="ConfirmEnemyData()" class="btn my-btn2">
+              </div>
+              <div>
+                <input type="reset" value="リセット" onclick="Reset()" class="btn my-btn2 reset-btn">
+              </div>
+            </div>
+          </div>
+
+          <!-- サブテキスト、GoogleSPへのリンク -->
+          <div id="info" class="form-group">
+            <div class="col-sm-offset-2 col-sm-10 col-xs-12">
+              <a href="https://docs.google.com/spreadsheets/d/1Gb1srFP5BbDeFN0mocKpwzHp7ww10FKoB3FZI6rQtUg/pubhtml?gid=1309814821&single=true"
+                target="_blank">
+                <button type="button" id="guild_SP" class="btn btn-sm my-btn2 info my-btn-sp">
+                  <span class="glyphicon glyphicon-list-alt"></span>
+                  マッチング履歴
+                </button>
+              </a>
+              <a href="index.html">
+                <button type="button" class="btn btn-sm my-btn2 info">
+                  <span class="glyphicon glyphicon-home"></span>
+                  Uni3システム メインページへ
+                </button>
+              </a>
+            </div>
+          </div>
+
+          <!-- 確認ウィンドウ -->
+          <div id="Confirm">
+            <button type="button" class="close" aria-label="Close"><a id="Eao-close"
+                onClick="ConfirmWindow_close()">&times;</a></button>
+            <div class="table-responsive">
+              <table class="table">
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+
+        </fieldset>
+      </form>
+      <!-- フォームここまで ---------------------------------------------------------------------------------------------------->
     </div>
 
 
 
+    <script src="lib/jquery-3.1.1.min.js"></script>
+    <script src="lib/moment.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
+    <script src='lib/bootstrap-material-datetimepicker.js'></script>
+    <script src="src/common.js"></script>
+    <script src="src/form1.js"></script>
 
-</body>
+  </body>
+
 </html>
