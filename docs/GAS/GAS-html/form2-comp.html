@@ -1,17 +1,21 @@
-<!-- 敵ギルド情報を送信後に表示するページ -->
+<!-- Errorページ：2戦目に１戦目と同じ敵船番を選択して送信した -->
+
+<!DOCTYPE html>
+<!-- 戦果報告を送信後に表示するページ -->
 <!-- GAS側のHTML -->
+
 
 <html>
   <head>
     <base target="_top">
     
     <!-- ページのタイトルを記述 -->
-    <title>リトルノア ギルバト戦果</title>
+    <title>Uni3-情報が上手く送信されませんでした</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
   </head>
   <body>
-  
+
   <!-- CSSここから ---------------------------------------------------------------------------------------->
   <style>
   *{
@@ -39,37 +43,46 @@
 			text-shadow:none;
 		}
 	}
-    header{
+    
+    body>div, body>header{
 	  width: 100%;
-      height: 30%;
-      background-color: black;
+	  margin: 30px 0px;
+      padding: 20px 0px;
+      background-color: #a3cc7a;
       color: white;
       text-align: center;
     }
+
+    header{
+      height: 30%;
+    }
     header>h1{
       padding: 50px;
+	  padding-bottom: 0;
       font-size: 30px;    	
     }
-    
-    #info{
-	  width: 100%;
-	  margin: 30px 0px 0px 0px;
-      background-color: black;
-      text-align: center;
-      padding: 20px 0px;
+    .cause{
+    	padding-bottom: 1rem;
     }
+    .main{
+      padding: 1rem;
+      background-color: rgba(0,0,0,0.3);
+    }
+
     .btn{
       width: 50%;
       margin: 5px 0px;
       padding: 10px;
-      background-color: #00589b;
+      background-color: #79995c;
       color: white;
+      font-weight: bold;
       border: none;
       border-radius: 10px;
       transition-duration: 0.5s;
     }
     .btn:hover{
-      background-color: #00246b;      
+      background-color: #ffffff;
+      color: black;
     }
     /*===============================================
     ●smart.css  画面の横幅が640pxまで
@@ -89,34 +102,30 @@
   </style>
   <!-- CSSここまで ---------------------------------------------------------------------------------------->
 
-  <!-- 全体を囲う大きなbody ---------------------------------------->
-  <div id="my-body">
-
-    <!-- ヘッダー、縦1つ目のカラム --------------------->
-    <header>
-      <h1>
-        Thanks!
-      </h1>
-    </header>
+  <!-- ヘッダー --------------------->
+  <header>
+    <h1>
+      Error!
+    </h1>
+    <p class="cause">
+    	2戦目に１戦目と同じ敵船番を選択して送信しています。<br>
+	</p>
+  </header>
 
 	<!-- 各リンクの表示 -->
 	<div id="info" class="group1">
-		<a href="https://docs.google.com/spreadsheets/d/1pBlpeDH8YSE7HlZdd814mYr8ckq_A-5k9KH8DUfXDmo/edit#gid=836014528" target=”_blank”>
-			<button type="button" id="guild_SP" class="btn">
-				敵ギルド情報のスプレッドシートへ
-			</button>
-		</a><br>
-		<a href="https://aik0aaac.github.io/Uni3-System/" target=”_blank”>
-			<button type="button" id="guild_SP" class="btn">
+		<a href="https://aik0aaac.github.io/Uni3-System/">
+			<button type="button" class="btn">
 			   Uni3システム メインページへ
 			</button>
 		</a>
+		<a href="https://aik0aaac.github.io/Uni3-System/form2.html">
+			<button type="button" class="btn">
+			   戦果報告ページへ
+			</button>
+		</a>
+		<p>※ブラウザバックは使用しないでください</p>
 	</div>
 
-	<!-- イラスト表示 -->
-	<div id="picture" class="group1">
-	</div>
-
-  </div>
-</body>
+  </body>
 </html>

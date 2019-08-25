@@ -62,8 +62,15 @@ body{
 #EnemyArkOut::-webkit-scrollbar-track{background:#ffffff;}/*バーの背景色*/
 #EnemyArkOut::-webkit-scrollbar-thumb{background:#d9d9d9;}/*バーの色*/
 
+#Eao-close{
+	position: fixed;
+}
 
 /* ログ表示のCSS ---------------------*/
+#log::-webkit-scrollbar{width:3px;}/*バーの太さ*/
+#log::-webkit-scrollbar-track{background:#ffffff;}/*バーの背景色*/
+#log::-webkit-scrollbar-thumb{background:#d9d9d9;}/*バーの色*/
+
 #logpanel{
 	padding: 8px;
 	font-size: 12px;
@@ -93,14 +100,6 @@ body{
 }
 #Flow>a>button:hover{
 	background-color: #5bcd86;
-	color: white;
-}
-#FormHide>a>button{
-	background-color: white;
-	color: #efefef;
-}
-#FormHide>a>button:hover{
-	background-color: lightgray;
 	color: white;
 }
 

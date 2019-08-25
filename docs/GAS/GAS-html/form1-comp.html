@@ -1,0 +1,120 @@
+<!-- マッチング詳細を送信後に表示するページ -->
+<!-- GAS側のHTML -->
+
+<html>
+  <head>
+    <base target="_top">
+    
+    <!-- ページのタイトルを記述 -->
+    <title>Uni3-情報は正しく送信されました</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  </head>
+  <body>
+  
+  <!-- CSSここから ---------------------------------------------------------------------------------------->
+  <style>
+  *{
+      font-family: "Meiryo",sans-serif;
+      font-size:20px;
+	  margin: 0;
+    }
+    body{
+	  animation-name: show;
+	  animation-duration: 1s;
+	  width: 100%;
+    }
+	@keyframes show {
+		0% {
+			transform:translate(0,2em);
+			opacity:0;
+			text-shadow:0 0 0 #555555;
+		}
+		50% {
+			text-shadow:0 0 0.5em #555555;
+		}
+		100% {
+			transform:translate(0,0);
+			opacity:1;
+			text-shadow:none;
+		}
+	}
+    header{
+	  width: 100%;
+      height: 30%;
+      background-color: black;
+      color: white;
+      text-align: center;
+    }
+    header>h1{
+      padding: 50px;
+      font-size: 30px;    	
+    }
+    
+    #info{
+	  width: 100%;
+	  margin: 30px 0px 0px 0px;
+      background-color: black;
+      text-align: center;
+      padding: 20px 0px;
+    }
+    .btn{
+      width: 50%;
+      margin: 5px 0px;
+      padding: 10px;
+      background-color: #00589b;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      transition-duration: 0.5s;
+    }
+    .btn:hover{
+      background-color: #00246b;      
+    }
+    /*===============================================
+    ●smart.css  画面の横幅が640pxまで
+    ===============================================*/
+    @media screen and (max-width:640px){
+      img{
+        max-width: 100%;
+        height: auto;
+        width /***/:auto;　
+      }
+      /* ～以下、画面の横幅が640pxまでの場合のスタイル記入～ */
+	  header>h1{
+	    padding: 30px;
+	    font-size: 30px;    	
+	  }
+    }
+  </style>
+  <!-- CSSここまで ---------------------------------------------------------------------------------------->
+
+  <!-- 全体を囲う大きなbody ---------------------------------------->
+  <div id="my-body">
+
+
+    <!-- ヘッダー、縦1つ目のカラム --------------------->
+    <header>
+      <h1>
+        Thanks!
+      </h1>
+    </header>
+
+	<!-- 各リンクの表示 -->
+	<div id="info" class="group1">
+		<a href="https://aik0aaac.github.io/Uni3-System/">
+			<button type="button" id="guild_SP" class="btn">
+			   Uni3システム メインページへ
+			</button>
+		</a>
+		<a href="https://aik0aaac.github.io/Uni3-System/form2.html">
+			<button type="button" class="btn">
+			   戦果報告ページへ
+			</button>
+		</a>
+		<p>※ブラウザバックは使用しないでください</p>
+	</div>
+
+  </div>
+</body>
+</html>

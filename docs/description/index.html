@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+<head> 
+    <!-- ページのタイトルを記述 -->
+    <title>Uni3システムの説明</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    <!-- ライブラリファイル -->
+    <link href="lib/bootstrap.min.css" rel="stylesheet">
+    <!-- 自作ファイル群 -->
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <!--  ブラウザタブに表示されるアイコン画像の指定  -->
+    <link rel="icon" sizes="196x196" href="img/icon.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/icon.png">
+</head>
+<body>
+    <!-- 共通コンテンツ ------------------------------------------>
+     <div class="jumbotron">
+        <h1>Uni3 システム説明</h1>
+        <p>
+            システムへのURL：
+            <a href="https://aik0aaac.github.io/Uni3-System/">https://aik0aaac.github.io/Uni3-System/</a>
+        </p>
+        <p>
+           開発者への連絡先<br>
+            メールアドレス：aik0aaad@gmail.com <br>
+            Twitter：@aik0aaac <br>
+         </p>
+     </div>
+
+    <p id="tab-description">↓ 各タブをクリックしてください</p>
+    <!-- タブ・メニュー ------------------------------------------>
+    <ul class="nav nav-tabs">
+        <li><a href="#Tab1" data-toggle="tab">Docsフォルダ内説明</a></li>
+        <li><a href="#Tab2" data-toggle="tab">システム画面の説明</a></li>
+    <!--        <li><a href="#Tab3" data-toggle="tab">このシステムの導入手順</a></li>-->
+    </ul>
+
+    <!-- タブ内容 -------------------------------------->
+    <div class="tab-content" id="Tab">
+      <!-- タブ(Tab1)：ここから ----------------------->
+      <div class="tab-pane" id="Tab1">
+       <p>
+           ※cssフォルダやscriptフォルダ等、名前を見れば何となく内容が察しがつくようなものの説明は省きます。
+       </p>
+        <h2><a class="btn" data-toggle="collapse" href="#html">
+            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>htmlファイル関連
+        </a></h2>
+        <div class="collapse" id="html">
+            <p>docsフォルダ直下のhtmlファイルに関する説明です。</p>
+            <table class="table">
+                <thead><tr>
+                        <th>ファイル名</th>
+                        <th>概要</th>
+                </tr></thead>
+                <tbody>
+                    <tr>
+                        <td>index.html</td>
+                        <td>システムのメイン画面です。</td>
+                    </tr>
+                    <tr>
+                        <td>form1.html</td>
+                        <td>マッチングギルド入力画面です。</td>
+                    </tr>
+                    <tr>
+                        <td>form2.html</td>
+                        <td>戦果報告入力画面です。</td>
+                    </tr>
+                    <tr>
+                        <td>flow.html</td>
+                        <td>戦果フローを表示する画面です。<br>メイン画面にて、iframeで表示されるページです。
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>test.html</td>
+                        <td>画面遷移等の演出のテスト用に用意したHTMLファイルです。<br>
+                            現在はチュロスのアニメーションが表示されるだけのファイルです。
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+         </div>
+
+        <h2><a class="btn" data-toggle="collapse" href="#gas">
+            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>GASファイル関連
+        </a></h2>
+        <div class="collapse" id="gas">
+            <p>GASフォルダ内の各ファイルの説明です。</p>
+            <table class="table">
+                <thead><tr>
+                        <th>ファイル名</th>
+                        <th>概要</th>
+                </tr></thead>
+                <tbody>
+                    <tr>
+                        <td>コード.gs.txt</td>
+                        <td>
+                            Googleスプレッドシートのスクリプトコードを書いたファイルです。<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>GAS-htmlフォルダ内の各htmlファイル</td>
+                        <td>各フォーム画面入力後に表示されるhtmlファイルを置いています。<br>エラー処理で遷移先が変わるため、複数のhtmlファイルがあります。</td>
+                    </tr>
+                </tbody>
+            </table>
+         </div>
+      </div>
+      <!-- タブ(Tab1)：ここまで ----------------------->
+
+      <!-- タブ(Tab2)：ここから ------------------------->
+      <div class="tab-pane" id="Tab2">
+          <p>システムは3つの画面から成り立っています。</p>
+          <h2><a class="btn" data-toggle="collapse" href="#sys-main">
+            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>【メイン画面】
+        </a></h2>
+          <div id="sys-main" class="collapse block1">
+             <p>
+                 システムのメイン画面です。<br>
+                 ここから各画面へと遷移します。<br>
+                 ※ただしマッチングギルド入力画面へはメイン画面から遷移できません。URL直打ちで遷移してください
+             </p>
+              <div id="m1" class="sys-block">
+                 <h3>◇ メイン画面の概要</h3>
+                  <img src="img/main1.jpg" alt="メイン画面の説明画像1" class="des">
+                  <table class="table">
+                      <thead>
+                          <tr>
+                              <th>項目名</th>
+                              <th>説明</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td>①対戦相手名</td>
+                              <td>現在対戦しているギルド名が表示されます</td>
+                          </tr>
+                          <tr>
+                              <td>②現在の状態</td>
+                              <td>
+                                  ギルドバトルにおける、現在の状態が表示されます。<br>
+                                  以下の3種類のうち、現在の時刻に合わせた状況が表示されます。
+                              <ul>
+                                  <li>
+                                      準備日終了時間を表示する<br>
+                                      ※リトルノアで言う<img src="img/vs_1.png" alt="準備状態" class="icon">のアイコン表示時
+                                  </li>
+                                  <li>
+                                      戦闘日終了時間を表示する<br>
+                                      ※リトルノアで言う<img src="img/vs_2.png" alt="戦闘状態" class="icon">のアイコン表示時
+                                  </li>
+                                  <li>
+                                      戦闘日が終了したことを表示する<br>
+                                      ※リトルノアで言う<img src="img/vs_3.png" alt="戦闘待機" class="icon">か<img src="img/vs_4.png" alt="戦闘終了" class="icon">のアイコン表示時
+                                  </li>
+                              </ul></td>
+                          </tr>
+                          <tr>
+                              <td>③「戦果報告入力画面」へのボタン</td>
+                              <td>form1へ繋がるボタン</td>
+                          </tr>
+                          <tr>
+                              <td>④各タブ</td>
+                              <td>各タブをクリックするとその詳細が見えます<br>
+                              以下のタブがあります<br>
+                              <ul>
+                                  <li>ギルバト状況タブ</li>
+                                  <li>ギルバト参加メンバー</li>
+                                  <li>ギルメン詳細</li>
+                                  <li>戦略フロー</li>
+                              </ul>
+                              各タブの説明は以下に
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>⑤各タブの~</td>
+                              <td>各タブの内容が表示される領域です</td>
+                          </tr>
+                          <tr>
+                              <td>⑥各種データベースの~</td>
+                              <td>
+                                  各種データベースの中身が見れるリンクボタンです<br>
+                                  ここからデータベースへの編集は出来ません、閲覧のみです
+                             </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+              <div id="m2" class="sys-block">
+                 <h3>◇ ギルバト状況タブ</h3>
+                 <p>現在のギルドバトルの、自ギルドの戦果状況が分かるタブです。</p>
+                  <img src="img/main2.jpg" alt="メイン画面の説明画像2" class="des">
+                  <table class="table">
+                      <thead>
+                          <tr>
+                              <th>項目名</th>
+                              <th>説明</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td>①敵の方舟のナンバー</td>
+                              <td>
+                                  対戦相手の方舟の番号が表示されます<br>
+                                  「詳」と書かれたボタンをクリックすると、現在までにその方舟を攻めた人の名前や戦果、攻めた時間等が見れます
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>②獲得メダル数</td>
+                              <td>
+                                  現在戦った人の中で、一番高いメダル数を取った人のメダル数が表示されます
+                             </td>
+                          </tr>
+                          <tr>
+                              <td>③攻めた回数</td>
+                              <td>
+                                  その方舟を何回攻めたのかが分かります<br>
+                                  <img src="img/attackIco.png" alt="攻めたアイコン" class="icon">のアイコン一つにつき一回です
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+              <div id="m3" class="sys-block">
+                 <h3>◇ ギルバト参加メンバータブ</h3>
+                  <p>ギルドバトルに参加しているメンバーの援軍希望キャラや各戦果状況が分かるタブです。</p>
+                  <img src="img/main3.jpg" alt="メイン画面の説明画像3" class="des">
+                  <table class="table">
+                      <thead>
+                          <tr>
+                              <th>項目名</th>
+                              <th>説明</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td>①メンバー名</td>
+                              <td>
+                                  ギルドバトルに参加しているメンバーの名前が表示されます
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>②援軍希望キャラ</td>
+                              <td>
+                                  メンバーの援軍希望キャラが表示されます<br>
+                                  左側に表示されているキャラが第1希望のキャラ、右側に表示されているキャラが第2希望のキャラです
+                             </td>
+                          </tr>
+                          <tr>
+                              <td>③戦果表示欄</td>
+                              <td>
+                                  各メンバーのギルドバトルの戦果が分かります<br>
+                                  No.●というのがどの方舟を攻めたのか、横にあるメダルの画像がメダル獲得数です<br>
+                                  まだ攻めてないメンバーの場合は、この欄は空欄になります
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+              <div id="m4" class="sys-block">
+                 <h3>◇ ギルメン詳細</h3>
+                  <p>ギルドメンバーの詳細が分かるタブです。</p>
+                  <img src="img/main4.jpg" alt="メイン画面の説明画像4" class="des">
+                  <table class="table">
+                      <thead>
+                          <tr>
+                              <th>項目名</th>
+                              <th>説明</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td>①メンバー名</td>
+                              <td>
+                                  ギルドに所属しているメンバーの名前が表示されます
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>②援軍希望キャラ</td>
+                              <td>
+                                  メンバーの援軍希望キャラが表示されます<br>
+                                  左側に表示されているキャラが第1希望のキャラ、右側に表示されているキャラが第2希望のキャラです
+                             </td>
+                          </tr>
+                          <tr>
+                              <td>③今月のギルバト参加数</td>
+                              <td>
+                                  各メンバーの今月のギルドバトルの参加数が分かります<br>
+                                  なお、参加数が0の場合そのメンバーの行の背景がピンク色に表示されます
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+              <div id="m5" class="sys-block">
+                 <h3>◇ 戦略フロー</h3>
+                  <p>ギルドバトルの戦略フローが参照できるタブです。</p>
+                  <img src="img/main5.jpg" alt="メイン画面の説明画像5" class="des">
+                  <table class="table">
+                      <thead>
+                          <tr>
+                              <th>項目名</th>
+                              <th>説明</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td>①フロー画像表示ボタン</td>
+                              <td>
+                                  クリックすると戦略フローが下のスペースに表示されます<br>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+            </div>
+          <h2><a class="btn" data-toggle="collapse" href="#sys-form1">
+            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>【マッチングギルド入力画面】
+          </a></h2>
+          <div id="sys-form1" class="collapse block1 sys-block">
+             <p>
+                 対戦ギルドの情報入力をする画面です。<br>
+                 ここのURLはギルドマスター陣等のシステムを運用する立場の人にのみ伝えるといいかもしれません。
+             </p>
+              <img src="img/form1.jpg" alt="マッチングギルド入力画面の説明画像" class="des">
+              <table class="table">
+                  <thead>
+                      <tr>
+                          <th>項目名</th>
+                          <th>説明</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>①ホームボタン</td>
+                          <td>クリックでメイン画面へ飛べます</td>
+                      </tr>
+                      <tr>
+                          <td>②進捗バー</td>
+                          <td>
+                              ③~⑥の各項目を入力ごとに、ゲージがたまります<br>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>③対戦相手名</td>
+                          <td>対戦ギルドのギルド名を入力します</td>
+                      </tr>
+                      <tr>
+                          <td>④マッチング日</td>
+                          <td>
+                              一見テキスト入力欄っぽいですが、ここをクリックするとポップアップでカレンダーが出てきます<br>
+                              これを使用して入力します
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>⑤対戦数</td>
+                          <td>
+                              ギルドバトルを行う方舟の数を入力します<br>
+                              入力はボタン形式で、クリックすると選択状態となります
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>⑥対戦メンバー</td>
+                          <td>
+                              対戦メンバーを選択します<br>
+                              参加メンバーをクリックして選択します<br>
+                              各ボタンの名前の下部に灰色で書かれた文字は、LINEでのメンバーの名前です
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>⑦OK/リセットボタン</td>
+                          <td>
+                              OKボタンを押すと情報送信のための確認画面が出ます<br>
+                              なお入力不足があるとはじかれます<br>
+                              確認画面にてOKボタンを押すと、情報が送信されます<br>
+                              リセットボタンは今まで入力した項目をすべてリセットします
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>⑧アクセスボタン</td>
+                          <td>今まで戦ったギルドの情報が入ったデータベース(閲覧のみ)へアクセスしたり、メイン画面へ戻ったりできます</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+          <h2><a class="btn" data-toggle="collapse" href="#sys-form2">
+            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>【戦果報告入力画面】
+          </a></h2>
+          <div id="sys-form2" class="collapse block1 sys-block">
+             <p>各ギルドバトルメンバーが戦果報告をする画面です。</p>
+              <img src="img/form2.jpg" alt="戦果報告入力画面の説明画像" class="des">
+              <table class="table">
+                  <thead>
+                      <tr>
+                          <th>項目名</th>
+                          <th>説明</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>①ホームボタン</td>
+                          <td>クリックでメイン画面へ飛べます</td>
+                      </tr>
+                      <tr>
+                          <td>②進捗バー</td>
+                          <td>
+                              ④~⑧の各項目を入力ごとに、ゲージがたまります<br>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>③受付中ギルド表示</td>
+                          <td>現在どのギルドとの対戦報告を受け付けているか、その名前を表示します</td>
+                      </tr>
+                      <tr>
+                          <td>④敵船No入力</td>
+                          <td>
+                              何番の敵の船と戦ったかを入力します<br>
+                              「ここを押してください」というボタンを押すと、入力できるボタンが現れます<br>
+                              入力はボタン形式です
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>⑤攻撃者名</td>
+                          <td>
+                             自分の名前を選択します<br>
+                              「ここを押してください」というボタンを押すと、入力できるボタンが現れます<br>
+                              入力はボタン形式です</td>
+                      </tr>
+                      <tr>
+                          <td>⑥メダル数</td>
+                          <td>何枚のメダルを獲得したか入力します</td>
+                      </tr>
+                      <tr>
+                          <td>⑦攻撃した日</td>
+                          <td>
+                              一見テキスト入力欄っぽいですが、ここをクリックするとポップアップでカレンダーが出てきます<br>
+                              これを使用して入力します
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>⑧何戦目か？</td>
+                          <td>
+                              一戦目か二戦目かを選択します
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>⑨OK/リセットボタン</td>
+                          <td>
+                              OKボタンを押すと情報送信のための確認画面が出ます<br>
+                              なお入力不足があるとはじかれます<br>
+                              確認画面にてOKボタンを押すと、情報が送信されます<br>
+                              リセットボタンは今まで入力した項目をすべてリセットします
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>⑩アクセスボタン</td>
+                          <td>今まで戦ったギルドの情報が入ったデータベース(閲覧のみ)へアクセスしたり、メイン画面へ戻ったりできます</td>
+                      </tr>
+                      <tr>
+                          <td>⑪特別フォーム</td>
+                          <td>
+                              受付中ギルド以外とのギルドの戦果報告をする際に用いるフォームです<br>
+                              クリックで、④~⑨と同様の入力フォームが出てきます
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+      <!-- タブ(Tab2)：ここまで ------------------------->
+
+      <!-- タブ(Tab3)：ここから ------------------------->
+        <!--      <div class="tab-pane" id="Tab3">
+         <p>
+            導入に当たっては、特に難しい専門知識等は必要ありません。<br>
+            ただ、機能拡張をする際はそれなりの知識を要します。<br>
+            もしお困りのことがありましたら、「開発者への連絡先」で聞いていただければ幸いです。<br>
+         </p>
+         <p>
+            システムの導入には、大きく分かれて2つの手順があります。
+         </p>
+          <h2><a class="btn" data-toggle="collapse" href="#use-1">
+            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>【データベースの設定】
+          </a></h2>
+          <div id="use-1" class="collapse block1">
+              <ul class="Tab3-list">
+                  <li>
+                      まず、システムの管理者用のGoogleアカウントを作成します。<br>
+                      既存のアカウントでも構いません
+                  </li>
+                  <li>
+                      Googleドライブから、「Googleスプレッドシート」を作成します。
+                  </li>
+                  <li>
+                      シートの内容を、以下のリンクのシートと同じものにします。<br>
+                      <a href="https://docs.google.com/spreadsheets/d/1Gb1srFP5BbDeFN0mocKpwzHp7ww10FKoB3FZI6rQtUg/pubhtml">Link</a><br>
+                      「ゲーム名」等の項目は、使用するギルドメンバーの名前に適宜変更してください。
+                  </li>
+                  <li>
+                      「ファイル」から「ウェブに公開」を選択し、「ドキュメント全体を公開」となっていることを確認し、公開します。<br>
+                      また、この時URLが発行されるため、それを控えておきます。
+                  </li>
+                  <li>
+                      スプレッドシートの「ツール>スクリプトエディタ」を選択します。
+                  </li>
+                  <li>
+                      「スクリプトエディタ」が開くと、「コード.gs」というファイルが開かれていると思います。<br>
+                      そこに、このリポジトリ内の「docs>GAS」フォルダにある、「コード.gs.txt」の中身をコピペします。
+                  </li>
+                  <li>
+                      「スクリプトエディタ」の「新規作成」から、HTMLファイルを選択し、HTMLファイルを新規作成します。
+                  </li>
+                  <li>
+                      そこにこのリポジトリ内の「docs>GAS>GAS-html」フォルダにあるHTMLファイルをコピペします。<br>
+                  </li>
+                  <li>
+                      6,7の作業を「GAS-html」フォルダにある全てのHTMLファイルについて同様に行います。<br>
+                      完了すると以下のようになるはずです。<br>
+                      <img class="des" src="img/des1.jpg" alt="説明用画像1">
+                  </li>
+                  <li>
+                      「スクリプトエディタ」の「公開」から、「ウェブアプリケーションとして導入」を選択します。<br>
+                      「プロジェクトバージョン」を「1」にし、<br>
+                      「次のユーザーとしてアプリケーションを実行」の項目を「自分」にし、<br>
+                      「アプリケーションにアクセスできるユーザー」を「全員(匿名を含む)」とします。<br>
+                      設定を確認し、OKボタンを押すと、「現在のウェブアプリケーションのURL」が表示されますので、そのURLを控えておきます。
+                  </li>
+              </ul>
+          </div>
+          <h2><a class="btn" data-toggle="collapse" href="#use-2">
+            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>【表示するhtmlファイル等の設定】
+          </a></h2>
+          <div id="use-2" class="collapse block1">
+              <ul class="Tab3-list">
+                  <li>
+                      このリポジトリ内の「docs」フォルダをコピーし、新たにリポジトリを作成してデータをすべてそこに入れます。
+                  </li>
+                  <li>
+                     「docs」フォルダ内の「form1.html」と「form2.html」内にある、「form」タグの「action」のURLを、【データベースの設定】の10で控えたURLに差し替えます。
+                  </li>
+                  <li></li>
+              </ul>
+          </div>
+
+      </div>
+    -->
+  <!-- タブ(Tab3)：ここまで ------------------------->
+
+    <!--上部へページスクロールするボタン-->
+    <p id="pageTop"><a href="#wrap"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></a></p>
+
+    <!-- ライブラリファイル -->
+    <script src="lib/jquery-3.1.1.min.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
+    <script>
+        $(function() {
+            var topBtn = $('#pageTop');    
+            topBtn.hide();
+            //スクロールが100に達したらボタン表示
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 100) {
+                    topBtn.fadeIn();
+                } else {
+                    topBtn.fadeOut();
+                }
+            });
+            //スクロールしてトップ
+            topBtn.click(function () {
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 500);
+                return false;
+            });
+        });
+    </script>
+
+</body>
+</html>

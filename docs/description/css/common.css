@@ -1,0 +1,108 @@
+/* 基礎タグにつけるCSS ---------------------*/
+*{
+	font-family: "Meiryo",sans-serif;
+}
+body{
+	font-size: 18px;
+}
+img.des{
+    margin: 1em;
+    margin-left: 2em;
+    width: 50%;
+    border: 5px solid #fff;
+    box-shadow: 0 0 8px #888;
+}
+img.icon{
+    margin:  .1em .5em;
+    width: 1.7em;
+}
+table{
+    font-size: .8em;
+}
+ul{
+    list-style: square;
+}
+h2{
+    font-size: 2rem;
+}
+h3{
+    font-size: 1.5rem;
+}
+a{
+    transition: .5s;
+    border-radius: 5px;
+}
+a:hover{
+    text-decoration: none;
+    background-color: #eee;
+}
+/* ライブラリで追加されたタグに付けるCSS -------*/
+.glyphicon-chevron-down{
+    margin-right: .8em;
+    font-size: .5em;
+}
+.jumbotron{
+    padding: 5rem;
+}
+.jumbotron h1{
+    margin-bottom: 2rem;
+}
+.jumbotron p{
+    margin: 1rem;
+    font-size: 1.5rem;
+}
+.tab-content{
+    padding: 3rem;
+}
+.collapse{
+    margin: 1em 2em;
+}
+.btn{
+    color: black;
+    font-size: 1em;
+    background-color: #eee;
+}
+/* その他 -------------------*/
+#tab-description{
+    margin: 2rem;
+}
+.block1{
+    margin-bottom: 3rem;
+    padding: 1rem;
+    border-radius: 5px;
+}
+.sys-block{
+    margin: 1em 0;
+    padding: 2rem 2rem 3rem 2rem;
+    background-color: #eee;
+}
+.block1 p{
+    margin: 2rem;
+    margin-left: 3.5rem;
+    font-size: .8em;
+}
+.block1 table, .sys-block table{
+    margin: 2rem;
+}
+/* ページトップへ遷移するボタン --------------------------*/
+#pageTop{
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+}
+#pageTop a{
+    padding: 1em;
+    color: white;
+    background: #666;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    border-radius: 100px;
+    transform: rotate(-45deg);
+}
+#pageTop span{
+    transform: rotate(45deg);    
+}
+#pageTop a:hover{
+    background: #aaa;
+}
