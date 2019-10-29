@@ -1,3 +1,20 @@
+/* **************************
+ Moduleの読み込み
+************************** */
+import {
+  ModalModule
+} from "./module/modal_module";
+const modalModule = new ModalModule();
+
+import {
+  CommonModule
+} from "./module/common_module";
+const commonModule = new CommonModule();
+
+import {
+  Uni3SystemDataModule
+} from "./module/uni3SystemData_module";
+
 //-------------------------------------------------------------------------------
 // 事前準備
 //-------------------------------------------------------------------------------
@@ -16,22 +33,23 @@ $(function () {
 let Data_Member; // ギルメン詳細
 let Data_Guild; // ギルバト敵情報
 let Data_Guild_late; // ギルバト敵情報の最終行の数値
+const uni3SystemDataModule = new Uni3SystemDataModule();
 
 async function setup() {
   // 「ギルバト敵情報」を取得
-  await getGoogleSpreadSheetData("1Gb1srFP5BbDeFN0mocKpwzHp7ww10FKoB3FZI6rQtUg", "olntvy7")
+  await uni3SystemDataModule.getData("1Gb1srFP5BbDeFN0mocKpwzHp7ww10FKoB3FZI6rQtUg", "olntvy7")
     .then(data => {
       if (data !== null) {
-        Data_Guild = SetGoogleSpreadSheetDate(data, 3);
+        Data_Guild = uni3SystemDataModule.setData(data, 3);
         Data_Guild_late = data.feed.entry.length / 3 - 1;
       }
     });
 
   // 「ギルメン詳細」を取得
-  await getGoogleSpreadSheetData("1Gb1srFP5BbDeFN0mocKpwzHp7ww10FKoB3FZI6rQtUg", "od6")
+  await uni3SystemDataModule.getData("1Gb1srFP5BbDeFN0mocKpwzHp7ww10FKoB3FZI6rQtUg", "od6")
     .then(data => {
       if (data !== null) {
-        Data_Member = SetGoogleSpreadSheetDate(data, 16);
+        Data_Member = uni3SystemDataModule.setData(data, 16);
       }
     });
 
@@ -282,13 +300,13 @@ function IrregularConfirmArkData() {
 // FORMデータを送信する
 //---------------------------
 function SendData() {
-  Waiting();
+  commonModule.waiting();
   document.getElementById("ArkData").submit();
   ConfirmWindow_close();
 }
 
 function SendIrregularData() {
-  Waiting();
+  commonModule.waiting();
   document.getElementById("IrregularArkData").submit();
   IrregularConfirmWindow_close();
 }

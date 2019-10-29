@@ -1,3 +1,20 @@
+/* **************************
+ Moduleの読み込み
+************************** */
+import {
+  ModalModule
+} from "./module/modal_module";
+const modalModule = new ModalModule();
+
+import {
+  CommonModule
+} from "./module/common_module";
+const commonModule = new CommonModule();
+
+import {
+  Uni3SystemDataModule
+} from "./module/uni3SystemData_module";
+
 //-------------------------------------------------------------------------------
 // 事前準備
 //-------------------------------------------------------------------------------
@@ -11,13 +28,14 @@ $(function () {
 // SP=Google スプレッドシートの取得
 //----------------------------------------------------------
 var Data_Member; // ギルメン詳細
+const uni3SystemDataModule = new Uni3SystemDataModule();
 
 async function setup() {
   // 「ギルメン詳細」を取得
-  await getGoogleSpreadSheetData("1Gb1srFP5BbDeFN0mocKpwzHp7ww10FKoB3FZI6rQtUg", "od6")
+  await uni3SystemDataModule.getData("1Gb1srFP5BbDeFN0mocKpwzHp7ww10FKoB3FZI6rQtUg", "od6")
     .then(data => {
       if (data !== null) {
-        Data_Member = SetGoogleSpreadSheetDate(data, 16);
+        Data_Member = uni3SystemDataModule.setData(data, 16);
       }
     });
 
@@ -186,7 +204,7 @@ function ConfirmEnemyData() {
 // FORMデータを送信する
 //---------------------------
 function SendData() {
-  Waiting();
+  commonModule.waiting();
   document.getElementById("EnemyData").submit();
   ConfirmWindow_close();
 }
