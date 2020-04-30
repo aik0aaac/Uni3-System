@@ -15,7 +15,7 @@
   },
   "homepage": "https://github.com/aik0aaac/Uni3-System#readme",
   "dependencies": {
-    "jquery": "^3.4.1"
+    "jquery": "^3.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
